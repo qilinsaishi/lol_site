@@ -6,7 +6,16 @@
 .margin120 {
 	margin-top: 120px;
 }
-
+.colorYellow{
+	color: #d1b232;
+	font-weight: bold;
+}
+.red{
+	color: #fa5a56;
+}
+.zise{
+	color: #7a8cdd;
+}
 .text-center {
 	text-align: center;
 }
@@ -155,7 +164,7 @@
 	color: #e1eeff;
 }
 .newMsg>div:first-child{
-	padding: 15px;
+	padding: 0px 15px;
 }
 .newMsg ul li a div,.GameGl ul li a div {
 	width: 84%;
@@ -191,7 +200,11 @@
 	background-color: #1a2633;
 	padding: 15px;
 	padding-left: 15px!important;
-	
+	margin-top: 30px;
+}
+
+.GameGl>div:first-child{
+	padding: 15px 15px;
 }
 
 .hotTame li {
@@ -597,6 +610,10 @@
 	background-color: #ffffff;
 }
 
+.xgTeam .iconList{
+	margin-bottom: 40px;
+}
+
 .xgTeam .iconList li {
 	display: inline-block;
 	margin-right: 16px;
@@ -688,7 +705,8 @@
 }
 
 .gameInt_zixun ,.gameInt_team {
-	margin: 40px 0px 0px;
+	margin: 15px 0px 0px;
+	padding-left: 0px;
 }
 
 .gameInt_zixun a p,.gameInt_team a p {
@@ -730,9 +748,7 @@
 	padding: 20px;
 }
 
-.gameInt_zixun .list-item {
-	width: 100%;
-}
+
 
 .gameInt_zixun .list-item a {
 	display: flex;
@@ -1080,7 +1096,7 @@
 }
 
 .strategy-box .gameInt_video .list_box {
-	margin: 12px 12px 0px;
+	margin: 12px 0px 0px;
 	padding: 20px 15px 0px;
 }
 
@@ -1159,11 +1175,11 @@
 }
 
 .heroList .iconList ul li {
+	margin: 0px;
 	margin-top: 35px;
-	overflow: hidden;
-	font-size: 12px;
-	margin-left: 36px;
-	float: left;
+    overflow: hidden;
+    font-size: 12px;
+    text-align: center;
 }
 
 .heroList .iconList ul li a {
@@ -1296,7 +1312,7 @@
 	display: inline-block;
 	width: 80px;
 	height: 80px;
-	padding-right: 0px;
+	padding: 0px;
 	margin-bottom: 10px;
 }
 
@@ -1438,6 +1454,700 @@
 	height: 100%;
 }
 
+
+
+
+
+
+
+
+
+/* 战队队员介绍 */
+
+.teamMember .teamLogo .left img {
+	width: 50%;
+	margin-bottom: 15px;
+}
+.teamMember .teamLogo h1{
+	padding-bottom: 20px;
+	border-bottom: 1px dashed #d1deef ;
+}
+.teamMember .teamLogo ul li span{
+	margin-left: 6px;
+}
+.teamMember .teamLogo p{
+	margin-top: 20px;
+	font-size: 15px;
+	line-height: 34px;
+}
+.teamMember .teamLogo ul li{
+	font-size: 15px;
+	line-height: 34px;
+}
+
+
+.teamMember .teamHistory .col-xs-12 {
+	padding-left: 0px;
+}
+
+.teamMember .iconList {
+	padding: 30px 30px 20px;
+	background-color: #1a2633;
+}
+
+.teamMember .gameInt_zixun .list-item{
+	padding: 0px;
+	margin: 0px 0px 20px;
+	text-align: center;
+}
+.teamMember .gameInt_zixun .list-item a{
+	display: inline-block;
+}
+.teamMember .gameInt_zixun .list-item a p{
+	display: block;
+	width: 100%;
+	margin-top: 10px;
+}
+.teamMember .teamHistory .iconList li a img {
+	width: 90px;
+	height: 90px;
+}
+
+
+
+.teamMember .xg_member .iconList .list-item {
+	margin-bottom: 20px;
+	padding: 0px;
+	text-align: center;
+}
+
+
+.teamMember .xg_member .iconList .list-item a img {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.teamMember .xg_member .iconList .list-item a p {
+	text-align: center;
+	line-height: 1.7;
+	color: #dae7f8;
+	font-size: 14px;
+	margin-top: 8px;
+}
+
+
+.historyMatch{
+	text-align: center;
+	overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+	background-color: #1a2633;
+	margin: 40px 0px 10px;
+}
+.historyMatch .matchBox{
+	width: 100%;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.historyMatch .matchBox .title{
+	height: 50px;
+	display: -webkit-inline-box;
+	padding: 0px 15px;
+	align-items: center;
+	justify-content: space-between;
+	background-color:#384552;
+}
+
+.historyMatch .matchBox::-webkit-scrollbar {
+    display: none;
+}
+
+.historyMatch .matchBox li{
+	width: 90px;
+	padding: 8px 0px;
+	color: #d9e6f7;
+	margin-right: 20px;
+}
+.historyMatch li.width178{
+	width: 178px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.historyMatch li.width360{
+	width: 360px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.historyMatch li.videoIcon{
+	width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.historyMatch li.videoIcon svg{
+	width: 40px;
+	height: 50px;
+	margin: 0 auto;
+	display: inline-block;
+}
+.historyMatch .historyMatchBox{
+	background-color: #1a2633;
+	padding: 15px;
+}
+
+.historyMatch .historyMatchBox ul{
+	display: -webkit-inline-box;
+}
+
+.historyMatch .historyMatchBox .historyMatch-item{
+	width: 100%;
+	margin: 0;
+	display: inline;
+}
+.historyMatch .historyMatchBox .historyMatch-item li{
+	float: left;
+}
+.historyMatch .historyMatchBox .historyMatch-item  li.width360   .icon {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.historyMatch .historyMatchBox .historyMatch-item  li.width360 .icon div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.historyMatch .historyMatchBox .historyMatch-item  li.width360 .icon span {
+    font-size: 13px;
+}
+.historyMatch .historyMatchBox .historyMatch-item  li.width360 .icon img {
+    width: auto;
+    height: 40px;
+    margin: 0px 12px;
+}
+.historyMatch .historyMatchBox .historyMatch-item  li.width360  .icon .vs {
+    font-size: 22px;
+    font-weight: bolder;
+    margin: 0px 6px;
+}
+.heroPic img{
+width: 46px;
+height: 46px;
+margin: 0 auto;
+}
+
+.historyMatch .historyMatchBox .historyMatch-item ul{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.scrllTips{
+	color: #586a7c;
+	font-size: small;
+	line-height: 1.4;
+	display: none;
+	margin-bottom: 40px;
+}
+
+
+
+/* 召唤师技能 */
+.summoner .summoner_box{
+	padding: 30px 20px 28px;
+    background-color: #1a2634;
+}
+.summoner .summoner_box .summoner_title .on a img{
+border: 4px solid #4b68fb;
+}
+.summoner .summoner_box .summoner_title a{
+	display: inline-block;
+	text-align: center;
+}
+.summoner .summoner_box .summoner_title>div{
+	text-align: center;
+	margin-bottom: 30px;
+}
+.summoner .summoner_box .summoner_title a img{
+width: 80px;
+height: 80px;
+box-sizing: border-box;
+}
+.summoner .summoner_box .summoner_title a p{
+	font-size: 13px;
+    color: #c8d5e5;
+    text-align: center;
+    line-height: 1;
+	margin: 8px 0px 0px;
+}
+.summoner .summoner_box .summoner_con_list{
+	display: none;
+}
+.summoner .summoner_box .summoner_con_list img{
+	width: 100%;
+}
+
+.summoner .summoner_box .summoner_con_list h3{
+	color: #d9e6f7;
+	padding-bottom: 15px;
+	margin: 20px 0px;
+	border-bottom: 1px dashed #8193a9;
+}
+.summoner .summoner_box .summoner_con_list span{
+	color:#8193a9;
+	font-weight: 400;
+	font-size: 16px;
+	margin-left: 40px;
+}
+.summoner .summoner_box .summoner_con_list p{
+	color:#8193a9;
+	font-weight: 400;
+	font-size: 16px;
+}
+/* 召唤师技能 */
+
+
+
+
+
+
+/* 近期赛事 */
+.match_box .icon_title{
+	margin-top: 0px;
+}
+.recentEvents .match_pic li{
+	margin-bottom: 20px;
+}
+.recentEvents .match_pic img{
+	border-radius: 14px;
+	width: 100%;
+}
+
+
+.dataComparison{
+	text-align: center;
+	overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+	margin: 40px 0px 10px;
+}
+.dataComparison .dataComparisonList{
+	width: 100%;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dataComparison .dataComparisonList::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.dataComparisonList .dataComparison_item .top,.dataComparisonList .dataComparison_item .bottom{
+	display: flex;
+	align-items: center;
+}
+.dataComparisonList .dataComparison_item .top{
+	border-bottom: 1px solid #7D8FA4;
+}
+
+.dataComparisonList .dataComparison_item{
+	border-left: 15px solid #4b68fb;
+	box-sizing: border-box;
+	color: #e1eeff;
+	margin-bottom: 20px;
+	background-color: #1d2d3f;
+	width: 100%;
+}
+.dataComparisonList .dataComparison_item img{
+	display: inline-block;
+	height: 34px;
+}
+
+.dataComparisonList .dataComparison_item .title,.dataComparisonList .dataComparison_item .data{
+	display: inline-flex;
+	text-align: center;
+	justify-content: space-between;
+	line-height: 45px;
+}
+.dataComparisonList .dataComparison_item .data{
+	border-top: 1px solid #7D8FA4;
+}
+
+.dataComparisonList .dataComparison_item .left,.dataComparisonList .dataComparison_item .middle{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-right: 1px solid #7D8FA4;
+	box-sizing: border-box;
+}
+
+.dataComparison_item .width90{
+	width: 90px;
+	display: inline-block;
+	line-height: 45px;
+}
+.dataComparison_item .width246{
+	width: 432px;
+	display: inline-block;
+	text-align: center;
+}
+.dataComparison_item .data_del p{
+	margin: 0px 10px;
+}
+.dataComparison_item .width100{
+	width: 68px;
+	display: inline-block;
+}
+.dataComparison_item .title div:last-child{
+width: 210px;
+}
+
+.data .width90{
+	border-right: 1px solid #7D8FA4;
+}
+
+.data .left{
+	width: 180px;
+}
+.data .middle{
+	width: 265px;
+}
+.data .right{
+	width: 210px;
+border-left: none;
+}
+.data .right ul{
+	display: flex;
+}
+
+.data .data_del div{
+	height: 50px;
+}
+.data .middle img{
+	height: 30px;
+	margin: 0px 6px;
+	border-radius: 50%;
+}
+
+
+
+.recentEvents .swiper-container{
+	border: 1px solid #cddaea;
+	width: 100%;
+	margin-top: 30px;
+}
+.recentEvents .swiper-container.sevenSlider .swiper-slide{
+	border-left: 1px solid #cddaea;
+	height: 90px;
+	width: 120px;
+	text-align: center;
+	color: #cddaea;
+	line-height: 40px;
+}
+.recentEvents  .swiper-container.sevenSlider .swiper-button-next, .recentEvents  .swiper-container.sevenSlider .swiper-container-rtl .swiper-button-prev{
+	width: 14px;
+	background-size: 100%;
+}
+.recentEvents  .swiper-container.sevenSlider .swiper-button-next, .recentEvents  .swiper-container.sevenSlider .swiper-container-rtl .swiper-button-prev, .swiper-container.sevenSlider .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+	width: 24px;
+	background-size: 80%;
+	background-position: center;
+    height: 100%;
+	top: 22px;
+	background-color:#06181e;
+    
+}
+.recentEvents  .swiper-container.sevenSlider .swiper-slide.swiper-slide-active{
+background-color: #f5d64b;
+color: #06181e;
+font-weight: bold;
+}
+.recentEvents  .swiper-container.sevenSlider .swiper-slide.tody{
+	line-height: 90px;
+	}
+.recentEvents  .swiper-container.sevenSlider .swiper-slide.swiper-slide-active.tody{
+font-size: 24px;
+}
+.recentEvents  .swiper-container.sevenSlider .swiper-button-next{
+	border-left: 1px solid #cddaea;
+	border-right: 1px solid #cddaea;
+	right: 0;
+}
+.recentEvents  .swiper-container.sevenSlider .swiper-button-prev{
+	border-right: 1px solid #cddaea;
+	border-radius: 0px;
+	left: 0;
+}
+
+
+
+/* 近期赛事 */
+
+.data_PK{
+	background-color: #1b293a;
+}
+.data_PK .bgTitle{
+	margin-bottom: 30px;
+}
+.data_PK .little_title{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 0px 0px 30px;
+}
+.data_PK .little_title img{
+	height: 40px;
+}
+.data_PK .little_title span{
+	display: inline-block;
+	border-radius: 25px;
+	background-color: #7D8FA4;
+	color: #1d2d3f;
+	line-height: 1;
+	padding: 3px 22px;
+	margin: 0px 30px;
+}
+.data_PK .progress_item{
+	display: flex;
+	align-items: center;
+	color: #FFFFFF;
+	margin-bottom: 20px;
+	font-size: 12px;
+}
+.data_PK .progress_item img{
+	width: 44px;
+	height: 44px;
+	margin-right: 10px;
+}
+.data_PK .progress_item>div{
+	width: calc( 100% - 54px );
+}
+.data_PK .progress_item>div p{
+	line-height: 1;
+	margin-bottom: 8px;
+}
+.data_PK .progress_item .progress{
+	width: 100%;
+	background-color: #1b293a;
+	border-radius: 0px;
+	height: 20px;
+	line-height: 20px;
+}
+.data_PK .progress_item .progress-bar{
+	background-color: #7a8cdd;
+	margin-right: 5px;
+}
+.data_PK .right  .progress_item .progress .progress-bar{
+	float: right;
+	margin-right: 0px;
+	background-color: #fa5a56;
+}
+.data_PK .right  .progress_item img{
+	margin-left: 8px;
+margin-right: 0px;
+}
+.data_PK .right  .progress_item p{
+	text-align: right;
+}
+.data_PK .border{
+	border-right: 1px solid #e1eeff;
+	margin-bottom: 30px;
+}
+
+.data_PK div .progress_item:last-child{
+margin-bottom: 0px;
+}
+.data_PK .little_title span.pick{
+	background-color: #e7ca63;
+}
+
+
+
+.gamePlay,.data_comparison{
+	background-color: #1b293a;
+	margin-bottom: 30px;
+}
+
+.bgTitle {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	background-color: #384451;
+	align-items: center;
+}
+.bgTitle img{
+	height: 42px;
+}
+.bgTitle h3{
+	width: 60%;
+	display: inline;
+	/* margin: 0 auto; */
+	color: #e1eeff;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	
+}
+
+.data_comparison>div:last-child{
+	padding: 20px 0px;
+}
+
+.data_comparison .left{
+	padding-right: 0px;
+}
+.data_comparison .right{
+	padding-left: 0px;
+}
+
+.data_comparison .progress_item{
+	margin-bottom: 8px;
+}
+.data_comparison .progress_item .left>div,.data_comparison .progress_item .right>div{
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	color: #FFFFFF;
+	line-height: 1;
+}
+.data_comparison .progress_item .left .progress,.data_comparison .progress_item .right .progress{
+	width: calc( 100% - 36px);
+	height: 6px;
+	margin-left: 4px;
+}
+.data_comparison .progress_item .left .progress .progress-bar{
+	background-color: #7a8cdd;
+}
+.data_comparison .progress_item .right .progress .progress-bar{
+	background-color:#f85a56;
+}
+
+.data_comparison .progress_item  .right .progress{
+	float: right;
+	margin-left: 0px;
+	margin-right: 4px;
+}
+.data_comparison_box .title{
+	text-align: center;
+	line-height: 1;
+	margin: 4px 0px;
+	color: #a8b6c7;
+	font-size: 12px;
+}
+
+
+.dataKDA{
+	display: flex;
+	color:#FFFFFF;
+	font-size: 13px;
+	margin: 20px 0px;
+	justify-content: center;
+}
+
+.dataKDA div{
+	margin: 0px 10px;
+	font-size: 14px;
+}
+
+
+
+
+
+
+.gamePlay>div:last-child {
+	padding: 30px 20px;
+}
+
+.circleChart{
+	position: relative;
+	margin-bottom: 40px;
+}
+.circleChart_text{
+	position: absolute; line-height: 120px; top: 0px; width: 100%; margin: 0px; padding: 0px; text-align: center; font-size: 20px; color: #d6e3f3; font-weight: normal; font-family: sans-serif;
+}
+.data_comparison h2{
+	color: #e1eeff;
+	text-align: center;
+	margin: 15px 0px;
+	font-weight: 500;
+}
+
+
+.swiper-container.radiuSlider{
+	border: none;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0px 30px;
+}
+
+.swiper-container.radiuSlider .swiper-slide.swiper-slide-active {
+    background-color:transparent;
+	font-weight: 400;
+	color: #e1eeff;
+}
+.swiper-container.radiuSlider .swiper-slide{
+	border: 1px solid #7f91a6;
+	border-radius: 5px;
+	height: 72px;
+	line-height: 1;
+	box-sizing: border-box;
+	min-width: 104.8px;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+.swiper-container.radiuSlider .swiper-button-next{
+	border: 1px solid #7f91a6;
+	background-image: url(../images/right.png);
+	right: 0;
+}
+.swiper-container.radiuSlider .swiper-button-prev{
+	border: 1px solid #7f91a6;
+	background-image: url(../images/left.png);
+	left: 0;
+}
+.swiper-container.radiuSlider .swiper-button-next, .swiper-container.radiuSlider .swiper-container-rtl .swiper-button-prev, .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    width: 24px;
+    background-size: 45%;
+    background-position: center;
+    height: 60%;
+    top: 40px;
+	background-color: #1a2a3d;
+	border-radius: 5px;
+}
+.swiper-container.radiuSlider .swiper-slide p{
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 14px;
+}
+.swiper-container.radiuSlider .swiper-slide span{
+	font-size: 12px;
+	line-height: 1;
+	margin-top: 8px;
+	display: inline-block;
+}
+.swiper-container.radiuSlider .swiper-slide .zise{
+	color: #7a8cdd;
+}
+.swiper-container.radiuSlider .swiper-slide .red{
+	color: #f15855;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 底部 */
 .footer {
     margin-top: 60px;
 }
@@ -1474,6 +2184,8 @@
 	width: 68%;
 	margin: 0 auto;
 }
+/* 底部 */
+
 
 @media (max-width: 1024px) {
     
@@ -1482,6 +2194,9 @@
     }
     .wenda_list>div:first-child div.col-lg-8, .wenda_list>div:first-child div.col-md-8{
         padding-left: 0px;
+}
+.dataComparisonList .dataComparison_item {
+	width: max-content;
 }
 }
 
@@ -1537,6 +2252,10 @@
 		width: 80%;
 		margin: 0 auto;
 	}
+	.scrllTips{
+		display: block;
+	}
+	
 }
 
 @media screen and (max-width: 640px) {
@@ -1548,6 +2267,7 @@
 		padding-left: 0;
 		padding-right: 0;
 	}
+	
 
 	.row {
 		margin-left: 0;
@@ -1699,6 +2419,36 @@
 	    padding-right: 10px;
 	    margin-right: 0px;
 	}
+	.newMsg>div:first-child {
+		padding: 15px;
+	}
+	.historyMatch .matchBox li {
+		width: 52px;
+	}
+	.historyMatch li.width178{
+		width: 110px;
+	}
+	.historyMatch li.width360{
+		width: 258px;
+	}
+	.historyMatch li.videoIcon{
+		width: 30px;
+	}
+	.historyMatch li.videoIcon svg{
+		width: 30px;
+	}
+	.data_PK .border{
+		border-right: none;
+	}
+	.data_comparison_box{
+		padding: 0px 10px;
+	}
+	.data_comparison .progress_item .right .progress,.data_comparison .progress_item .left .progress{
+		height: 8px;
+	}
+	.data_PK>div:nth-child(2),.data_PK>div:nth-child(3){
+		padding: 0px 15px 15px;
+	}
 	
 }
 
@@ -1743,6 +2493,10 @@
 	.investment_title div {
 		margin-right: 18px;
 	}
+	.data_comparison_box{
+		padding: 0px 10px;
+	}
+	
 }
 
 @media (max-width: 375px) {
@@ -1807,6 +2561,24 @@
 	.show_cont_2 .timeTag span.right {
 		text-align: right;
 	}
+
+	.teamMember .teamHistory .gameInt_zixun .iconList {
+		min-height: 327px;
+	}
+	.xg_member .col-xs-12 {
+		padding-left: 0px;
+	}
+	.GameGl .bigTitle{
+		padding-left: 15px;
+	}
+	.data_comparison>div:last-child{
+		display: flex;
+		align-items: center;
+	}
+	.recentEvents .row>.right,.gameInt .left{
+padding-left: 0px;
+	}
+	
 
 }
 
