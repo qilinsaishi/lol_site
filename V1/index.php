@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <?php
 require_once "function/web.php";
-$data = '{"matchList":{"page":1,"page_size":9}}';
-$return = curl_post($url,$data,1);
+$data = [
+        "matchList"=>["page"=>1,"page_size"=>9],
+        "teamList"=>["page"=>1,"page_size"=>6],
+        "tournament"=>["page"=>1,"page_size"=>8],
+        "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
+        ];
+$return = curl_post($url,json_encode($data),1);
+print_R($return['defaultConfig']);
 ?>
 <html lang="zh-CN">
 <head>
@@ -184,61 +190,20 @@ $return = curl_post($url,$data,1);
       </div>
       <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 hotTame">
         <div>
-          <h2 class="bigTitle">王者荣耀热门战队</h2>
+          <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2>
           <ul>
-
+              <?php
+              foreach($return['teamList']['data'] as $teamInfo)
+              {   ?>
             <li>
               <a href="details.html" title="京东下单金额" target="_blank">
                 <div class="pic">
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
+                  <img src="<?php echo $teamInfo['logo'];?>" />
                 </div>
-                <p>外交部宣布对美反制措施:对等制裁</p>
+                <p><?php echo $teamInfo['team_name'];?></p>
               </a>
             </li>
-            <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <div class="pic">
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                </div>
-                <p>外交部宣布对美反制措施:对等制裁</p>
-              </a>
-            </li>
-            <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <div class="pic">
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                </div>
-                <p>外交部宣布对美反制措施:对等制裁</p>
-              </a>
-            </li>
-            <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <div class="pic">
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                </div>
-                <p>外交部宣布对美反制措施:对等制裁</p>
-              </a>
-            </li>
-
-            <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <div class="pic">
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                </div>
-                <p>外交部宣布对美反制措施:对等制裁</p>
-              </a>
-            </li>
-            <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <div class="pic">
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                </div>
-                <p>外交部宣布对美反制措施:对等制裁</p>
-              </a>
-            </li>
+              <?php }?>
           </ul>
         </div>
       </div>
@@ -358,14 +323,11 @@ $return = curl_post($url,$data,1);
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门赛事</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+            <?php
+            foreach($return['tournament']['data'] as $tournamentInfo)
+            {   ?>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
@@ -384,8 +346,8 @@ $return = curl_post($url,$data,1);
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">关于我们</div>
         <ul>
-          <li class="col-md-12"><a href="##">联系我们</a></li>
-          <li class="col-md-12"><a href="##">站点地图</a></li>
+          <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['contact']['value']?>"><?php echo $return['defaultConfig']['data']['contact']['name']?></a></li>
+            <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['sitemap']['value']?>"><?php echo $return['defaultConfig']['data']['sitemap']['name']?></a></li>
         </ul>
       </div>
     </div>
