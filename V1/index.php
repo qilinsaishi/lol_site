@@ -6,9 +6,10 @@ $data = [
         "teamList"=>["page"=>1,"page_size"=>6],
         "tournament"=>["page"=>1,"page_size"=>8],
         "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
-        ];
+        "links"=>["game"=>"lol","page"=>1,"page_size"=>6],
+        "playerList"=>["game"=>"lol","page"=>1,"page_size"=>8],
+];
 $return = curl_post($url,json_encode($data),1);
-print_R($return['defaultConfig']);
 ?>
 <html lang="zh-CN">
 <head>
@@ -38,10 +39,10 @@ print_R($return['defaultConfig']);
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">首页</a></li>
-          <li><a href="gameInt.html">王者荣耀</a></li>
-          <li><a href="teamInt.html">王者战队</a></li>
-          <li><a href="hero-list.html">王者比赛</a></li>
+          <li class="active"><a href="index.php">首页</a></li>
+          <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
+          <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
+          <li><a href="hero-list.php"><?php echo $config['game_name'];?>比赛</a></li>
           <li><a href="zixun-list.html">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
           <li><a href="wenda-list.html">游戏问答</a></li>
@@ -333,14 +334,14 @@ print_R($return['defaultConfig']);
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门选手</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+            <?php
+            //print_R($return['playerList']['data']);
+            //die();
+            foreach($return['playerList']['data'] as $playerInfo)
+            {
+                ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
@@ -355,12 +356,11 @@ print_R($return['defaultConfig']);
       <div class="col-md-12">
         <div class="title">友情链接</div>
         <ul>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
+            <?php
+            foreach($return['links']['data'] as $linksInfo)
+            {   ?>
+                <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a title = "<?php echo $linksInfo['name'];?>" href="<?php echo $linksInfo['url'];?>"><img src="<?php echo $linksInfo['logo'];?>" /></a></li>
+            <?php }?>
         </ul>
       </div>
     </div>
