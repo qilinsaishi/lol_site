@@ -2,15 +2,13 @@
 <?php
 require_once "function/web.php";
 $data = [
-    //"matchList"=>["page"=>1,"page_size"=>9],
-    "teamList"=>["page"=>1,"page_size"=>8],
-    //"tournament"=>["page"=>1,"page_size"=>8],
+    "matchList"=>["page"=>1,"page_size"=>9],
+    "teamList"=>["page"=>1,"page_size"=>7],
+    "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>"lol","page"=>1,"page_size"=>6],
-    "playerList"=>["game"=>"lol","page"=>1,"page_size"=>10],
+    "playerList"=>["game"=>"lol","page"=>1,"page_size"=>8],
 ];
-//echo json_encode($data);
-
 $return = curl_post($url,json_encode($data),1);
 ?>
 <html lang="zh-CN">
@@ -41,13 +39,13 @@ $return = curl_post($url,json_encode($data),1);
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="index.html">首页</a></li>
-          <li><a href="hero-list.html">王者荣耀</a></li>
-          <li class="active"><a href="teamInt.html">王者战队</a></li>
-          <li><a href="hero-list.html">王者比赛</a></li>
-          <li><a href="zixun-list.html">游戏资讯</a></li>
+          <li><a href="index.php">首页</a></li>
+          <li><a href="hero-list.php"><?php echo $config['game_name'];?></a></li>
+          <li class="active"><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
+          <li><a href="hero-list.php"><?php echo $config['game_name'];?>比赛</a></li>
+          <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
-          <li><a href="wenda-list.html">游戏问答</a></li>
+          <li><a href="wenda-list.php">游戏问答</a></li>
         </ul>
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
@@ -116,54 +114,17 @@ $return = curl_post($url,json_encode($data),1);
         </div>
         <div>
           <ul class="zhanduiList_box">
+              <?php
+              foreach($return['playerList']['data'] as $playerInfo)
+              {
+              ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_1.png" alt="img" />
-                <p>凤凰</p>
+              <a href="##" title="<?php echo $playerInfo['player_name']?>" target="_blank">
+                <img src="<?php echo $playerInfo['logo']?>" alt="img" />
+                <p><?php echo $playerInfo['player_name']?></p>
               </a>
             </li>
-            <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_5.png" alt="img" />
-                <p>凤凰</p>
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_1.png" alt="img" />
-                <p>凤凰</p>
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_5.png" alt="img" />
-                <p>凤凰</p>
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_2.png" alt="img" />
-                <p>凤凰</p>
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_2.png" alt="img" />
-                <p>凤凰</p>
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_3.png" alt="img" />
-                <p>凤凰</p>
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_4.png" alt="img" />
-                <p>凤凰</p>
-              </a>
-            </li>
+              <?php }?>
             <div style="clear: both;"></div>
           </ul>
 
@@ -188,156 +149,26 @@ $return = curl_post($url,json_encode($data),1);
 
         <ul>
           <li>
+              <?php
+              foreach($return['matchList']['data'] as $matchInfo)
+              {   ?>
             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
+                <a href="details.php" title="京东下单金额" target="_blank">
                 <span>2020年10月3日</span>
                 <div class="icon">
                   <div>
-                    <span>FLY</span>
-                    <img src="images/icon_2.png" />
+                    <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
+                    <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" />
                   </div>
                   <div class="vs">VS</div>
                   <div>
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
+                    <img src="<?php echo $matchInfo['away_team_info']['logo'];?>" />
+                    <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                   </div>
                 </div>
               </a>
             </div>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div class="left">
-                    <span>FLY</span>
-                    <img src="images/icon_2.png" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="left">
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div class="left">
-                    <span>FLY</span>
-                    <img src="images/icon_1.png" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="left">
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div style="clear: both;"></div>
-          </li>
-          <li>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div>
-                    <span>FLY</span>
-                    <img src="images/icon_2.png" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div>
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div class="left">
-                    <span>FLY</span>
-                    <img src="images/icon_2.png" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="left">
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div class="left">
-                    <span>FLY</span>
-                    <img src="images/icon_1.png" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="left">
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div style="clear: both;"></div>
-          </li>
-          <li>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div>
-                    <span>FLY</span>
-                    <img src="images/icon_2.png" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div>
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div class="left">
-                    <span>FLY</span>
-                    <img src="images/icon_2.png" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="left">
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-              <a href="details.html" title="京东下单金额" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div class="left">
-                    <span>FLY</span>
-                    <img src="images/icon_1.png" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="left">
-                    <img src="images/icon_2.png" />
-                    <span>FLY</span>
-                  </div>
-                </div>
-              </a>
-            </div>
+              <?php }?>
             <div style="clear: both;"></div>
           </li>
 
@@ -426,41 +257,17 @@ $return = curl_post($url,json_encode($data),1);
       </div>
       <div class="col-xs-12">
         <ul class="iconList">
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <img src="images/icon_2.png" alt="img" />
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <img src="images/icon_3.png" alt="img" />
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <img src="images/icon_3.png" alt="img" />
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <img src="images/icon_4.png" alt="img" />
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <img src="images/icon_1.png" alt="img" />
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <img src="images/icon_2.png" alt="img" />
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <img src="images/icon_3.png" alt="img" />
-            </a>
-          </li>
+
+
+            <?php
+            foreach($return['teamList']['data'] as $teamInfo)
+            {   ?>
+                <li class="list-item">
+                    <a href="##" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                        <img src="<?php echo $teamInfo['logo'];?>" alt="img" />
+                    </a>
+                </li>
+            <?php }?>
         </ul>
         <div style="clear: both;"></div>
       </div>
@@ -473,27 +280,22 @@ $return = curl_post($url,json_encode($data),1);
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门赛事</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+            <?php
+            foreach($return['tournament']['data'] as $tournamentInfo)
+            {   ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门选手</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+            <?php
+            foreach($return['playerList']['data'] as $playerInfo)
+            {
+                ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">

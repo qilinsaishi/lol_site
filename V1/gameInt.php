@@ -7,6 +7,7 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>"lol","page"=>1,"page_size"=>6],
+    "playerList"=>["game"=>"lol","page"=>1,"page_size"=>8],
 ];
 $return = curl_post($url,json_encode($data),1);
 ?>
@@ -178,14 +179,12 @@ $return = curl_post($url,json_encode($data),1);
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门选手</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+            <?php
+            foreach($return['playerList']['data'] as $playerInfo)
+            {
+                ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
         <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">

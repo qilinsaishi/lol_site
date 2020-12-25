@@ -335,8 +335,6 @@ $return = curl_post($url,json_encode($data),1);
         <div class="title">热门选手</div>
         <ul>
             <?php
-            //print_R($return['playerList']['data']);
-            //die();
             foreach($return['playerList']['data'] as $playerInfo)
             {
                 ?>
