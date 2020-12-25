@@ -2,11 +2,14 @@
 <?php
 require_once "function/web.php";
 $data = [
-    //"matchList"=>["page"=>1,"page_size"=>9],
+    "playerList"=>["game"=>"lol","page"=>1,"page_size"=>8],
     "teamList"=>["page"=>1,"page_size"=>8],
-    //"tournament"=>["page"=>1,"page_size"=>8],
+    "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>"lol","page"=>1,"page_size"=>6],
+    "lolHeroList"=>["page"=>1,"page_size"=>20],
+    "lolEquipmentList"=>["page"=>1,"page_size"=>12],
+    "lolSummonerList"=>["page"=>1,"page_size"=>12],
 ];
 $return = curl_post($url,json_encode($data),1);
 ?>
@@ -16,7 +19,7 @@ $return = curl_post($url,json_encode($data),1);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
   <meta name="description" content="">
-    <title><?php echo $config['game_name'];?>-战队介绍</title>
+    <title><?php echo $config['game_name'];?>-英雄介绍</title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/reset.css" />
@@ -39,9 +42,9 @@ $return = curl_post($url,json_encode($data),1);
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="index.php">首页</a></li>
-          <li class="active"><a href="gameInt.php">王者荣耀</a></li>
+          <li><a href="gameInt.php">王者荣耀</a></li>
           <li><a href="teamInt.php">王者战队</a></li>
-          <li><a href="hero-list.php">王者比赛</a></li>
+          <li  class="active"><a href="hero-list.php">英雄列表</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
           <li><a href="wenda-list.php">游戏问答</a></li>
@@ -72,90 +75,16 @@ $return = curl_post($url,json_encode($data),1);
         <div>
           <div class="iconList">
             <ul>
+                <?php
+                foreach($return['lolHeroList']['data'] as $heroInfo)
+                {   ?>
               <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
                 <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
+                  <img src="<?php echo $heroInfo['logo'];?>" />
+                  <p><?php echo $heroInfo['hero_name'];?></p>
                 </a>
               </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
+                <?php }?>
 <div style="clear: both;"></div>
             </ul>
           </div>
@@ -180,80 +109,16 @@ $return = curl_post($url,json_encode($data),1);
         <div>
           <div class="iconList">
             <ul>
-
+                <?php
+                foreach($return['lolEquipmentList']['data'] as $equipmentInfo)
+                {   ?>
               <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
                 <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>巨人之握</p>
+                  <img src="<?php echo $equipmentInfo['logo'];?>" />
+                  <p><?php echo $equipmentInfo['equipment_name'];?></p>
                 </a>
               </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-              <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>巨人之握</p>
-                </a>
-              </li>
-
+                <?php }?>
             </ul>
           </div>
 
@@ -277,80 +142,35 @@ $return = curl_post($url,json_encode($data),1);
         <div class="col-md-12 summoner_box">
 
           <div class="col-lg-4 col-sm-12 col-md-12 col-xs-12 summoner_title">
+              <?php
+              foreach($return['lolSummonerList']['data'] as $summonerInfo)
+              {   ?>
               <div class="col-lg-4 col-sm-2 col-md-2 col-xs-4  on">
-                <a href="javascript:;;" title="凤凰战队" >
-                  <img src="images/photo_1.png" alt="img" />
+                <a href="javascript:;;" title="<?php echo $summonerInfo['skill_name'];?>" >
+                  <img src="<?php echo $summonerInfo['logo'];?>" alt="img" />
                   <p>凤凰</p>
                 </a>
               </div>
-              <div class="col-lg-4 col-sm-2 col-md-2 col-xs-4">
-                <a href="javascript:;;" title="凤凰战队" >
-                  <img src="images/photo_5.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </div>
-              <div class="col-lg-4 col-sm-2 col-md-2 col-xs-4">
-                <a href="javascript:;;" title="凤凰战队" >
-                  <img src="images/photo_1.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </div>
-              <div class="col-lg-4 col-sm-2 col-md-2 col-xs-4">
-                <a href="javascript:;;" title="凤凰战队" >
-                  <img src="images/photo_5.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </div>
-              <div class="col-lg-4 col-sm-2 col-md-2 col-xs-4">
-                <a href="javascript:;;" title="凤凰战队" >
-                  <img src="images/photo_5.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </div>
-              <div class="col-lg-4 col-sm-2 col-md-2 col-xs-4">
-                <a href="javascript:;;" title="凤凰战队" >
-                  <img src="images/photo_1.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </div>
-              <div class="col-lg-4 col-sm-2 col-md-2 col-xs-4">
-                <a href="javascript:;;" title="凤凰战队" >
-                  <img src="images/photo_5.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </div>
+              <?php }?>
               <div style="clear: both;"></div>
   
           </div>
   
           <div class="col-lg-8 col-sm-12 col-md-12 col-xs-12 summoner_con">
-  
-            <div class="summoner_con_list">
-  
-              <img src="images/chengjie.jpg" />
-              <h3>惩戒 <span>LV.3 解锁</span> </h3>
-              <p>90秒CD：立即对身边敌军英雄造成其已损失生命值14%的真实伤害</p>
-            </div>
-  
-            <div class="summoner_con_list">
-  
-              <img src="images/chengjie.jpg" />
-              <h3>闪现 <span>LV.3 解锁</span> </h3>
-              <p>90秒CD：立即对身边敌军英雄造成其已损失生命值14%的真实伤害</p>
-            </div>
-  
-            <div class="summoner_con_list">
-  
-              <img src="images/chengjie.jpg" />
-              <h3>惩戒 <span>LV.3 解锁</span> </h3>
-              <p>90秒CD：立即对身边敌军英雄造成其已损失生命值14%的真实伤害</p>
-            </div>
-            <div class="summoner_con_list">
-              <img src="images/chengjie.jpg" />
-              <h3>惩戒 <span>LV.3 解锁</span> </h3>
-              <p>90秒CD：立即对身边敌军英雄造成其已损失生命值14%的真实伤害</p>
-            </div>
-  
+
+              <?php
+              foreach($return['lolSummonerList']['data'] as $summonerInfo)
+              {   ?>
+                  <div class="summoner_con_list">
+
+                      <img src="<?php echo $summonerInfo['image'];?>" />
+                      <h3><?php echo $summonerInfo['skill_name'];?><span>LV.<?php echo $summonerInfo['rank'];?><?php echo $summonerInfo['skill_name'];?></span> </h3>
+                      <p><?php echo $summonerInfo['description'];?></p>
+                  </div>
+              <?php }?>
+
+
+
           </div>
           <div style="clear: both;"></div>
   
@@ -370,35 +190,30 @@ $return = curl_post($url,json_encode($data),1);
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门赛事</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+            <?php
+            foreach($return['tournament']['data'] as $tournamentInfo)
+            {   ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门选手</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+            <?php
+            foreach($return['playerList']['data'] as $playerInfo)
+            {
+                ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">关于我们</div>
-        <ul>
-          <li class="col-md-12"><a href="##">联系我们</a></li>
-          <li class="col-md-12"><a href="##">站点地图</a></li>
-        </ul>
+          <ul>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['contact']['value']?>"><?php echo $return['defaultConfig']['data']['contact']['name']?></a></li>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['sitemap']['value']?>"><?php echo $return['defaultConfig']['data']['sitemap']['name']?></a></li>
+          </ul>
       </div>
     </div>
     <div class="row youlian">

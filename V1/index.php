@@ -42,7 +42,7 @@ $return = curl_post($url,json_encode($data),1);
           <li class="active"><a href="index.php">首页</a></li>
           <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
           <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
-          <li><a href="hero-list.php"><?php echo $config['game_name'];?>比赛</a></li>
+          <li><a href="hero-list.php">英雄介绍</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
           <li><a href="wenda-list.php">游戏问答</a></li>
