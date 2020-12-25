@@ -38,13 +38,13 @@ $return = curl_post($url,json_encode($data),1);
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="index.html">首页</a></li>
-          <li class="active"><a href="gameInt.html">王者荣耀</a></li>
-          <li><a href="teamInt.html">王者战队</a></li>
-          <li><a href="hero-list.html">王者比赛</a></li>
-          <li><a href="zixun-list.html">游戏资讯</a></li>
+          <li><a href="index.php">首页</a></li>
+          <li class="active"><a href="gameInt.php">王者荣耀</a></li>
+          <li><a href="teamInt.php">王者战队</a></li>
+          <li><a href="hero-list.php">王者比赛</a></li>
+          <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
-          <li><a href="wenda-list.html">游戏问答</a></li>
+          <li><a href="wenda-list.php">游戏问答</a></li>
         </ul>
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

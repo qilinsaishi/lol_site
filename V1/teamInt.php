@@ -153,7 +153,7 @@ $return = curl_post($url,json_encode($data),1);
               foreach($return['matchList']['data'] as $matchInfo)
               {   ?>
             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-                <a href="details.php" title="京东下单金额" target="_blank">
+                <a href="details.php" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
                 <span>2020年10月3日</span>
                 <div class="icon">
                   <div>

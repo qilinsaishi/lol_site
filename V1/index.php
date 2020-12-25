@@ -43,9 +43,9 @@ $return = curl_post($url,json_encode($data),1);
           <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
           <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
           <li><a href="hero-list.php"><?php echo $config['game_name'];?>比赛</a></li>
-          <li><a href="zixun-list.html">游戏资讯</a></li>
+          <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
-          <li><a href="wenda-list.html">游戏问答</a></li>
+          <li><a href="wenda-list.php">游戏问答</a></li>
         </ul>
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
@@ -63,7 +63,7 @@ $return = curl_post($url,json_encode($data),1);
                 foreach($return['matchList']['data'] as $matchInfo)
                 {   ?>
             <li class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
-            <a href="details.html" title="京东下单金额" target="_blank">
+            <a href="details.php" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
               <span><?php echo date("Y年m月d日",strtotime($matchInfo['start_time']));?></span>
               <div class="icon">
                 <div>
@@ -92,7 +92,7 @@ $return = curl_post($url,json_encode($data),1);
           <h2 class="bigTitle">王者荣耀最新资讯</h2>
           <ul>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -101,7 +101,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -110,7 +110,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -119,7 +119,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -128,7 +128,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img
                     src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
@@ -138,7 +138,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img
                     src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
@@ -149,7 +149,7 @@ $return = curl_post($url,json_encode($data),1);
             </li>
 
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img
                     src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
@@ -159,7 +159,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img
                     src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
@@ -169,7 +169,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -178,7 +178,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -197,7 +197,7 @@ $return = curl_post($url,json_encode($data),1);
               foreach($return['teamList']['data'] as $teamInfo)
               {   ?>
             <li>
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div class="pic">
                   <img src="<?php echo $teamInfo['logo'];?>" />
                 </div>
@@ -216,7 +216,7 @@ $return = curl_post($url,json_encode($data),1);
           <h2 class="bigTitle">王者荣耀游戏攻略</h2>
           <ul>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -225,7 +225,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -234,7 +234,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -243,7 +243,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -252,7 +252,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img
                     src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
@@ -262,7 +262,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img
                     src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
@@ -273,7 +273,7 @@ $return = curl_post($url,json_encode($data),1);
             </li>
 
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img
                     src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
@@ -283,7 +283,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img
                     src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
@@ -293,7 +293,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
@@ -302,7 +302,7 @@ $return = curl_post($url,json_encode($data),1);
               </a>
             </li>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.html" title="京东下单金额" target="_blank">
+              <a href="details.php" title="京东下单金额" target="_blank">
                 <div>
                   <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
                   <p>外交部宣布对美反制措施:对等制裁</p>
