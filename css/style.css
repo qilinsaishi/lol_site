@@ -117,6 +117,13 @@
 
 .newlist li a .icon span {
 	font-size: 13px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    width: 50px;
 }
 
 .newlist li a .icon .vs {
@@ -208,7 +215,7 @@
 }
 
 .hotTame li {
-	padding: 14px 0px;
+	padding: 6px 0px;
 }
 
 .hotTame li:last-child {
@@ -221,8 +228,8 @@
 }
 
 .hotTame a .pic {
-	width: 84px;
-	height: 54px;
+	width: 64px;
+	height: 64px;
 	margin-right: 10px;
 }
 
