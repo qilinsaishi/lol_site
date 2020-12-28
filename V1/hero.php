@@ -4,7 +4,13 @@ $hero_id = $_GET['hero_id'];
 require_once "function/web.php";
 $data = [
     "lolHero"=>[$hero_id],
+    "lolHeroList"=>["page"=>1,"page_size"=>15],
+    "tournament"=>["page"=>1,"page_size"=>8],
+    "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
 ];
+echo json_encode($data);
 $return = curl_post($url,json_encode($data),1);
 foreach($return['lolHero']['data']["skinList"] as $key => $skinInfo)
 {
@@ -510,88 +516,6 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
       </div>
     </div>
 
-
-    <div class="row heroMsg">
-      <div class="icon_title">
-        <h3>
-          <svg t="1607952753995" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            p-id="16936" width="48" height="48">
-            <path
-              d="M788.551 292.895c-74.801 0-135.633-60.832-135.633-135.605v-156.171h-487.636c-45.595 0-82.548 36.982-82.548 82.549v856.719c0 45.567 36.955 82.493 82.548 82.493h693.46c45.571 0 82.523-36.926 82.523-82.493v-647.493h-152.714zM805.084 839.116h-586.199v-55.301h586.199v55.301zM805.084 662.15h-586.199v-55.301h586.199v55.301zM805.084 485.184h-586.199v-55.301h586.199v55.301z"
-              p-id="16937" fill="#d5e3f3"></path>
-            <path d="M706.002 1.119v156.171c0 45.567 36.955 82.493 82.549 82.493h152.714l-235.263-238.662z" p-id="16938"
-              fill="#d5e3f3"></path>
-          </svg>
-          英雄资讯
-        </h3>
-      </div>
-
-      <div class="heroMsg_title">
-
-        <div class="on">
-          铭文搭配建议
-        </div>
-
-        <div>
-          技能加点建议
-        </div>
-
-        <div>
-          出装建议
-        </div>
-
-      </div>
-
-      <div class="heroMsg_con">
-
-        <div class="heroMsg_con_list">
-          <ul>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-
-            <div style="clear: both;"></div>
-            <p><span>Tips：</span>闪电匕首会让玄策的收割的节奏更加高效</p>
-          </ul>
-
-        </div>
-
-        <div class="heroMsg_con_list">
-
-          <ul>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-
-            <div style="clear: both;"></div>
-            <p><span>Tips：</span>闪电匕首会让玄策的收割的节奏更加高效</p>
-          </ul>
-        </div>
-
-        <div class="heroMsg_con_list">
-
-          <ul>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-            <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><img src="images/1523.jpg" /></li>
-
-            <div style="clear: both;"></div>
-            <p><span>Tips：</span>闪电匕首会让玄策的收割的节奏更加高效</p>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
     <div class="row heroRecommend">
       <div class="col-md-12">
         <div class="icon_title">
@@ -608,91 +532,19 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
         <div>
           <div class="iconList">
             <ul>
-              <li>
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_8.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_6.jpg" />
-                  <p>后羿</p>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <img src="images/icon_7.png" />
-                  <p>后羿</p>
-                </a>
-              </li>
+                            <?php
+                            $count = 0;
+                            foreach($return['lolHeroList']['data'] as $key => $heroInfo)
+                                { if($heroInfo['hero_id']!=$hero_id)
+                            { $count++;if($count==15){break;}?>
 
+              <li>
+                <a href="hero.php?hero_id=<?php echo $heroInfo['hero_id'];?>">
+                  <img src="<?php echo $heroInfo['logo'];?>" />
+                  <p><?php echo $heroInfo['hero_name'];?></p>
+                </a>
+              </li>
+                <?php }}?>
             </ul>
           </div>
         </div>
@@ -707,47 +559,41 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门赛事</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+            <?php
+            foreach($return['tournament']['data'] as $tournamentInfo)
+            {   ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门选手</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+            <?php
+            foreach($return['playerList']['data'] as $playerInfo)
+            {
+                ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">关于我们</div>
-        <ul>
-          <li class="col-md-12"><a href="##">联系我们</a></li>
-          <li class="col-md-12"><a href="##">站点地图</a></li>
-        </ul>
+          <ul>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['contact']['value']?>"><?php echo $return['defaultConfig']['data']['contact']['name']?></a></li>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['sitemap']['value']?>"><?php echo $return['defaultConfig']['data']['sitemap']['name']?></a></li>
+          </ul>
       </div>
     </div>
     <div class="row youlian">
       <div class="col-md-12">
         <div class="title">友情链接</div>
         <ul>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
+            <?php
+            foreach($return['links']['data'] as $linksInfo)
+            {   ?>
+                <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a title = "<?php echo $linksInfo['name'];?>" href="<?php echo $linksInfo['url'];?>"><img src="<?php echo $linksInfo['logo'];?>" /></a></li>
+            <?php }?>
         </ul>
       </div>
     </div>
