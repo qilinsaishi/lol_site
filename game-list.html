@@ -246,7 +246,7 @@
           英雄皮肤
         </h3>
       </div>
-      <div class="img-content">
+      <!-- <div class="img-content">
         <div class="small-img">
           <ul>
             <li>
@@ -271,11 +271,40 @@
 
         <div class="big-img">
           <div class="img-parent">
-            <img src="images/a1.png" />
+            <img id="big-img" src="images/a1.png" />
           </div>
 
         </div>
+      </div> -->
+      <div class="img-content" id="gallery">
+        <div class="small-img" id="gallery_nav">
+              <a class="on" rel="img1" href="javascript:;">
+                <img class="moveimg active" src="images/a1_small.png">
+                <p class="img-name">白虎志</p>
+              </a>
+              <a rel="img2" href="javascript:;">
+                <img class="moveimg" src="images/a2_small.png">
+                <p class="img-name">白虎志白虎志</p>
+              </a>
+              <a rel="img3" href="javascript:;">
+                <img class="moveimg" src="images/a3_small.png">
+                <p class="img-name">白虎志白虎志白虎志</p>
+              </a>
+              <a rel="img4" href="javascript:;">
+                <img class="moveimg" src="images/a2_small.png">
+                <p class="img-name">白虎</p>
+              </a>
+        </div>
+
+        <div class="big-img " id="gallery_output">
+          <img id="img1" src="images/a1_big.png" />
+          <img id="img2" src="images/a2_big.png" />
+          <img id="img3" src="images/a3_big.png" />
+          <img id="img4" src="images/a2_big.png" />
+        </div>
       </div>
+
+      <div class="clear"></div>
     </div>
 
 
@@ -639,85 +668,109 @@
             <ul>
               <li>
                 <a href="##">
-                  <img src="images/icon_6.jpg" />
+                  <div><img src="images/icon_6.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_7.png" />
+                  <div><img src="images/icon_7.png" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_8.jpg" />
+                  <div><img src="images/icon_8.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_6.jpg" />
+                  <div><img src="images/icon_6.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_7.png" />
+                  <div><img src="images/icon_7.png" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_8.jpg" />
+                  <div><img src="images/icon_8.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_6.jpg" />
+                  <div><img src="images/icon_6.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_7.png" />
+                  <div><img src="images/icon_7.png" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_8.jpg" />
+                  <div><img src="images/icon_8.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_6.jpg" />
+                  <div><img src="images/icon_6.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_7.png" />
+                  <div><img src="images/icon_7.png" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_8.jpg" />
+                  <div><img src="images/icon_8.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_6.jpg" />
+                  <div><img src="images/icon_6.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
               <li>
                 <a href="##">
-                  <img src="images/icon_7.png" />
+                  <div><img src="images/icon_7.png" /></div>
+                  <p>后羿</p>
+                </a>
+              </li>
+              <li>
+                <a href="##">
+                  <div><img src="images/icon_8.jpg" /></div>
+                  <p>后羿</p>
+                </a>
+              </li>
+              <li>
+                <a href="##">
+                  <div><img src="images/icon_6.jpg" /></div>
+                  <p>后羿</p>
+                </a>
+              </li>
+              <li>
+                <a href="##">
+                  <div><img src="images/icon_7.png" /></div>
+                  <p>后羿</p>
+                </a>
+              </li>
+              <li>
+                <a href="##">
+                  <div><img src="images/icon_8.jpg" /></div>
                   <p>后羿</p>
                 </a>
               </li>
@@ -730,6 +783,11 @@
     </div>
 
   </div>
+
+  </div>
+
+
+
 
   <footer class="container footer">
     <div class="row">
@@ -809,29 +867,21 @@
     })
 
 
-    $(function () {
-      // 皮肤标签切换
-      var flag = true; //防止用户快速多次点击
 
-      init(); //初始化
-      //点击切换图片
-      $(".moveimg").mousemove(function () {
-        $(".moveimg").removeClass('active');
-        $(this).addClass('active');
-        var thisSrc = $(this).attr('src');
-        $(".big-img img").attr('src', thisSrc);//获取点击图片的地址并赋值
-        $(".big-img .img-parent").attr('style', '');//切换图片从正位开始
-        $(".big-img .img-parent img").css('transform', 'scale(1)');
+
+    $(document).ready(function () {
+      $("#gallery_output img").not(":first").hide();
+
+      $("#gallery a").click(function () {
+        $("#gallery a").removeClass('on');
+        $(this).addClass("on");
+        if ($("#" + this.rel).is(":hidden")) {
+          $("#gallery_output img").slideUp(0);
+          $("#" + this.rel).slideDown(0);
+        }
       });
-
-
-      function init() {
-        var numImg = $('.moveimg').length;
-        $($('.moveimg')[0]).addClass('active'); //第一个给默认选中
-        $(".big-img img").attr('src', $($('.moveimg')[0]).attr('src'));
-      }
-
     });
+
 
 
 
@@ -873,19 +923,6 @@
         btn.style.display = 'none';
       }
     }
-    var t1 = window.setInterval(refreshCount, 500);		//动态按钮
-    var more_img = document.getElementById("more_bt");
-    var first_one = 0;
-    function refreshCount() {
-      if (first_one == 0) {
-        more_img.style.marginBottom = '-5px';
-        first_one = 1;
-      } else {
-        more_img.style.marginBottom = '-10px';
-        first_one = 0;
-      }
-    }
-
 
   </script>
 </body>
