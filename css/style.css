@@ -94,13 +94,16 @@
 	height: 28px;
 	align-items: center;
 	margin: 20px 0px;
+	justify-content: space-between;
+	
 }
 
 .newlist li a .icon {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-left: 20px;
+	margin-left: 15px;
+	padding-right: 20px;
 }
 
 .newlist li a .icon div {
@@ -112,11 +115,18 @@
 .newlist li a .icon img {
 	width: auto;
 	height: 40px;
-	margin: 0px 12px;
+	margin: 0px 8px;
 }
 
 .newlist li a .icon span {
 	font-size: 13px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    width: 50px;
 }
 
 .newlist li a .icon .vs {
@@ -208,7 +218,7 @@
 }
 
 .hotTame li {
-	padding: 14px 0px;
+	padding: 6px 0px;
 }
 
 .hotTame li:last-child {
@@ -221,8 +231,8 @@
 }
 
 .hotTame a .pic {
-	width: 84px;
-	height: 54px;
+	width: 64px;
+	height: 64px;
 	margin-right: 10px;
 }
 
@@ -2185,6 +2195,51 @@ margin-bottom: 0px;
 	margin: 0 auto;
 }
 /* 底部 */
+
+
+
+/* 战队列表 */
+.gameStrategy .strategy li a{
+	display: flex;
+	align-items: center;
+margin-bottom: 17px;
+}
+.gameStrategy .strategy li:last-child a{
+	margin-bottom: 0px;
+}
+.gameStrategy .strategy{
+	padding: 20px 30px;
+	background-color: #1a2634;
+}
+.gameStrategy .strategy div{
+	width: 100px;
+	height: 68px;
+	display: inline-block;
+	margin-right: 8px;
+}
+.gameStrategy .strategy div img{
+	width: 100%;
+	height: 100%;
+}
+.gameStrategy .strategy li a p{
+	width: calc(100% - 110px);
+	word-break: break-all;
+
+    text-overflow: ellipsis;
+
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+
+    -webkit-line-clamp: 2; /** 显示的行数 **/
+    white-space: initial;
+    overflow: hidden;  
+}
+/* 战队列表 */
+
+
+
+
 
 
 @media (max-width: 1024px) {
