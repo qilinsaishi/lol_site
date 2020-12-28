@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<?php
+$hero_id = $_GET['hero_id'];
+require_once "function/web.php";
+$data = [
+    "lolHero"=>[$hero_id],
+];
+$return = curl_post($url,json_encode($data),1);
+foreach($return['lolHero']['data']["skinList"] as $key => $skinInfo)
+{
+    $return['lolHero']['data']["skinList"][$key]['data'] = json_decode($skinInfo['data'],true);
+}
+foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
+{
+    $return['lolHero']['data']["spellList"][$key]['data'] = json_decode($spellInfo['data'],true);
+}
+?>
 
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
   <meta name="description" content="">
-  <title>游戏介绍</title>
+  <title><?php echo $config['game_name']."-".$return['lolHero']['data']['cn_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
@@ -33,7 +49,7 @@
           <li><a href="index.php">首页</a></li>
           <li class="active"><a href="gameInt.php">王者荣耀</a></li>
           <li><a href="teamInt.php">王者战队</a></li>
-          <li><a href="hero-list.php">王者比赛</a></li>
+          <li><a href="hero-list.php"><?php echo $config['game_name'];?>-英雄介绍</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
           <li><a href="wenda-list.php">游戏问答</a></li>
@@ -48,13 +64,13 @@
 
       <div class="gameInt">
         <div class="col-lg-6 col-md-6 col-xs-12 left">
-          <img src="https://ossweb-img.qq.com/upload/webplat/info/yxzj/20190318/49656773132138.jpg" />
+          <img src="<?php echo $return['lolHero']['data']['logo'];?>" />
         </div>
 
 
 
         <div class="col-lg-6 col-md-6 col-xs-12 right">
-          <h2>器狂之镰-百里玄策</h2>
+          <h2><?php echo $return['lolHero']['data']['cn_name'];?></h2>
           <div class="progressList">
             <div class="title">
               <svg t="1608212734669" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -63,7 +79,7 @@
                   d="M838.4 121.6l-51.2 160-172.8 140.8-38.4 32 32 38.4L704 614.4l38.4 44.8 38.4-38.4 51.2-51.2 19.2 19.2-57.6 51.2-38.4 38.4 38.4 38.4 89.6 89.6 6.4 6.4-19.2 19.2-6.4-6.4-89.6-89.6-38.4-38.4-32 32-51.2 51.2-19.2-19.2 51.2-51.2 38.4-38.4-44.8-32-134.4-108.8-32-25.6-32 25.6L345.6 640l-44.8 38.4 38.4 38.4 51.2 51.2-19.2 19.2-51.2-57.6-38.4-38.4-38.4 38.4-89.6 89.6-6.4 6.4-19.2-19.2 6.4-6.4 89.6-89.6 38.4-38.4-32-32-51.2-57.6 19.2-19.2 51.2 51.2 38.4 38.4 32-38.4 96-115.2 32-44.8-38.4-32-172.8-140.8-51.2-160 160 51.2 128 153.6 38.4 51.2 38.4-51.2 128-153.6 160-51.2M921.6 38.4L652.8 128 512 294.4 377.6 134.4 102.4 38.4 192 307.2l179.2 147.2-89.6 128-83.2-89.6-96 89.6L192 672l-89.6 89.6-44.8-44.8-44.8 44.8L192 940.8l44.8-44.8-44.8-44.8 89.6-89.6 89.6 89.6 89.6-89.6-83.2-83.2L512 569.6l134.4 108.8-83.2 83.2 89.6 89.6 89.6-89.6 89.6 89.6-44.8 44.8 44.8 44.8 179.2-179.2-44.8-44.8-44.8 44.8-89.6-89.6 89.6-89.6L832 492.8 748.8 576l-96-115.2L832 313.6 921.6 38.4z"
                   p-id="8495" fill="#d5e3f3"></path>
               </svg>
-              <span>刺客 ASSASSIN</span>
+              <span><?php echo $return['lolHero']['data']['hero_name'];?></span>
             </div>
             <ul>
               <li class="progress-item">
@@ -79,7 +95,7 @@
                 </svg>
                 <div class="progress">
                   <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                    aria-valuemax="100" style="width: 100%">
+                    aria-valuemax="100" style="width: <?php echo $return['lolHero']['data']['difficulty']*10;?>%">
                     <span class="sr-only">80% Complete (danger)</span>
                   </div>
                 </div>
@@ -97,13 +113,13 @@
                 </svg>
                 <div class="progress">
                   <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                    aria-valuemax="100" style="width: 80%">
+                    aria-valuemax="100" style="width: <?php echo $return['lolHero']['data']['defense']*10;?>%">
                     <span class="sr-only"></span>
                   </div>
                 </div>
               </li>
               <li class="progress-item">
-                <span>攻击伤害</span>
+                <span>物理攻击</span>
                 <svg t="1607836837671" class="icon" viewBox="0 0 1024 1024" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" p-id="2784" width="48" height="48">
                   <path
@@ -112,13 +128,13 @@
                 </svg>
                 <div class="progress">
                   <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                    aria-valuemax="100" style="width: 40%">
+                    aria-valuemax="100" style="width: <?php echo $return['lolHero']['data']['physical_attack']*10;?>%">
                     <span class="sr-only"></span>
                   </div>
                 </div>
               </li>
               <li class="progress-item">
-                <span>技能效果</span>
+                <span>魔法攻击</span>
                 <svg t="1607836934452" class="icon" viewBox="0 0 1024 1024" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" p-id="7327" width="48" height="48">
                   <path
@@ -127,7 +143,7 @@
                 </svg>
                 <div class="progress">
                   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                    aria-valuemax="100" style="width: 40%">
+                    aria-valuemax="100" style="width: <?php echo $return['lolHero']['data']['magic_attack']*10;?>%">
                     <span class="sr-only"></span>
                   </div>
                 </div>
@@ -151,13 +167,7 @@
         </h3>
       </div>
       <div id="content" class="heroStory-cont">
-        <p>夏洛特是日落海久负盛名的贵族家族中，最为优秀的继承者。 </p>
-        <p>她以精湛无匹的剑术，在过往所有贵族间的战斗中，毫无悬念地赢取胜利，并将火焰样的红玫瑰留给败者，作为优雅的结束礼。 </p>
-        <p>
-          她无比珍视家族先辈们建立的荣誉，他们曾凭借卓绝勇气和毅力，从骇浪惊涛中开辟出今日的领地，又在无数次城邦之间错综复杂的争斗、海盗侵扰沿海地区的战斗中，积累了属于家族的世代荣光。<br> </p>
-        <p>
-          但厄运却在某一天突然降临——受家族指派的航船尽皆殒没在去往东风海域的路上，连续的海难事件对家族声誉造成重创，不安和怀疑在失去亲人和生活倚仗的平民中掀起巨浪，大批曾因美德和荣誉追随家族的骑士离去。趁此纠集的海盗再度侵袭，家族在与海盗的战斗中落败，恶犬们占据了曾属于贵族的庄园，家族其他成员决定以缴纳赎金的方式挽回所剩无多的贵族声望。
-        </p>
+        <p>    <?php echo $return['lolHero']['data']['description'];?></p>
         <div id="get_ct_more" class="get_ct_more">
           <span>Read More</span>
         </div>
@@ -178,57 +188,27 @@
       <div class="investment_f">
 
         <div class="investment_title">
-
-          <div class="on">
-            <img src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/529/52920.png" alt="">
+            <?php foreach($return['lolHero']['data']['spellList'] as $key => $spellInfo)
+            { ?>
+          <div <?php if($key==0){echo 'class="on"';}?>>
+            <img src="<?php echo $spellInfo['data']['abilityIconPath'];?>" alt="">
           </div>
-
-          <div>
-            <img src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/529/52910.png" alt="">
-          </div>
-
-          <div>
-            <img src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/529/52940.png" alt="">
-          </div>
-          <div>
-            <img src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/529/52900.png" alt="">
-          </div>
+            <?php }?>
 
         </div>
 
         <div class="investment_con">
 
-          <div class="investment_con_list">
+            <?php foreach($return['lolHero']['data']['spellList'] as $key => $spellInfo)
+              {?>
+                  <div class="investment_con_list">
+                          <p class="top-name"><b><?php echo $spellInfo['spell_name'];?></b><span>冷却值：<?php echo implode("/",$spellInfo['data']['cooldown']);?></span><span>消耗：<?php echo implode("/",$spellInfo['data']['cost']);?></span></p>
+                    <p class="skill-desc">
+                    <?php echo $spellInfo['data']['description']==""?"暂无":$spellInfo['data']['description'];?></p>
+                  </div>
 
-            <p class="top-name"><b>七星光芒剑</b><span>冷却值：0</span><span>消耗：0</span></p>
-            <p class="skill-desc">
-              夏洛特任意技能命中敌人后，会将下一次释放的其他技能强化为追加技，并获得一层印记，持续4秒。叠满三层印记后普攻将强化为追加技【七星光芒剑】，追击锁定敌人，连续七次造成物理伤害和减速(最高叠加7层)，最后一段额外造成已损生命15%的斩杀伤害，释放期间获得35%免伤。
-              存在追加技时，普攻会额外造成20%的伤害；使用任意追加技都可以对敌人附带伤残效果，造成攻速下降，上限7层。</p>
 
-          </div>
-
-          <div class="investment_con_list">
-
-            <p class="top-name"><b>迅光三角剑</b><span>冷却值：9/8.6/8.2/7.8/7.4/7</span><span>消耗：0</span></p>
-            <p class="skill-desc">起手技：短暂延迟后，夏洛特向指定方向释放迅光三角剑，对路径上的敌人造成物理伤害，命中后增加持续衰减的移动速度。
-              追加技：夏洛特向指定方向迅速释放迅光三角剑，对路径上的敌人造成更高的物理伤害，命中后增加持续衰减的移动速度。迅光三角剑每命中一个英雄回复5%已损生命，命中非英雄单位的回复量会衰减为40%。</p>
-
-          </div>
-
-          <div class="investment_con_list">
-
-            <p class="top-name"><b>前进喷泉</b><span>冷却值：3/2.8/2.6/2.4/2.2/2</span><span>消耗：0</span></p>
-            <p class="skill-desc">起手技：夏洛特向指定方向冲刺，同时快速刺击，每段造成物理伤害和减速，同时恢复造成伤害的50%生命。
-              追加技：夏洛特向指定方向冲刺，同时迅速刺击六次，冷却时间减少。每段造成物理伤害和减速，同时恢复造成伤害的50%生命 。</p>
-
-          </div>
-          <div class="investment_con_list">
-            <p class="top-name"><b>破空光剑</b><span>冷却值：18/15.5/13</span><span>消耗：0</span></p>
-            <p class="skill-desc">起手技：夏洛特迅速画出七道剑痕，每道剑痕造成物理伤害和减速，从第二道剑痕开始将只造成30%伤害。技能释放期间处于霸体状态，并获得35%免伤；
-              追加技：夏洛特迅速画出七道剑痕，每道剑痕造成物理伤害和减速，从第二道剑痕开始将只造成30%伤害。剑痕成形后发出破空光剑，对中心范围内敌人再次造成同等伤害并击飞0.75秒。技能释放期间处于霸体状态，并获得30%免伤。
-            </p>
-          </div>
-
+              <?php }?>
         </div>
 
       </div>
@@ -249,22 +229,13 @@
       <div class="img-content">
         <div class="small-img">
           <ul>
-            <li>
-              <img class="moveimg" src="photos/a1.png" />
-              <p class="img-name">白虎志</p>
-            </li>
-            <li>
-              <img class="moveimg" src="photos/a2.png" />
-              <p class="img-name">威斯你狂欢</p>
-            </li>
-            <li>
-              <img class="moveimg" src="photos/a3.png" />
-              <p class="img-name">原初追逐者</p>
-            </li>
-            <li>
-              <img class="moveimg" src="photos/a3.png" />
-              <p class="img-name">嚣狂之镰</p>
-            </li>
+              <?php foreach($return['lolHero']['data']['skinList'] as $key => $skinInfo)
+              { ?>
+                  <li>
+                      <img class="moveimg" src="<?php echo $skinInfo['data']['mainImg'];?>" />
+                      <p class="img-name"><?php echo $skinInfo['data']['name'];?></p>
+                  </li>
+              <?php }?>
 
           </ul>
         </div>

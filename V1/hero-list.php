@@ -42,8 +42,8 @@ $return = curl_post($url,json_encode($data),1);
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="index.php">首页</a></li>
-          <li><a href="gameInt.php">王者荣耀</a></li>
-          <li><a href="teamInt.php">王者战队</a></li>
+          <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
+          <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
           <li  class="active"><a href="hero-list.php">英雄列表</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
@@ -79,7 +79,7 @@ $return = curl_post($url,json_encode($data),1);
                 foreach($return['lolHeroList']['data'] as $heroInfo)
                 {   ?>
               <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="##">
+                <a href="hero.php?hero_id=<?php echo $heroInfo['hero_id'];?>">
                   <img src="<?php echo $heroInfo['logo'];?>" />
                   <p><?php echo $heroInfo['hero_name'];?></p>
                 </a>
