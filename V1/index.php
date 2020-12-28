@@ -6,8 +6,8 @@ $data = [
         "teamList"=>["page"=>1,"page_size"=>6],
         "tournament"=>["page"=>1,"page_size"=>8],
         "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
-        "links"=>["game"=>"lol","page"=>1,"page_size"=>6],
-        "playerList"=>["game"=>"lol","page"=>1,"page_size"=>8],
+        "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+        "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
 ];
 $return = curl_post($url,json_encode($data),1);
 ?>
@@ -89,7 +89,7 @@ $return = curl_post($url,json_encode($data),1);
 
       <div class="col-lg-8 col-sm-12 col-md-8 col-xs-12 newMsg">
         <div>
-          <h2 class="bigTitle">王者荣耀最新资讯</h2>
+          <h2 class="bigTitle"><?php echo $config['game_name'];?>最新资讯</h2>
           <ul>
             <li>
               <a href="details.php" title="京东下单金额" target="_blank">
@@ -213,7 +213,7 @@ $return = curl_post($url,json_encode($data),1);
 
       <div class="col-lg-12 GameGl newMsg">
         <div>
-          <h2 class="bigTitle">王者荣耀游戏攻略</h2>
+          <h2 class="bigTitle"><?php echo $config['game_name'];?>游戏攻略</h2>
           <ul>
             <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
               <a href="details.php" title="京东下单金额" target="_blank">

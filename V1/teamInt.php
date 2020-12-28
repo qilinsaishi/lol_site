@@ -6,8 +6,8 @@ $data = [
     "teamList"=>["page"=>1,"page_size"=>7],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
-    "links"=>["game"=>"lol","page"=>1,"page_size"=>6],
-    "playerList"=>["game"=>"lol","page"=>1,"page_size"=>8],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
 ];
 $return = curl_post($url,json_encode($data),1);
 ?>

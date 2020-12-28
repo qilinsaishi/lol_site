@@ -2,11 +2,11 @@
 <?php
 require_once "function/web.php";
 $data = [
-    "playerList"=>["game"=>"lol","page"=>1,"page_size"=>8],
+    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
     "teamList"=>["page"=>1,"page_size"=>8],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
-    "links"=>["game"=>"lol","page"=>1,"page_size"=>6],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "lolHeroList"=>["page"=>1,"page_size"=>20],
     "lolEquipmentList"=>["page"=>1,"page_size"=>12],
     "lolSummonerList"=>["page"=>1,"page_size"=>12],
