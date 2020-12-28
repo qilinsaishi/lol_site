@@ -70,7 +70,15 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
 
       <div class="gameInt">
         <div class="col-lg-6 col-md-6 col-xs-12 left">
-          <img src="<?php echo $return['lolHero']['data']['logo'];?>" />
+          <img src="              
+          <?php foreach($return['lolHero']['data']['skinList'] as $key => $skinInfo)
+          {
+              if($skinInfo['data']['isBase']==1)
+             {
+                 echo $skinInfo['data']['mainImg'];
+             }
+         }?>
+            " />
         </div>
 
 
