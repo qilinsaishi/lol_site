@@ -8,6 +8,8 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
+    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,"type"=>"1,2,3,5"],
+
 ];
 $return = curl_post($url,json_encode($data),1);
 ?>
@@ -193,51 +195,20 @@ $return = curl_post($url,json_encode($data),1);
       </div>
       <div class="col-lg-12 xg_team">
         <ul class="list_box">
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
-                <span class="newIcon">NEW</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </div>
-              <p class="right">2020-10-08 21:39</p>
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
-                <span class="newIcon">NEW</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </div>
-              <p class="right">2020-10-08 21:39</p>
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
-                <span class="videoIcon">视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </div>
-              <p class="right">2020-10-08 21:39</p>
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
-                <span class="videoIcon">视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </div>
-              <p class="right">2020-10-08 21:39</p>
-            </a>
-          </li>
-          <li class="list-item">
-            <a href="##" title="凤凰战队" target="_blank">
-              <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
-                <span class="videoIcon">视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </div>
-              <p class="right">2020-10-08 21:39</p>
-            </a>
-          </li>
+            <?php
+                $i = 1;
+                foreach($return['informationList']['data'] as $key => $value) {?>
+
+                    <li class="list-item">
+                        <a href="details.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                            <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
+                                <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">视频</span>';}?>
+                                <p><?php echo $value['title'];?></p>
+                            </div>
+                            <p class="right"><?php echo ($value["type"]==2)?$value['site_time']:$value['create_time'];?></p>
+                        </a>
+                    </li>
+            <?php $i++;}?>
           <div style="clear: both;"></div>
         </ul>
       </div>

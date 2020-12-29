@@ -23,5 +23,4 @@ $api_root = "/lol/get";
             $result = $res;
         }
         return $result;
-
     }

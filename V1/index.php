@@ -8,8 +8,14 @@ $data = [
         "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
         "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
         "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
+        "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"1,2,3,5"],
 ];
 $return = curl_post($url,json_encode($data),1);
+
+$data2 = [
+    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
+];
+$return2 = curl_post($url,json_encode($data2),1);
 ?>
 <html lang="zh-CN">
 <head>
@@ -91,101 +97,17 @@ $return = curl_post($url,json_encode($data),1);
         <div>
           <h2 class="bigTitle"><?php echo $config['game_name'];?>最新资讯</h2>
           <ul>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
+                <?php foreach($return['informationList']['data'] as $key => $value) {?>
+              <li>
+              <a href="details.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                 <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
+                  <img src="<?php echo $value['logo'];?>" />
+                  <p><?php echo $value['title'];?></p>
                 </div>
-                <span>12-10</span>
+                <span><?php echo substr((($value["type"]==2)?$value['site_time']:$value['create_time']),0,10);?></span>
               </a>
             </li>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
+              <?php }?>
           </ul>
         </div>
       </div>
@@ -197,7 +119,7 @@ $return = curl_post($url,json_encode($data),1);
               foreach($return['teamList']['data'] as $teamInfo)
               {   ?>
             <li>
-              <a href="details.php" title="京东下单金额" target="_blank">
+              <a href="details.php?<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                 <div class="pic">
                   <img src="<?php echo $teamInfo['logo'];?>" />
                 </div>
@@ -215,101 +137,19 @@ $return = curl_post($url,json_encode($data),1);
         <div>
           <h2 class="bigTitle"><?php echo $config['game_name'];?>游戏攻略</h2>
           <ul>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
+              <?php foreach($return2['informationList']['data'] as $key => $value) {?>
+                  <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                      <a href="details.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                          <div>
+                              <img src="<?php echo $value['logo'];?>" />
+                              <p><?php echo $value['title'];?></p>
+                          </div>
+                          <span><?php echo substr($value['create_time'],0,10);?></span>
+                      </a>
+                  </li>
+              <?php }?>
 
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img
-                    src="http://www.2cpseo.com/storage/articles/December2020//193f9058b5ab618184dff4a9c952d8a5.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
-            <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <a href="details.php" title="京东下单金额" target="_blank">
-                <div>
-                  <img src="http://www.2cpseo.com/storage/images/December2020/bbc02b18bfc5d4de3e71b303af307dba.jpg" />
-                  <p>外交部宣布对美反制措施:对等制裁</p>
-                </div>
-                <span>12-10</span>
-              </a>
-            </li>
+
           </ul>
           <div style="clear: both;"></div>
         </div>
