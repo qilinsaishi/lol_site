@@ -2298,6 +2298,29 @@
 
 
 
+/* 文章面包屑 */
+.breadcrumb {
+	padding: 8px 15px;
+	margin-bottom: 20px;
+	list-style: none;
+	background-color:transparent ;
+	border-radius: 4px;
+}
+.breadcrumb a{
+	color: #c8d5e5;
+}
+.breadcrumb>.active {
+	color:#6e8093;
+}
+.breadcrumb > li + li:before {
+	color: #CCCCCC;
+	content: "》";
+	padding: 0 5px;
+	font-size: small;
+}
+/* 文章面包屑 */
+
+
 @media (max-width: 1024px) {
 
 	.wenda_list.col-lg-8, .wenda_list.col-md-8{

@@ -67,6 +67,11 @@ $return3 = curl_post($url,json_encode($data3),1);
     <div class="row">
 
       <div class="col-md-8">
+          <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Data</li>
+          </ol>
         <div class="show_cont">
 
           <h1 class="show_cont_title">
