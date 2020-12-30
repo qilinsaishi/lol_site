@@ -89,7 +89,7 @@ $return = curl_post($url,json_encode($data),1);
 
               <?php foreach($return['informationList']['data'] as $key => $value) {?>
                   <li class="list-item">
-                      <a href="details.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                      <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <p><?php echo $value['title'];?></p>
                       </a>
                   </li>

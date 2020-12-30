@@ -155,7 +155,7 @@ $return = curl_post($url,json_encode($data),1);
               foreach($return['matchList']['data'] as $matchInfo)
               {   ?>
             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-                <a href="details.php" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
+                <a href="detail.php" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
                 <span>2020年10月3日</span>
                 <div class="icon">
                   <div>
@@ -200,7 +200,7 @@ $return = curl_post($url,json_encode($data),1);
                 foreach($return['informationList']['data'] as $key => $value) {?>
 
                     <li class="list-item">
-                        <a href="details.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                        <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                             <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
                                 <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">视频</span>';}?>
                                 <p><?php echo $value['title'];?></p>
@@ -271,10 +271,10 @@ $return = curl_post($url,json_encode($data),1);
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">关于我们</div>
-        <ul>
-          <li class="col-md-12"><a href="##">联系我们</a></li>
-          <li class="col-md-12"><a href="##">站点地图</a></li>
-        </ul>
+          <ul>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['contact']['value']?>"><?php echo $return['defaultConfig']['data']['contact']['name']?></a></li>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['sitemap']['value']?>"><?php echo $return['defaultConfig']['data']['sitemap']['name']?></a></li>
+          </ul>
       </div>
     </div>
     <div class="row youlian">

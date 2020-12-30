@@ -69,7 +69,7 @@ $return2 = curl_post($url,json_encode($data2),1);
                 foreach($return['matchList']['data'] as $matchInfo)
                 {   ?>
             <li class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
-            <a href="details.php" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
+            <a href="detail.php" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
               <span><?php echo date("Y年m月d日",strtotime($matchInfo['start_time']));?></span>
               <div class="icon">
                 <div>
@@ -99,7 +99,7 @@ $return2 = curl_post($url,json_encode($data2),1);
           <ul>
                 <?php foreach($return['informationList']['data'] as $key => $value) {?>
               <li>
-              <a href="details.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+              <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                 <div>
                   <img src="<?php echo $value['logo'];?>" />
                   <p><?php echo $value['title'];?></p>
@@ -119,7 +119,7 @@ $return2 = curl_post($url,json_encode($data2),1);
               foreach($return['teamList']['data'] as $teamInfo)
               {   ?>
             <li>
-              <a href="details.php?<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+              <a href="detail.php?<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                 <div class="pic">
                   <img src="<?php echo $teamInfo['logo'];?>" />
                 </div>
@@ -139,7 +139,7 @@ $return2 = curl_post($url,json_encode($data2),1);
           <ul>
               <?php foreach($return2['informationList']['data'] as $key => $value) {?>
                   <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                      <a href="details.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                      <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <div>
                               <img src="<?php echo $value['logo'];?>" />
                               <p><?php echo $value['title'];?></p>

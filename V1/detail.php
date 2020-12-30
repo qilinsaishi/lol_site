@@ -2,20 +2,25 @@
 <?php
 require_once "function/web.php";
 require_once "function/common.php";
-$info['page']['page_size'] = 8;
-$page = $_GET['page']??1;
+$info['page']['page_size'] = 3;
+$id = $_GET['id']??1;
 $data = [
-    "matchList"=>["page"=>1,"page_size"=>9],
-    "teamList"=>["page"=>1,"page_size"=>6],
-    "tournament"=>["page"=>1,"page_size"=>8],
-    "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
-    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
-    "informationList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>"1,2,3,5","fields"=>"*"],
+    "information"=>[$id],
 ];
 $return = curl_post($url,json_encode($data),1);
-$info['page']['total_count'] = $return['informationList']['count'];
-$info['page']['total_page'] = intval($return['informationList']['count']/$info['page']['page_size']);
+
+$data2 = [
+    "informationList"=>["game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
+        "type"=>$return['information']['data']['type']==2?"2":"1,2,3,5","fields"=>"id,title"],
+];
+$data3 = [
+    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>$info['page']['page_size']+1,
+        "type"=>$return['information']['data']['type']==2?"2":"1,2,3,5","fields"=>"id,title"],
+];
+
+$return2 = curl_post($url,json_encode($data2),1);
+$return3 = curl_post($url,json_encode($data3),1);
+
 ?>
 <html lang="zh-CN">
 
@@ -24,7 +29,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
-  <title>资讯列表</title>
+  <title><?php echo $config['game_name']."-".$return['information']['data']['title'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -61,44 +66,41 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
 
     <div class="row">
 
-      <div class="col-lg-8 col-sm-12 col-md-8 col-xs-12 zixun_list_box">
-        <div>
-          <ul class="m-listbox">
+      <div class="col-md-8">
+        <div class="show_cont">
 
-              <?php foreach($return['informationList']['data'] as $key => $value) {?>
-                  <li>
-                      <a href="detail.php?id=<?php echo $value['id'];?>">
-                          <div class="left">
-                              <img src="<?php echo $value['logo'];?>" alt="<?php echo $value['title'];?>">
-                          </div>
-                          <div class="right">
-                              <h2><?php echo $value['title'];?></h2>
-                              <p><?php   //     $value['content'] = preg_replace("/<([a-zA-Z]+)[^>]*>/","<\\1>",$value['content']);
-                                    $value['content'] = strip_tags($value['content']);
-                                  echo (mb_str_split($value['content'],300));
-                                  ?></p>
-                              <div class="more"><span class="more_btn">More</span> <span><?php echo substr((($value["type"]==2)?$value['site_time']:$value['create_time']),0,10);?></span> </div>
-                          </div>
-                      </a>
-                  </li>
-              <?php }?>
-          </ul>
-          
+          <h1 class="show_cont_title">
+            <span style="font-size: 22px;line-height: 30px"><?php echo $return['information']['data']['title'];?></span>
+          </h1>
+
+
+          <div class="show_txt">
+              <?php echo $return['information']['data']['content'];?>
+          </div>
+
+
+
+
+          <br>
+
+          <div class="xgTag">
+            <ul class="col-lg-8 col-sm-8 col-md-12 col-xs-12">
+             <!-- <li><a href="##">赛事</a></li>
+              <li><a href="##">KPL</a></li>
+              <li><a href="##">高校生</a></li>  -->
+            </ul>
+            <div class="col-lg-4 col-sm-4 col-md-12 col-xs-12 time">
+                <?php echo ($return['information']['data']['type']==2)?$return['information']['data']['site_time']:$return['information']['data']['create_time'];?>
+            </div>
+            <div style="clear: both;"></div>
+          </div>
+
         </div>
-        <div class="page">
-          <ul class="pagination">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">...</a></li>
-            <li><a href="#">44</a></li>
-            <li><a href="#">45</a></li>
-            <li><a href="#">&raquo;</a></li>
-          </ul>
-        </div>
+        <!--Kf Opponents Outer End-->
       </div>
+
+
+
       <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 ">
         <div class="saishi">
           <div class="titleBox">
@@ -168,37 +170,37 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
           <div class="col-xs-24">
             <ul class="zhanduiList_box  text-center">
               <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
+                <a href="##" title="凤凰战队" target="_blank">
                   <img src="images/photo_1.png" alt="img" />
                   <p>凤凰</p>
                 </a>
               </li>
               <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
+                <a href="##" title="凤凰战队" target="_blank">
                   <img src="images/photo_5.png" alt="img" />
                   <p>凤凰</p>
                 </a>
               </li>
               <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
+                <a href="##" title="凤凰战队" target="_blank">
                   <img src="images/photo_1.png" alt="img" />
                   <p>凤凰</p>
                 </a>
               </li>
               <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
+                <a href="##" title="凤凰战队" target="_blank">
                   <img src="images/photo_5.png" alt="img" />
                   <p>凤凰</p>
                 </a>
               </li>
               <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
+                <a href="##" title="凤凰战队" target="_blank">
                   <img src="images/photo_2.png" alt="img" />
                   <p>凤凰</p>
                 </a>
               </li>
               <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
+                <a href="##" title="凤凰战队" target="_blank">
                   <img src="images/photo_2.png" alt="img" />
                   <p>凤凰</p>
                 </a>
@@ -222,31 +224,70 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
       </div>
     </div>
 
+<div class="row">
+  <div class="col-md-8 padding0">
+    <div class="saishi">
+      <div class="titleBox">
+        <h3>相关文章推荐</h3>
+      </div>
+      <div class="col-xs-24">
+        <ul class="saishiList_box">
 
+            <?php foreach($return2['informationList']['data'] as $key => $value) {?>
+                <li class="list-item">
+                    <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
+                </li>
+            <?php }?>
+
+        </ul>
+      </div>
+    </div>
+    <div class="saishi">
+      <div class="titleBox">
+        <h3>最新资讯</h3>
+      </div>
+      <div class="col-xs-24">
+        <ul class="saishiList_box">
+            <?php foreach($return3['informationList']['data'] as $key => $value) {
+                if($value['id']!=$id){?>
+                <li class="list-item">
+                    <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
+                </li>
+            <?php }}?>
+        </ul>
+      </div>
+    </div>
   </div>
+</div>
+    </div>
 
   <footer class="container footer">
     <div class="row">
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门赛事</div>
         <ul>
-            <?php
-            foreach($return['tournament']['data'] as $tournamentInfo)
-            {   ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
-            <?php }?>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门选手</div>
         <ul>
-            <?php
-            foreach($return['playerList']['data'] as $playerInfo)
-            {
-                ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
-            <?php }?>
-          </ul>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+        </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">关于我们</div>
