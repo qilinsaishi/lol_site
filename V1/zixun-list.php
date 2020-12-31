@@ -127,36 +127,15 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box text-center">
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_2.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_3.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_4.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_1.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_2.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_3.png" alt="img" />
-                </a>
-              </li>
+                <?php
+                foreach($return['teamList']['data'] as $teamInfo)
+                {   ?>
+                    <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
+                        <a href="##" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['title'];?>" />
+                        </a>
+                    </li>
+                <?php }?>
             </ul>
             <div style="clear: both;"></div>
           </div>
@@ -168,54 +147,16 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box  text-center">
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
-                  <img src="images/photo_1.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
-                  <img src="images/photo_5.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
-                  <img src="images/photo_1.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
-                  <img src="images/photo_5.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
-                  <img src="images/photo_2.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank" >
-                  <img src="images/photo_2.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_3.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_4.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
+                <?php
+                foreach($return['playerList']['data'] as $playerInfo)
+                {   ?>
+                    <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
+                        <a href="##" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                            <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
+                            <p><?php echo $playerInfo['player_name'];?></p>
+                        </a>
+                    </li>
+                <?php }?>
             </ul>
             <div style="clear: both;"></div>
           </div>
@@ -251,10 +192,10 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">关于我们</div>
-        <ul>
-          <li class="col-md-12"><a href="##">联系我们</a></li>
-          <li class="col-md-12"><a href="##">站点地图</a></li>
-        </ul>
+          <ul>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['contact']['value']?>"><?php echo $return['defaultConfig']['data']['contact']['name']?></a></li>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['sitemap']['value']?>"><?php echo $return['defaultConfig']['data']['sitemap']['name']?></a></li>
+          </ul>
       </div>
     </div>
     <div class="row youlian">

@@ -50,7 +50,7 @@ $return2 = curl_post($url,json_encode($data2),1);
           <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
           <li><a href="hero-list.php">英雄介绍</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
-          <li><a href="#contact">游戏攻略</a></li>
+          <li><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
           <li><a href="wenda-list.php">游戏问答</a></li>
         </ul>
       </div><!-- /.nav-collapse -->

@@ -10,7 +10,7 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "teamList"=>["page"=>1,"page_size"=>3],
     "playerList"=>["page"=>1,"page_size"=>9],
-
+    "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
 ];
 $return = curl_post($url,json_encode($data),1);
 $data2 = [
@@ -58,8 +58,8 @@ $return3 = curl_post($url,json_encode($data3),1);
           <li><a href="gameInt.php">王者荣耀</a></li>
           <li><a href="teamInt.php">王者战队</a></li>
           <li><a href="hero-list.php">王者比赛</a></li>
-          <li class="active"><a href="zixun-list.php">游戏资讯</a></li>
-          <li><a href="#contact">游戏攻略</a></li>
+            <li <?php if($return['information']['data']['type']!=4){?>class="active"<?php }?>><a href="zixun-list.php">游戏资讯</a></li>
+            <li <?php if($return['information']['data']['type']==4){?>class="active"<?php }?>><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
           <li><a href="wenda-list.php">游戏问答</a></li>
         </ul>
       </div><!-- /.nav-collapse -->
