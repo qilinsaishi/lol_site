@@ -25,7 +25,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
-  <title>资讯列表</title>
+  <title><?php echo $config['game_name'];?>-<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>列表</title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -47,9 +47,9 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="#">首页</a></li>
-          <li><a href="gameInt.php">王者荣耀</a></li>
-          <li><a href="teamInt.php">王者战队</a></li>
-          <li><a href="hero-list.php">王者比赛</a></li>
+            <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
+            <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
+            <li><a href="hero-list.php">英雄介绍</a></li>
           <li <?php if($info['type']=="info"){?>class="active"<?php }?>><a href="zixun-list.php">游戏资讯</a></li>
             <li <?php if($info['type']=="strategy"){?>class="active"<?php }?>><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
           <li><a href="wenda-list.php">游戏问答</a></li>
@@ -88,15 +88,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         </div>
         <div class="page">
           <ul class="pagination">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">...</a></li>
-            <li><a href="#">44</a></li>
-            <li><a href="#">45</a></li>
-            <li><a href="#">&raquo;</a></li>
+              <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,"zixun-list.php?type=".$info['type']); ?>
           </ul>
         </div>
       </div>
@@ -108,15 +100,14 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
           </div>
           <div class="col-xs-24">
             <ul class="saishiList_box">
-              <li class="list-item">
-                <a href="##" title="2018KPL秋季赛" target="_blank">2018KPL秋季赛</a>
-              </li>
-              <li class="list-item">
-                <a href="##" title="2017KPL秋季赛" target="_blank">2017KPL秋季赛</a>
-              </li>
-              <li class="list-item">
-                <a href="##" title="2016KPL秋季赛" target="_blank">2016KPL秋季赛</a>
-              </li>
+                <?php
+                $i = 1;
+                foreach($return['tournament']['data'] as $tournamentInfo)
+                {   if($i<=3){?>
+                    <li class="list-item">
+                        <a href="##" title="<?php echo $tournamentInfo['tournament_name'];?>" target="_blank"><?php echo $tournamentInfo['tournament_name'];?></a>
+                    </li>
+                    <?php $i++;}}?>
             </ul>
           </div>
         </div>

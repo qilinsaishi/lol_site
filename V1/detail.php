@@ -117,15 +117,14 @@ $return3 = curl_post($url,json_encode($data3),1);
           </div>
           <div class="col-xs-24">
             <ul class="saishiList_box">
-              <li class="list-item">
                   <?php
                   $i = 1;
                   foreach($return['tournament']['data'] as $tournamentInfo)
                   {   if($i<=3){?>
-
+                <li class="list-item">
                       <a href="##" title="<?php echo $tournamentInfo['tournament_name'];?>" target="_blank"><?php echo $tournamentInfo['tournament_name'];?></a>
-                <?php $i++;}}?>
-              </li>
+                </li>
+                      <?php $i++;}}?>
             </ul>
           </div>
         </div>
