@@ -6,9 +6,13 @@ $info['page']['page_size'] = 3;
 $id = $_GET['id']??1;
 $data = [
     "information"=>[$id],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "tournament"=>["page"=>1,"page_size"=>8],
+    "teamList"=>["page"=>1,"page_size"=>3],
+    "playerList"=>["page"=>1,"page_size"=>9],
+
 ];
 $return = curl_post($url,json_encode($data),1);
-
 $data2 = [
     "informationList"=>["game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
         "type"=>$return['information']['data']['type']==2?"2":"1,2,3,5","fields"=>"id,title"],
@@ -50,11 +54,11 @@ $return3 = curl_post($url,json_encode($data3),1);
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">首页</a></li>
+          <li><a href="index.php">首页</a></li>
           <li><a href="gameInt.php">王者荣耀</a></li>
           <li><a href="teamInt.php">王者战队</a></li>
           <li><a href="hero-list.php">王者比赛</a></li>
-          <li><a href="zixun-list.php">游戏资讯</a></li>
+          <li class="active"><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
           <li><a href="wenda-list.php">游戏问答</a></li>
         </ul>
@@ -68,9 +72,8 @@ $return3 = curl_post($url,json_encode($data3),1);
 
       <div class="col-md-8">
           <ol class="breadcrumb">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Library</a></li>
-              <li class="active">Data</li>
+              <li><a href="index.php">首页</a></li>
+              <li><a href="zixun-list.php"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
           </ol>
         <div class="show_cont">
 
@@ -115,13 +118,13 @@ $return3 = curl_post($url,json_encode($data3),1);
           <div class="col-xs-24">
             <ul class="saishiList_box">
               <li class="list-item">
-                <a href="##" title="2018KPL秋季赛" target="_blank">2018KPL秋季赛</a>
-              </li>
-              <li class="list-item">
-                <a href="##" title="2017KPL秋季赛" target="_blank">2017KPL秋季赛</a>
-              </li>
-              <li class="list-item">
-                <a href="##" title="2016KPL秋季赛" target="_blank">2016KPL秋季赛</a>
+                  <?php
+                  $i = 1;
+                  foreach($return['tournament']['data'] as $tournamentInfo)
+                  {   if($i<=3){?>
+
+                      <a href="##" title="<?php echo $tournamentInfo['tournament_name'];?>" target="_blank"><?php echo $tournamentInfo['tournament_name'];?></a>
+                <?php $i++;}}?>
               </li>
             </ul>
           </div>
@@ -133,36 +136,15 @@ $return3 = curl_post($url,json_encode($data3),1);
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box text-center">
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_2.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_3.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_4.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_1.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_2.png" alt="img" />
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/icon_3.png" alt="img" />
-                </a>
-              </li>
+                <?php
+                foreach($return['teamList']['data'] as $teamInfo)
+                {   ?>
+                    <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
+                        <a href="##" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['title'];?>" />
+                        </a>
+                    </li>
+                <?php }?>
             </ul>
             <div style="clear: both;"></div>
           </div>
@@ -174,54 +156,16 @@ $return3 = curl_post($url,json_encode($data3),1);
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box  text-center">
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_1.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_5.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_1.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_5.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_2.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_2.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_3.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
-              <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="##" title="凤凰战队" target="_blank">
-                  <img src="images/photo_4.png" alt="img" />
-                  <p>凤凰</p>
-                </a>
-              </li>
+                <?php
+                foreach($return['playerList']['data'] as $playerInfo)
+                {   ?>
+                    <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
+                        <a href="##" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                            <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
+                            <p><?php echo $playerInfo['player_name'];?></p>
+                        </a>
+                    </li>
+                <?php }?>
             </ul>
             <div style="clear: both;"></div>
           </div>
@@ -271,47 +215,41 @@ $return3 = curl_post($url,json_encode($data3),1);
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门赛事</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+            <?php
+            foreach($return['tournament']['data'] as $tournamentInfo)
+            {   ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">热门选手</div>
         <ul>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-          <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+            <?php
+            foreach($return['playerList']['data'] as $playerInfo)
+            {
+                ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+            <?php }?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
         <div class="title">关于我们</div>
-        <ul>
-          <li class="col-md-12"><a href="##">联系我们</a></li>
-          <li class="col-md-12"><a href="##">站点地图</a></li>
-        </ul>
+          <ul>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['contact']['value']?>"><?php echo $return['defaultConfig']['data']['contact']['name']?></a></li>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['sitemap']['value']?>"><?php echo $return['defaultConfig']['data']['sitemap']['name']?></a></li>
+          </ul>
       </div>
     </div>
     <div class="row youlian">
       <div class="col-md-12">
         <div class="title">友情链接</div>
         <ul>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
+            <?php
+            foreach($return['links']['data'] as $linksInfo)
+            {   ?>
+                <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a title = "<?php echo $linksInfo['name'];?>" href="<?php echo $linksInfo['url'];?>"><img src="<?php echo $linksInfo['logo'];?>" /></a></li>
+            <?php }?>
         </ul>
       </div>
     </div>

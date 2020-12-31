@@ -3,6 +3,7 @@
 require_once "function/web.php";
 require_once "function/common.php";
 $info['page']['page_size'] = 8;
+$info['type'] = $_GET['type']??"info";
 $page = $_GET['page']??1;
 $data = [
     "matchList"=>["page"=>1,"page_size"=>9],
@@ -11,7 +12,7 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
-    "informationList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>"1,2,3,5","fields"=>"*"],
+    "informationList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>$info['type']=="info"?"1,2,3,5":"4","fields"=>"*"],
 ];
 $return = curl_post($url,json_encode($data),1);
 $info['page']['total_count'] = $return['informationList']['count'];
@@ -45,12 +46,12 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">首页</a></li>
+          <li><a href="#">首页</a></li>
           <li><a href="gameInt.php">王者荣耀</a></li>
           <li><a href="teamInt.php">王者战队</a></li>
           <li><a href="hero-list.php">王者比赛</a></li>
-          <li><a href="zixun-list.php">游戏资讯</a></li>
-          <li><a href="#contact">游戏攻略</a></li>
+          <li <?php if($info['type']=="info"){?>class="active"<?php }?>><a href="zixun-list.php">游戏资讯</a></li>
+            <li <?php if($info['type']=="strategy"){?>class="active"<?php }?>><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
           <li><a href="wenda-list.php">游戏问答</a></li>
         </ul>
       </div><!-- /.nav-collapse -->
@@ -260,12 +261,11 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
       <div class="col-md-12">
         <div class="title">友情链接</div>
         <ul>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-          <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
+            <?php
+            foreach($return['links']['data'] as $linksInfo)
+            {   ?>
+                <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a title = "<?php echo $linksInfo['name'];?>" href="<?php echo $linksInfo['url'];?>"><img src="<?php echo $linksInfo['logo'];?>" /></a></li>
+            <?php }?>
         </ul>
       </div>
     </div>
