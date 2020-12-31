@@ -2769,3 +2769,10 @@
 		margin-top: 162px;
 	}
 }
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover {
+	cursor: default;
+	border-color: #e1eeff;
+	background-color: #e1eeff;
+	color: #06181e;
+	font-weight: bold;
+}

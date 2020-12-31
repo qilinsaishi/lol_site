@@ -18,8 +18,6 @@
         $p = 5;
         $p2 = 2;
         $totalPage = intval($total_count/$page_size);
-        //$totalPage = 5;
-        $current_page = 3;
         if($totalPage<=$p+$p2)
         {
             for($i=1;$i<=$totalPage;$i++)
@@ -29,7 +27,7 @@
         }
         else
         {
-            if($current_page<=$p)
+            if($current_page<=($p-$p2))
             {
                 for($i=1;$i<=$p;$i++)
                 {
@@ -39,6 +37,52 @@
                 for($i=$p2;$i>0;$i--)
                 {
                     echo '<li><a href="'.$url."&page=".($totalPage-$i).'">'.($totalPage-$i).'</a></li>';
+                }
+            }
+            elseif($current_page<=($p))
+            {
+                for($i=1;$i<=($p+$p2);$i++)
+                {
+                    echo '<li><a href="'.$url."&page=".$i.'">'.$i.'</a></li>';
+                }
+                echo '<li><a>...</a></li>';
+                for($i=$p2;$i>0;$i--)
+                {
+                    echo '<li><a href="'.$url."&page=".($totalPage-$i).'">'.($totalPage-$i).'</a></li>';
+                }
+            }
+            elseif($current_page>$p && $current_page<($totalPage-$p))
+            {
+                for($i=1;$i<=1;$i++)
+                {
+                    echo '<li><a href="'.$url."&page=".$i.'">'.$i.'</a></li>';
+                }
+                echo '<li><a>...</a></li>';
+                for($i=$current_page-2;$i<=$current_page+2;$i++)
+                {
+                    echo '<li '.(($i-$current_page)==0?'class="active"':'').'><a href="'.$url."&page=".$i.'">'.$i.'</a></li>';
+                }
+                echo '<li><a>...</a></li>';
+                for($i=$p2;$i>0;$i--)
+                {
+                    echo '<li><a href="'.$url."&page=".($totalPage-$i).'">'.($totalPage-$i).'</a></li>';
+                }
+            }
+            elseif($current_page>=($totalPage-$p))
+            {
+                echo "666";
+                for($i=1;$i<=1;$i++)
+                {
+                    echo '<li><a href="'.$url."&page=".$i.'">'.$i.'</a></li>';
+                }
+                echo "999:".($totalPage-$p-$current_page);
+                if($totalPage-$p != 1)
+                {
+                    echo '<li><a>...</a></li>';
+                }
+                for($i=$p;$i>0;$i--)
+                {
+                    echo '<li '.(($totalPage-$i-$current_page)==0?'class="active"':'').'><a href="'.$url."&page=".($totalPage-$i).'">'.($totalPage-$i).'</a></li>';
                 }
             }
         }
