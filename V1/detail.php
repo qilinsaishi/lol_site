@@ -56,7 +56,7 @@ $return3 = curl_post($url,json_encode($data3),1);
         <ul class="nav navbar-nav">
           <li><a href="index.php">首页</a></li>
           <li><a href="gameInt.php">王者荣耀</a></li>
-          <li><a href="teamInt.php">王者战队</a></li>
+          <li><a href="teamList.php">王者战队</a></li>
           <li><a href="hero-list.php">王者比赛</a></li>
             <li <?php if($return['information']['data']['type']!=4){?>class="active"<?php }?>><a href="zixun-list.php">游戏资讯</a></li>
             <li <?php if($return['information']['data']['type']==4){?>class="active"<?php }?>><a href="zixun-list.php?type=strategy">游戏攻略</a></li>

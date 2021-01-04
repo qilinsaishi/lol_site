@@ -54,7 +54,7 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
         <ul class="nav navbar-nav">
           <li><a href="index.php">首页</a></li>
           <li class="active"><a href="gameInt.php">王者荣耀</a></li>
-          <li><a href="teamInt.php">王者战队</a></li>
+          <li><a href="teamList.php">王者战队</a></li>
           <li><a href="hero-list.php"><?php echo $config['game_name'];?>-英雄介绍</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>

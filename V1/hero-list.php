@@ -43,7 +43,7 @@ $return = curl_post($url,json_encode($data),1);
         <ul class="nav navbar-nav">
           <li><a href="index.php">首页</a></li>
           <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
-          <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
+          <li><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
           <li  class="active"><a href="hero-list.php">英雄列表</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>

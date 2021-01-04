@@ -47,7 +47,7 @@ $return2 = curl_post($url,json_encode($data2),1);
         <ul class="nav navbar-nav">
           <li class="active"><a href="index.php">首页</a></li>
           <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
-          <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
+          <li><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
           <li><a href="hero-list.php">英雄介绍</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
@@ -119,7 +119,7 @@ $return2 = curl_post($url,json_encode($data2),1);
               foreach($return['teamList']['data'] as $teamInfo)
               {   ?>
             <li>
-              <a href="detail.php?<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+              <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                 <div class="pic">
                   <img src="<?php echo $teamInfo['logo'];?>" />
                 </div>

@@ -46,9 +46,9 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#">首页</a></li>
+          <li><a href="index.php">首页</a></li>
             <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
-            <li><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
+            <li><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
             <li><a href="hero-list.php">英雄介绍</a></li>
           <li <?php if($info['type']=="info"){?>class="active"<?php }?>><a href="zixun-list.php">游戏资讯</a></li>
             <li <?php if($info['type']=="strategy"){?>class="active"<?php }?>><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
@@ -114,7 +114,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         <div class="saishi">
           <div class="titleBox">
             <h3>热门战队</h3>
-            <a href="##">更多</a>
+            <a href="teamList.php">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box text-center">

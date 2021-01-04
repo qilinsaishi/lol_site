@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <?php
 require_once "function/web.php";
+$team_id = $_GET['team_id']??0;
 $data = [
-    "matchList"=>["page"=>1,"page_size"=>9],
-    "teamList"=>["page"=>1,"page_size"=>7],
+    "team"=>[$team_id],
+    "teamList"=>["page"=>1,"page_size"=>6],
     "tournament"=>["page"=>1,"page_size"=>8],
+    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
-    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,"type"=>"1,2,3,5"],
-
 ];
 $return = curl_post($url,json_encode($data),1);
 ?>
@@ -19,7 +18,7 @@ $return = curl_post($url,json_encode($data),1);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
-    <title><?php echo $config['game_name'];?>-战队介绍</title>
+    <title><?php echo $config['game_name'];?>-战队-<?php echo $return['team']['data']['team_name'];?>-介绍</title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -43,7 +42,7 @@ $return = curl_post($url,json_encode($data),1);
         <ul class="nav navbar-nav">
           <li><a href="index.php">首页</a></li>
           <li><a href="hero-list.php"><?php echo $config['game_name'];?></a></li>
-          <li class="active"><a href="teamInt.php"><?php echo $config['game_name'];?>战队</a></li>
+          <li class="active"><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
             <li><a href="hero-list.php">英雄介绍</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
@@ -57,18 +56,13 @@ $return = curl_post($url,json_encode($data),1);
     <div class="row teamLogo">
 
       <div class="col-lg-3 col-sm-4 col-md-3 col-xs-12 left">
-        <img src="images/icon_2.png" />
+        <img src="<?php echo $return['team']['data']['logo'];?>" />
       </div>
       <div class="col-lg-9 col-sm-8 col-md-9 col-xs-12 right">
-        <h1 class="top">佛山GK</h1>
+        <h1 class="top"><?php echo $return['team']['data']['team_name'];?></h1>
 
         <div>
-          <p>
-            2020王者荣耀甲级职业简称KPLGT）和王者荣耀全的稳定健康发展。KGL全年分春季赛和秋季赛两个赛季，每个赛季分常规赛（分组定级赛、分层天梯赛第一轮、抢位赛、分层天梯赛第二轮）、季后赛及总决赛三部分。
-          </p>
-          <p>
-            2020王者荣耀甲级职业联）、季后赛及总决赛三部分。
-          </p>
+            <?php echo $return['team']['data']['totalTeamInfo']['description'];?>
         </div>
 
       </div>
@@ -117,11 +111,11 @@ $return = curl_post($url,json_encode($data),1);
         <div>
           <ul class="zhanduiList_box">
               <?php
-              foreach($return['playerList']['data'] as $playerInfo)
+              foreach($return['team']['data']['playerList'] as $playerInfo)
               {
-              ?>
+                  ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
-              <a href="##" title="<?php echo $playerInfo['player_name']?>" target="_blank">
+              <a href="player_detail.php?player_id=<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
                 <img src="<?php echo $playerInfo['logo']?>" alt="img" />
                 <p><?php echo $playerInfo['player_name']?></p>
               </a>
