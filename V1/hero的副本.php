@@ -20,7 +20,11 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
 {
     $return['lolHero']['data']["spellList"][$key]['data'] = json_decode($spellInfo['data'],true);
 }
+//echo "<pre>";
+//print_R($return['lolHero']['data']['skinList']);
+//die();
 ?>
+
 
 <html lang="zh-CN">
 <head>
@@ -240,29 +244,35 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
           英雄皮肤
         </h3>
       </div>
-      <div class="img-content">
-        <div class="small-img">
-              <?php
-              $i = 1;
-              foreach($return['lolHero']['data']['skinList'] as $key => $skinInfo)
-              { ?>
-                  <a <?php if($i==1){?>class="on"<?php }?> rel="img<?php echo $i;?>" href="javascript:;">
-                      <img class="moveimg active" src="<?php echo $skinInfo['data']['mainImg'];?>">
-                      <p class="img-name"><?php echo $skinInfo['data']['name'];?></p>
-                  </a>
-              <?php $i++;}?>
+        <div class="img-content" id="gallery">
+            <div class="small-img" id="gallery_nav">
+                <a class="on" rel="img1" href="javascript:;">
+                    <img class="moveimg active" src="images/a1_small.png">
+                    <p class="img-name">白虎志</p>
+                </a>
+                <a rel="img2" href="javascript:;">
+                    <img class="moveimg" src="images/a2_small.png">
+                    <p class="img-name">白虎志白虎志</p>
+                </a>
+                <a rel="img3" href="javascript:;">
+                    <img class="moveimg" src="images/a3_small.png">
+                    <p class="img-name">白虎志白虎志白虎志</p>
+                </a>
+                <a rel="img4" href="javascript:;">
+                    <img class="moveimg" src="images/a2_small.png">
+                    <p class="img-name">白虎</p>
+                </a>
+            </div>
+
+            <div class="big-img " id="gallery_output">
+                <img id="img1" src="images/a1_big.png" />
+                <img id="img2" src="images/a2_big.png" />
+                <img id="img3" src="images/a3_big.png" />
+                <img id="img4" src="images/a2_big.png" />
+            </div>
         </div>
 
-          <div class="big-img " id="gallery_output">
-              <?php
-              $i = 1;
-              foreach($return['lolHero']['data']['skinList'] as $key => $skinInfo)
-              { ?>
-                  <img id="img<?php echo $i;?>" src="<?php echo $skinInfo['data']['mainImg'];?>" />
-                  <?php $i++;}?>
-
-          </div>
-      </div>
+        <div class="clear"></div>
     </div>
 
 
@@ -712,19 +722,6 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
         first_one = 0;
       }
     }
-
-    $(document).ready(function () {
-        $("#gallery_output img").not(":first").hide();
-
-        $("#gallery a").click(function () {
-            $("#gallery a").removeClass('on');
-            $(this).addClass("on");
-            if ($("#" + this.rel).is(":hidden")) {
-                $("#gallery_output img").slideUp(0);
-                $("#" + this.rel).slideDown(0);
-            }
-        });
-    });
 
 
   </script>

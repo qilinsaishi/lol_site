@@ -77,7 +77,7 @@ $return = curl_post($url,json_encode($data),1);
                 foreach($return['teamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                        <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                        <a href="team_detail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <div>
                                 <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
                             </div>
