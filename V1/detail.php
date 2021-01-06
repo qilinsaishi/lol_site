@@ -36,8 +36,6 @@ if(is_array($return["information"]['data']['keywords_list']))
     }
 }
 array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
-print_R($keywordsList);
-die();
 $data2 = [
     "informationList"=>["game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
         "type"=>$return['information']['data']['type']==2?"2":"1,2,3,5","fields"=>"id,title"],
