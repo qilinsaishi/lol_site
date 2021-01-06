@@ -13,6 +13,31 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
 ];
 $return = curl_post($url,json_encode($data),1);
+
+$return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
+if(is_array($return["information"]['data']['keywords_list']))
+{
+    foreach($return["information"]['data']['keywords_list'] as $type => $list)
+    {
+        foreach($list as $word => $wordInfo)
+        {
+            if(isset($keywordsList[$word]))
+            {
+                if($wordInfo['count']>$keywordsList[$word]['count'])
+                {
+                    $keywordsList[$word] = ["id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count']];
+                }
+            }
+            else
+            {
+                $keywordsList[$word] = ["id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count']];
+            }
+        }
+    }
+}
+array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
+print_R($keywordsList);
+die();
 $data2 = [
     "informationList"=>["game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
         "type"=>$return['information']['data']['type']==2?"2":"1,2,3,5","fields"=>"id,title"],
@@ -93,9 +118,24 @@ $return3 = curl_post($url,json_encode($data3),1);
 
           <div class="xgTag">
             <ul class="col-lg-8 col-sm-8 col-md-12 col-xs-12">
-             <!-- <li><a href="##">赛事</a></li>
-              <li><a href="##">KPL</a></li>
-              <li><a href="##">高校生</a></li>  -->
+             <?php
+             $i = 1;
+             foreach($keywordsList as $word => $info)
+             {
+                 if($i<=3)
+                 {
+                     if($info['type']=="team")
+                     {
+                        $url = "teamDetail.php?team_id=".$info['id'];
+                     }
+                     else
+                     {
+                         $url = "playerDetail.php?player_id=".$info['id'];
+                     }
+                     echo '<li><a href="'.$url.'">'.$word.'</a></li>';
+                 }
+                 $i++;
+             }?>
             </ul>
             <div class="col-lg-4 col-sm-4 col-md-12 col-xs-12 time">
                 <?php echo ($return['information']['data']['type']==2)?$return['information']['data']['site_time']:$return['information']['data']['create_time'];?>
