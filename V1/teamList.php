@@ -4,10 +4,10 @@ require_once "function/web.php";
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
-    "totalTeamList"=>["page"=>1,"page_size"=>1000,"source"=>"cpseo","fields"=>"team_id,team_name,logo","game"=>$config['game']],
+    "totalTeamList"=>["page"=>1,"page_size"=>30,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>30],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>30,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
 ];
 print_R(json_encode($data));
@@ -103,10 +103,10 @@ $return = curl_post($url,json_encode($data),1);
                         <div class="iconList">
                             <ul>
                                 <?php
-                                foreach($return['playerList']['data'] as $playerInfo)
+                                foreach($return['totalPlayerList']['data'] as $playerInfo)
                                 {   ?>
                                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                                        <a href="player_detail.php?team_id=<?php echo $playerInfo['play_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                                        <a href="player_detail.php?play_id=<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                                             <div>
                                                 <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
                                             </div>
@@ -162,7 +162,7 @@ $return = curl_post($url,json_encode($data),1);
                 foreach($return['matchList']['data'] as $matchInfo)
                 {   ?>
                     <li>
-                        <a href="match_detail.php?match_id=<?php echo $matchInfo['match_id'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
+                        <a href="##" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
                             <span><?php echo date("Y年m月d日",strtotime($matchInfo['start_time']));?></span>
                             <div class="icon">
                                 <div>
@@ -207,11 +207,11 @@ $return = curl_post($url,json_encode($data),1);
         <ul>
             <?php
             $i=1;
-            foreach($return['playerList']['data'] as $playerInfo)
+            foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 if($i<=8){
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="player_detail?player_id=<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php $i++;}}?>
         </ul>
       </div>

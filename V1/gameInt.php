@@ -3,12 +3,13 @@
 require_once "function/web.php";
 $data = [
     "matchList"=>["page"=>1,"page_size"=>9],
-    "totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"fields"=>'team_id,team_name,logo'],
+    "totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
+    "gameConfig"=>$config['game']
 ];
 $return = curl_post($url,json_encode($data),1);
 ?>
@@ -58,14 +59,15 @@ $return = curl_post($url,json_encode($data),1);
     <div class="row">
       <div class="gameInt">
         <div class="col-lg-6 col-md-6 col-xs-12 left">
-          <img src="https://ossweb-img.qq.com/upload/webplat/info/yxzj/20190318/49656773132138.jpg" />
+          <img src="<?php echo $return['gameConfig']['data']['logo'];?>" />
         </div>
   
   
   
         <div class="col-lg-6 col-md-6 col-xs-12 right">
           <h2>游戏介绍</h2>
-          <p>《王者荣耀》是腾讯第一5V5团队公平竞技手游，国民MOBA手游大作！5V5王者峡谷、公平对战、还原MOBA经典体验；契约之战、五军对决、边境突围等，带来花式作战乐趣！10秒实时跨区匹配，与好友开黑上分，向最强王者进击！多款英雄任凭选择，一血、五杀、超神，实力碾压，收割全场！敌军即将到达战场，王者召唤师快来集结好友，准备团战，就在《王者荣耀》！</p>
+          <p><?php echo $return['gameConfig']['data']['description'];?></p>
+            <p><?php echo $return['gameConfig']['data']['content'];?></p>
   
         </div>
       </div>
@@ -141,10 +143,10 @@ $return = curl_post($url,json_encode($data),1);
         <div class="title">热门选手</div>
         <ul>
             <?php
-            foreach($return['playerList']['data'] as $playerInfo)
+            foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="player_detail?player_id=<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>
