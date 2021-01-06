@@ -4,7 +4,7 @@ require_once "function/web.php";
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
-    "teamList"=>["page"=>1,"page_size"=>1000,"fields"=>"team_id,team_name,logo"],
+    "totalTeamList"=>["page"=>1,"page_size"=>1000,"source"=>"cpseo","fields"=>"team_id,team_name,logo","game"=>$config['game']],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>30],
@@ -38,7 +38,7 @@ $return = curl_post($url,json_encode($data),1);
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="##"><img src="images/logo.png" alt="image" /></a>
+        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -60,13 +60,6 @@ $return = curl_post($url,json_encode($data),1);
       <div class="col-md-12">
         <div class="icon_title">
           <h3>
-            <svg t="1607948885693" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-              p-id="1186" width="48" height="48">
-              <path
-                d="M752 499.2C691.2 566.4 608 608 512 608s-179.2-41.6-240-108.8C185.6 569.6 128 678.4 128 800c0 105.6 86.4 192 192 192h384c105.6 0 192-86.4 192-192 0-121.6-57.6-230.4-144-300.8z"
-                fill="#d5e3f3" p-id="1187"></path>
-              <path d="M512 288m-256 0a256 256 0 1 0 512 0 256 256 0 1 0-512 0Z" fill="#d5e3f3" p-id="1188"></path>
-            </svg>
             热门战队
           </h3>
         </div>
@@ -74,10 +67,10 @@ $return = curl_post($url,json_encode($data),1);
           <div class="iconList">
             <ul>
                 <?php
-                foreach($return['teamList']['data'] as $teamInfo)
+                foreach($return['totalTeamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                        <a href="team_detail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                        <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <div>
                                 <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
                             </div>

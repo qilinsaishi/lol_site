@@ -3,10 +3,10 @@
 require_once "function/web.php";
 $team_id = $_GET['team_id']??0;
 $data = [
-    "team"=>[$team_id],
-    "teamList"=>["page"=>1,"page_size"=>6],
+    "totalTeamInfo"=>[$team_id],
+    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "tournament"=>["page"=>1,"page_size"=>8],
-    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
 ];
@@ -18,7 +18,7 @@ $return = curl_post($url,json_encode($data),1);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
-    <title><?php echo $config['game_name'];?>-战队-<?php echo $return['team']['data']['team_name'];?>-介绍</title>
+    <title><?php echo $config['game_name'];?>-战队-<?php echo $return['totalTeamInfo']['data']['team_name'];?>-介绍</title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -36,7 +36,7 @@ $return = curl_post($url,json_encode($data),1);
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="##"><img src="images/logo.png" alt="image" /></a>
+        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -56,13 +56,13 @@ $return = curl_post($url,json_encode($data),1);
     <div class="row teamLogo">
 
       <div class="col-lg-3 col-sm-4 col-md-3 col-xs-12 left">
-        <img src="<?php echo $return['team']['data']['logo'];?>" />
+        <img src="<?php echo $return['totalTeamInfo']['data']['logo'];?>" />
       </div>
       <div class="col-lg-9 col-sm-8 col-md-9 col-xs-12 right">
-        <h1 class="top"><?php echo $return['team']['data']['team_name'];?></h1>
+        <h1 class="top"><?php echo $return['totalTeamInfo']['data']['team_name'];?></h1>
 
         <div>
-            <?php echo $return['team']['data']['totalTeamInfo']['description'];?>
+            <?php echo $return['totalTeamInfo']['data']['description'];?>
         </div>
 
       </div>
@@ -83,13 +83,7 @@ $return = curl_post($url,json_encode($data),1);
           </h3>
         </div>
         <div class="cont">
-          <p>夏洛特是日落海久负盛名的贵族家族中，最为优秀的继承者。 </p>
-          <p>她以精湛无匹的剑术，在过往所有贵族间的战斗中，毫无悬念地赢取胜利，并将火焰样的红玫瑰留给败者，作为优雅的结束礼。 </p>
-          <p>
-            她无比珍视家族先辈们建立的荣誉，他们曾凭借卓绝勇气和毅力，从骇浪惊涛中开辟出今日的领地，又在无数次城邦之间错综复杂的争斗、海盗侵扰沿海地区的战斗中，积累了属于家族的世代荣光。<br> </p>
-          <p>夏洛特是日落海久负盛名的贵族家族中，最为优秀的继承者。 </p>
-          <p>夏洛特是日落海久负盛名的贵族家族中，最为优秀的继承者。 </p>
-          <p>夏洛特是日落海久负盛名的贵族家族中，最为优秀的继承者。 </p>
+            <p><?php if($return['totalTeamInfo']['data']['team_history']!=""){echo $return['totalTeamInfo']['data']['team_history'];}else{echo "暂无";}?> </p>
         </div>
       </div>
 
@@ -111,7 +105,7 @@ $return = curl_post($url,json_encode($data),1);
         <div>
           <ul class="zhanduiList_box">
               <?php
-              foreach($return['team']['data']['playerList'] as $playerInfo)
+              foreach($return['totalTeamInfo']['data']['playerList'] as $playerInfo)
               {
                   ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
@@ -222,13 +216,11 @@ $return = curl_post($url,json_encode($data),1);
       </div>
       <div class="col-xs-12">
         <ul class="iconList">
-
-
             <?php
-            foreach($return['teamList']['data'] as $teamInfo)
+            foreach($return['totalTeamList']['data'] as $teamInfo)
             {   ?>
                 <li class="list-item">
-                    <a href="##" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                    <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                         <img src="<?php echo $teamInfo['logo'];?>" alt="img" />
                     </a>
                 </li>
@@ -256,10 +248,10 @@ $return = curl_post($url,json_encode($data),1);
         <div class="title">热门选手</div>
         <ul>
             <?php
-            foreach($return['playerList']['data'] as $playerInfo)
+            foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="player_detail?player_id=<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>

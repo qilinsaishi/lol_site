@@ -3,11 +3,11 @@
 require_once "function/web.php";
 $data = [
         "matchList"=>["page"=>1,"page_size"=>9],
-        "teamList"=>["page"=>1,"page_size"=>6],
+        "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
         "tournament"=>["page"=>1,"page_size"=>8],
         "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
         "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-        "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
+        "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
         "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"1,2,3,5"],
 ];
 $return = curl_post($url,json_encode($data),1);
@@ -41,7 +41,7 @@ $return2 = curl_post($url,json_encode($data2),1);
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="##"><img src="images/logo.png" alt="image" /></a>
+        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -116,10 +116,10 @@ $return2 = curl_post($url,json_encode($data2),1);
           <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2>
           <ul>
               <?php
-              foreach($return['teamList']['data'] as $teamInfo)
+              foreach($return['totalTeamList']['data'] as $teamInfo)
               {   ?>
             <li>
-              <a href="team_detail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+              <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                 <div class="pic">
                   <img src="<?php echo $teamInfo['logo'];?>" />
                 </div>
@@ -175,10 +175,10 @@ $return2 = curl_post($url,json_encode($data2),1);
         <div class="title">热门选手</div>
         <ul>
             <?php
-            foreach($return['playerList']['data'] as $playerInfo)
+            foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="player_detail?player_id=<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>

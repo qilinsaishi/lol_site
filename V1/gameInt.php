@@ -3,7 +3,7 @@
 require_once "function/web.php";
 $data = [
     "matchList"=>["page"=>1,"page_size"=>9],
-    "teamList"=>["page"=>1,"page_size"=>8],
+    "totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"fields"=>'team_id,team_name,logo'],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
@@ -37,7 +37,7 @@ $return = curl_post($url,json_encode($data),1);
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="##"><img src="images/logo.png" alt="image" /></a>
+        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -56,11 +56,6 @@ $return = curl_post($url,json_encode($data),1);
   <div class="container margin120">
 
     <div class="row">
-      <div class="col-md-12 titleBtn">
-        <a href="##">英雄列表</a>
-        <a class="active" href="##">游戏介绍</a>
-      </div>
-
       <div class="gameInt">
         <div class="col-lg-6 col-md-6 col-xs-12 left">
           <img src="https://ossweb-img.qq.com/upload/webplat/info/yxzj/20190318/49656773132138.jpg" />
@@ -111,7 +106,7 @@ $return = curl_post($url,json_encode($data),1);
           <div>
             <ul class="zhanduiList_box">
                 <?php
-                foreach($return['teamList']['data'] as $teamInfo)
+                foreach($return['totalTeamList']['data'] as $teamInfo)
                 {   ?>
                 <li class="col-lg-3 col-sm-3 col-md-3 col-xs-6  list-item">
                 <a href="##" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
