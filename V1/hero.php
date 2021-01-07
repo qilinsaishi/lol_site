@@ -20,8 +20,6 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
 {
     $return['lolHero']['data']["spellList"][$key]['data'] = json_decode($spellInfo['data'],true);
 }
-//print_R($return['lolHero']['data']["skinList"]);
-//die();
 ?>
 
 
@@ -219,7 +217,7 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
             <?php foreach($return['lolHero']['data']['spellList'] as $key => $spellInfo)
               {?>
                   <div class="investment_con_list">
-                          <p class="top-name"><b><?php echo $spellInfo['spell_name'];?></b><span>冷却值：<?php echo implode("/",$spellInfo['data']['cooldown']);?></span><span>消耗：<?php echo implode("/",$spellInfo['data']['cost']);?></span></p>
+                          <p class="top-name"><b><?php echo $spellInfo['spell_name'];?></b><?php if(is_array($spellInfo['data']['cooldown']) && count($spellInfo['data']['cooldown'])>0){echo '<span>冷却值：'.implode("/",$spellInfo['data']['cooldown']).'</span>';}?><?php if(is_array($spellInfo['data']['cost']) && count($spellInfo['data']['cost'])>0){echo '<span>消耗：'.implode("/",$spellInfo['data']['cost']).'</span>';}?></p>
                     <p class="skill-desc">
                     <?php echo $spellInfo['data']['description']==""?"暂无":$spellInfo['data']['description'];?></p>
                   </div>
