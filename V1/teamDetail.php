@@ -9,8 +9,21 @@ $data = [
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$team_id,"page_size"=>100,"content_type"=>"information"]
 ];
 $return = curl_post($url,json_encode($data),1);
+if(count($return["keywordMapList"]['data'])>0)
+{
+    $data2 = [
+        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>6,"fields"=>"id,title"]
+    ];
+    $return2 = curl_post($url,json_encode($data2),1);
+    $connectedInformationList = $return2["informationList"]["data"];
+}
+else
+{
+    $connectedInformationList = [];
+}
 ?>
 <html lang="zh-CN">
 <head>
@@ -184,19 +197,22 @@ $return = curl_post($url,json_encode($data),1);
       <div class="col-lg-12 xg_team">
         <ul class="list_box">
             <?php
-                $i = 1;
-                foreach($return['informationList']['data'] as $key => $value) {?>
-
+            $connectedInformationList =[];
+            if(count($connectedInformationList)>0)
+                {
+                    $i = 1;
+                    foreach($connectedInformationList as $key => $value) {?>
                     <li class="list-item">
                         <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                             <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
-                                <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">视频</span>';}?>
+                                <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">图文</span>';}?>
                                 <p><?php echo $value['title'];?></p>
                             </div>
                             <p class="right"><?php echo ($value["type"]==2)?$value['site_time']:$value['create_time'];?></p>
                         </a>
                     </li>
-            <?php $i++;}?>
+                        <?php $i++;}}else{?><li class="list-item"><div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left"><p>暂无</p></div></li>
+            <?php }?>
           <div style="clear: both;"></div>
         </ul>
       </div>
