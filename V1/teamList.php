@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 require_once "function/init.php";
-$info['page']['page_size'] = 30;
+$info['page']['page_size'] = 54;
 $page = $_GET['page']??1;
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$info['page']['page_size'] = 30;
+$info['page']['page_size'] = 18;
 $page = $_GET['page']??1;
 require_once "function/init.php";
 $data = [
