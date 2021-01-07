@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "function/web.php";
-require_once "function/common.php";
+require_once "function/init.php";
 $info['page']['page_size'] = 3;
 $id = $_GET['id']??1;
 $data = [
@@ -77,13 +76,10 @@ $return3 = curl_post($url,json_encode($data3),1);
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="index.php">首页</a></li>
-          <li><a href="gameInt.php">王者荣耀</a></li>
-          <li><a href="teamList.php">王者战队</a></li>
-          <li><a href="hero-list.php">王者比赛</a></li>
-            <li <?php if($return['information']['data']['type']!=4){?>class="active"<?php }?>><a href="zixun-list.php">游戏资讯</a></li>
-            <li <?php if($return['information']['data']['type']==4){?>class="active"<?php }?>><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
-          <li><a href="wenda-list.php">游戏问答</a></li>
+          <?php
+          $type = $return['information']['data']['type'] != 4?"info":"stra";
+          generateNav($config, $type);
+            ?>
         </ul>
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

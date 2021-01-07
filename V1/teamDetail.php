@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "function/web.php";
+require_once "function/init.php";
 $team_id = $_GET['team_id']??0;
 $data = [
     "totalTeamInfo"=>[$team_id],
@@ -52,14 +52,7 @@ else
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="index.php">首页</a></li>
-          <li><a href="hero-list.php"><?php echo $config['game_name'];?></a></li>
-          <li class="active"><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
-            <li><a href="playerList.php"><?php echo $config['game_name'];?>队员</a></li>
-            <li><a href="hero-list.php">英雄介绍</a></li>
-          <li><a href="zixun-list.php">游戏资讯</a></li>
-          <li><a href="#contact">游戏攻略</a></li>
-          <li><a href="wenda-list.php">游戏问答</a></li>
+            <?php generateNav($config,"team");?>
         </ul>
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "function/web.php";
+require_once "function/init.php";
 $data = [
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
     "teamList"=>["page"=>1,"page_size"=>8],
@@ -41,13 +41,7 @@ $return = curl_post($url,json_encode($data),1);
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="index.php">首页</a></li>
-          <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
-          <li><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
-          <li  class="active"><a href="hero-list.php">英雄列表</a></li>
-          <li><a href="zixun-list.php">游戏资讯</a></li>
-          <li><a href="#contact">游戏攻略</a></li>
-          <li><a href="wenda-list.php">游戏问答</a></li>
+            <?php generateNav($config,"hero");?>
         </ul>
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

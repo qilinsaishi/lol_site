@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "function/web.php";
-require_once "function/common.php";
+require_once "function/init.php";
 $info['page']['page_size'] = 8;
 $info['type'] = $_GET['type']??"info";
 $page = $_GET['page']??1;
@@ -46,13 +45,10 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="index.php">首页</a></li>
-            <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
-            <li><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
-            <li><a href="hero-list.php">英雄介绍</a></li>
-          <li <?php if($info['type']=="info"){?>class="active"<?php }?>><a href="zixun-list.php">游戏资讯</a></li>
-            <li <?php if($info['type']=="strategy"){?>class="active"<?php }?>><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
-          <li><a href="wenda-list.php">游戏问答</a></li>
+            <?php
+            $type = $info['type']=="info" ?"info":"stra";
+            generateNav($config, $type);
+            ?>
         </ul>
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
