@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <?php
 require_once "function/init.php";
+$info['page']['page_size'] = 30;
+$page = $_GET['page']??1;
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
-    "totalTeamList"=>["page"=>1,"page_size"=>30,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
+    "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
 ];
-print_R(json_encode($data));
 $return = curl_post($url,json_encode($data),1);
+$info['page']['total_count'] = $return['totalTeamList']['count'];
+$info['page']['total_page'] = intval($return['totalTeamList']['count']/$info['page']['page_size']);
 ?>
 <html lang="zh-CN">
 
@@ -72,6 +75,11 @@ $return = curl_post($url,json_encode($data),1);
                         </a>
                     </li>
                 <?php }?>
+                <div class="page">
+                    <ul class="pagination">
+                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,"teamList.php?"); ?>
+                    </ul>
+                </div>
               <div style="clear: both;"></div>
             </ul>
           </div>

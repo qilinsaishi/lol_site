@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <?php
+$info['page']['page_size'] = 30;
+$page = $_GET['page']??1;
 require_once "function/init.php";
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>30,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
 ];
 $return = curl_post($url,json_encode($data),1);
+$info['page']['total_count'] = $return['totalPlayerList']['count'];
+$info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['page']['page_size']);
 ?>
 <html lang="zh-CN">
 
@@ -79,10 +83,18 @@ $return = curl_post($url,json_encode($data),1);
                                             <p><?php echo $playerInfo['player_name'];?></p>
                                         </a>
                                     </li>
+
                                 <?php }?>
+                                <div class="page">
+                                    <ul class="pagination">
+                                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,"playerList.php?"); ?>
+                                    </ul>
+                                </div>
                                 <div style="clear: both;"></div>
                             </ul>
+
                         </div>
+
                     </div>
                 </div>
 
