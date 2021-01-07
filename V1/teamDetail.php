@@ -55,6 +55,7 @@ else
           <li><a href="index.php">首页</a></li>
           <li><a href="hero-list.php"><?php echo $config['game_name'];?></a></li>
           <li class="active"><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
+            <li><a href="playerList.php"><?php echo $config['game_name'];?>队员</a></li>
             <li><a href="hero-list.php">英雄介绍</a></li>
           <li><a href="zixun-list.php">游戏资讯</a></li>
           <li><a href="#contact">游戏攻略</a></li>
@@ -121,7 +122,7 @@ else
               {
                   ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
-              <a href="player_detail.php?player_id=<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
+              <a href="playerDetail.php?player_id=<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
                 <img src="<?php echo $playerInfo['logo']?>" alt="img" />
                 <p><?php echo $playerInfo['player_name']?></p>
               </a>

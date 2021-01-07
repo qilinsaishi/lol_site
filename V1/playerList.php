@@ -4,13 +4,11 @@ require_once "function/web.php";
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
-    "totalTeamList"=>["page"=>1,"page_size"=>30,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>30,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
 ];
-print_R(json_encode($data));
 $return = curl_post($url,json_encode($data),1);
 ?>
 <html lang="zh-CN">
@@ -20,7 +18,7 @@ $return = curl_post($url,json_encode($data),1);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
   <meta name="description" content="">
-  <title><?php echo $config['game_name'];?>-战队列表</title>
+  <title><?php echo $config['game_name'];?>-队员列表</title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/reset.css" />
@@ -44,8 +42,8 @@ $return = curl_post($url,json_encode($data),1);
         <ul class="nav navbar-nav">
             <li><a href="index.php">首页</a></li>
             <li><a href="gameInt.php"><?php echo $config['game_name'];?></a></li>
-            <li class="active"><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
-            <li><a href="playerList.php"><?php echo $config['game_name'];?>队员</a></li>
+            <li><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
+            <li class="active"><a href="playerList.php"><?php echo $config['game_name'];?>队员</a></li>
             <li><a href="hero-list.php">英雄介绍</a></li>
             <li><a href="zixun-list.php">游戏资讯</a></li>
             <li><a href="zixun-list.php?type=strategy">游戏攻略</a></li>
@@ -58,33 +56,42 @@ $return = curl_post($url,json_encode($data),1);
   <div class="container margin120">
 
     <div class="row heroList">
-      <div class="col-md-12">
-        <div class="icon_title">
-          <h3>
-            热门战队
-          </h3>
-        </div>
-        <div>
-          <div class="iconList">
-            <ul>
-                <?php
-                foreach($return['totalTeamList']['data'] as $teamInfo)
-                {   ?>
-                    <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                        <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
-                            <div>
-                                <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
-                            </div>
-                            <p><?php echo $teamInfo['team_name'];?></p>
-                        </a>
-                    </li>
-                <?php }?>
-              <div style="clear: both;"></div>
-            </ul>
-          </div>
-        </div>
-      </div>
         <div class="container margin120">
+
+            <div class="row heroList">
+                <div class="col-md-12">
+                    <div class="icon_title">
+                        <h3>
+                            <svg t="1607948885693" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                 p-id="1186" width="48" height="48">
+                                <path
+                                        d="M752 499.2C691.2 566.4 608 608 512 608s-179.2-41.6-240-108.8C185.6 569.6 128 678.4 128 800c0 105.6 86.4 192 192 192h384c105.6 0 192-86.4 192-192 0-121.6-57.6-230.4-144-300.8z"
+                                        fill="#d5e3f3" p-id="1187"></path>
+                                <path d="M512 288m-256 0a256 256 0 1 0 512 0 256 256 0 1 0-512 0Z" fill="#d5e3f3" p-id="1188"></path>
+                            </svg>
+                            热门选手
+                        </h3>
+                    </div>
+                    <div>
+                        <div class="iconList">
+                            <ul>
+                                <?php
+                                foreach($return['totalPlayerList']['data'] as $playerInfo)
+                                {   ?>
+                                    <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
+                                        <a href="playerDetail.php?play_id=<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                                            <div>
+                                                <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                                            </div>
+                                            <p><?php echo $playerInfo['player_name'];?></p>
+                                        </a>
+                                    </li>
+                                <?php }?>
+                                <div style="clear: both;"></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
 
       

@@ -1,4 +1,30 @@
 <!DOCTYPE html>
+<?php
+require_once "function/web.php";
+$team_id = $_GET['team_id']??0;
+$data = [
+    "totalTeamInfo"=>[$team_id],
+    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
+    "tournament"=>["page"=>1,"page_size"=>8],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
+    "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$team_id,"page_size"=>100,"content_type"=>"information"]
+];
+$return = curl_post($url,json_encode($data),1);
+if(count($return["keywordMapList"]['data'])>0)
+{
+    $data2 = [
+        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>6,"fields"=>"id,title"]
+    ];
+    $return2 = curl_post($url,json_encode($data2),1);
+    $connectedInformationList = $return2["informationList"]["data"];
+}
+else
+{
+    $connectedInformationList = [];
+}
+?>
 <html lang="zh-CN">
 
 <head>
@@ -31,7 +57,8 @@
       <ul class="nav navbar-nav">
         <li><a href="index.html">首页</a></li>
         <li><a href="hero-list.html">王者荣耀</a></li>
-        <li class="active"><a href="teamInt.html">王者战队</a></li>
+        <li><a href="teamInt.html">王者战队</a></li>
+          <li class="active"><a href="playerList.php"><?php echo $config['game_name'];?>队员</a></li>
         <li><a href="hero-list.html">王者比赛</a></li>
         <li><a href="zixun-list.html">游戏资讯</a></li>
         <li><a href="#contact">游戏攻略</a></li>
