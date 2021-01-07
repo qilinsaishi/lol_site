@@ -55,10 +55,6 @@ $return = curl_post($url,json_encode($data),1);
 
   <div class="container margin120">
     <div class="row heroList">
-      <div class="col-md-12 titleBtn">
-        <a class="active" href="##">英雄列表</a>
-        <a href="##">游戏介绍</a>
-      </div>
       <div class="col-md-12">
         <div class="icon_title">
           <h3>

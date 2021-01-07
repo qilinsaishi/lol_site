@@ -10,7 +10,7 @@ $data = [
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
 ];
-echo json_encode($data);
+//echo json_encode($data);
 $return = curl_post($url,json_encode($data),1);
 foreach($return['lolHero']['data']["skinList"] as $key => $skinInfo)
 {
@@ -20,7 +20,10 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
 {
     $return['lolHero']['data']["spellList"][$key]['data'] = json_decode($spellInfo['data'],true);
 }
+//print_R($return['lolHero']['data']["skinList"]);
+//die();
 ?>
+
 
 <html lang="zh-CN">
 <head>
@@ -247,7 +250,7 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
               foreach($return['lolHero']['data']['skinList'] as $key => $skinInfo)
               { ?>
                   <a <?php if($i==1){?>class="on"<?php }?> rel="img<?php echo $i;?>" href="javascript:;">
-                      <img class="moveimg active" src="<?php echo $skinInfo['data']['mainImg'];?>">
+                      <img class="moveimg<?php if($i==1){?> active <?php }?>" src="<?php echo $skinInfo['data']['mainImg'];?>">
                       <p class="img-name"><?php echo $skinInfo['data']['name'];?></p>
                   </a>
               <?php $i++;}?>
@@ -258,7 +261,7 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
               $i = 1;
               foreach($return['lolHero']['data']['skinList'] as $key => $skinInfo)
               { ?>
-                  <img id="img<?php echo $i;?>" src="<?php echo $skinInfo['data']['mainImg'];?>" />
+                  <img id="img<?php echo $i;?>" src="<?php echo $skinInfo['data']['iconImg'];?>" />
                   <?php $i++;}?>
 
           </div>
@@ -616,24 +619,38 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
   <script>
     $(function () {
 
-      /*技能标签切换*/
-      function tabs(tabTit, on, tabCon) {
-        $(tabCon).each(function () {
-          $(this).children().eq(0).show();
+        /*技能标签切换*/
+        function tabs(tabTit, on, tabCon) {
+            $(tabCon).each(function () {
+                $(this).children().eq(0).show();
 
-        });
-        $(tabTit).each(function () {
-          $(this).children().eq(0).addClass(on);
-        });
-        $(tabTit).children().mouseover(function () {
-          $(this).addClass(on).siblings().removeClass(on);
-          var index = $(tabTit).children().index(this);
-          $(tabCon).children().eq(index).show().siblings().hide();
-        });
-      }
-      tabs(".investment_title", "on", ".investment_con");
+            });
+            $(tabTit).each(function () {
+                $(this).children().eq(0).addClass(on);
+            });
+            $(tabTit).children().mouseover(function () {
+                $(this).addClass(on).siblings().removeClass(on);
+                var index = $(tabTit).children().index(this);
+                $(tabCon).children().eq(index).show().siblings().hide();
+            });
+        }
+        tabs(".investment_title", "on", ".investment_con");
 
     })
+
+    $(document).ready(function () {
+        $("#gallery_output img").not(":first").hide();
+
+        $("#gallery a").click(function () {
+            $("#gallery a").removeClass('on');
+            $(this).addClass("on");
+            if ($("#" + this.rel).is(":hidden")) {
+                $("#gallery_output img").slideUp(0);
+                $("#" + this.rel).slideDown(0);
+            }
+        });
+    });
+
 
 
     $(function () {
@@ -700,33 +717,6 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
         btn.style.display = 'none';
       }
     }
-    var t1 = window.setInterval(refreshCount, 500);		//动态按钮
-    var more_img = document.getElementById("more_bt");
-    var first_one = 0;
-    function refreshCount() {
-      if (first_one == 0) {
-        more_img.style.marginBottom = '-5px';
-        first_one = 1;
-      } else {
-        more_img.style.marginBottom = '-10px';
-        first_one = 0;
-      }
-    }
-
-    $(document).ready(function () {
-        $("#gallery_output img").not(":first").hide();
-
-        $("#gallery a").click(function () {
-            $("#gallery a").removeClass('on');
-            $(this).addClass("on");
-            if ($("#" + this.rel).is(":hidden")) {
-                $("#gallery_output img").slideUp(0);
-                $("#" + this.rel).slideDown(0);
-            }
-        });
-    });
-
-
   </script>
 </body>
 
