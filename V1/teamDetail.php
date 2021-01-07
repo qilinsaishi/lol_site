@@ -11,6 +11,7 @@ $data = [
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$team_id,"page_size"=>100,"content_type"=>"information"]
 ];
+
 $return = curl_post($url,json_encode($data),1);
 if(count($return["keywordMapList"]['data'])>0)
 {
@@ -197,7 +198,6 @@ else
       <div class="col-lg-12 xg_team">
         <ul class="list_box">
             <?php
-            $connectedInformationList =[];
             if(count($connectedInformationList)>0)
                 {
                     $i = 1;
