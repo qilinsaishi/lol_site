@@ -48,8 +48,7 @@ else
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-
-        没
+          <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -134,50 +133,6 @@ else
         </div>
 
       </div>
-    </div>
-    <div class="row teamEvents">
-      <div class="col-lg-12 newlist ">
-        <div class="icon_title">
-          <h3>
-            <svg t="1607948885693" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-              p-id="1186" width="48" height="48">
-              <path
-                d="M752 499.2C691.2 566.4 608 608 512 608s-179.2-41.6-240-108.8C185.6 569.6 128 678.4 128 800c0 105.6 86.4 192 192 192h384c105.6 0 192-86.4 192-192 0-121.6-57.6-230.4-144-300.8z"
-                fill="#d5e3f3" p-id="1187"></path>
-              <path d="M512 288m-256 0a256 256 0 1 0 512 0 256 256 0 1 0-512 0Z" fill="#d5e3f3" p-id="1188"></path>
-            </svg>
-            战队赛事信息
-          </h3>
-        </div>
-
-        <ul>
-          <li>
-              <?php
-              foreach($return['matchList']['data'] as $matchInfo)
-              {   ?>
-            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12 newlist-item">
-                <a href="detail.php" title="<?php echo $matchInfo['home_team_info']['team_name'];?> VS <?php echo $matchInfo['away_team_info']['team_name'];?>" target="_blank">
-                <span>2020年10月3日</span>
-                <div class="icon">
-                  <div>
-                    <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
-                    <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" />
-                  </div>
-                  <div class="vs">VS</div>
-                  <div>
-                    <img src="<?php echo $matchInfo['away_team_info']['logo'];?>" />
-                    <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
-                  </div>
-                </div>
-              </a>
-            </div>
-              <?php }?>
-            <div style="clear: both;"></div>
-          </li>
-
-        </ul>
-      </div>
-
     </div>
 
     <div class="row teamInformation">
@@ -291,9 +246,6 @@ else
       </div>
     </div>
   </footer>
-
-
-
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
