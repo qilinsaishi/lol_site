@@ -79,7 +79,7 @@ else
         <h1 class="top"><?php echo $return['totalTeamInfo']['data']['team_name'];?></h1>
 
         <div>
-            <?php echo $return['totalTeamInfo']['data']['description'];?>
+            <?php echo htmlspecialchars_decode($return['totalTeamInfo']['data']['description']);?>
         </div>
 
       </div>
