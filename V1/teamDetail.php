@@ -159,7 +159,14 @@ else
                             <p class="right"><?php echo ($value["type"]==2)?$value['site_time']:$value['create_time'];?></p>
                         </a>
                     </li>
-                        <?php $i++;}}else{?><div class="cont"><p>暂无</p></div>
+                        <?php $i++;}}else{?>
+                <li class="list-item">
+                    <a target="_blank">
+                        <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
+                            <p>暂无</p>
+                        </div>
+                    </a>
+                </li>
             <?php }?>
           <div style="clear: both;"></div>
         </ul>
