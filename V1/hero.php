@@ -23,7 +23,7 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
 if(count($return["keywordMapList"]['data'])>0)
 {
     $data2 = [
-        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>5,"fields"=>"id,title"]
+        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>13,"fields"=>"id,title,logo"]
     ];
     $return2 = curl_post($config['api_get'],json_encode($data2),1);
     $connectedInformationList = $return2["informationList"]["data"];
@@ -292,26 +292,43 @@ else
         </h3>
       </div>
       <div class="strategy-box">
-        <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 gameInt_zixun">
+        <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 gameInt_video">
           <ul class="list_box">
               <?php
               if(count($connectedInformationList)>0)
               {
                   $i = 1;
-                  foreach($connectedInformationList as $key => $value) {?>
-                      <li class="list-item">
+                  foreach($connectedInformationList as $key => $value) {
+                      if($i<=6){?>
+
+                      <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
                           <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
-                              <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
-                                  <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">图文</span>';}?>
-                                  <p><?php echo $value['title'];?></p>
-                              </div>
-                              <p class="right"><?php echo ($value["type"]==2)?$value['site_time']:$value['create_time'];?></p>
+                              <img
+                                      src="<?php echo $value['logo'];?>"
+                                      alt="<?php echo $value['title'];?>">
+                              <p><?php echo $value['title'];?></p>
                           </a>
                       </li>
-                      <?php $i++;}}else{?><li class="list-item"><div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left"><p>暂无</p></div></li>
+                      <?php }$i++;}}else{?><li class="list-item"><div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left"><p>暂无</p></div></li>
               <?php }?>
+            <div style="clear: both;"></div>
+          </ul>
 
+        </div>
 
+          <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 gameInt_zixun">
+              <ul class="list_box">
+              <?php
+                  $i = 1;
+                  foreach($connectedInformationList as $key => $value) {
+                      if($i>6){?>
+                          <li class="list-item">
+                          <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                              <span>图文</span>
+                              <p><?php echo $value['title'];?></p>
+                          </a>
+                      </li>
+                      <?php }$i++;}?>
           </ul>
           <div style="clear: both;"></div>
         </div>
