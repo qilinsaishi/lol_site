@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 require_once "function/init.php";
-$info['page']['page_size'] = 3;
+$info['page']['page_size'] = 4;
 $id = $_GET['id']??1;
 $data = [
     "information"=>[$id],
@@ -37,11 +37,11 @@ if(is_array($return["information"]['data']['keywords_list']))
 array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
 $data2 = [
     "informationList"=>["game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
-        "type"=>$return['information']['data']['type']==2?"2":"1,2,3,5","fields"=>"id,title"],
+        "type"=>$return['information']['data']['type']==4?"4":"1,2,3,5","fields"=>"id,title"],
 ];
 $data3 = [
-    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>$info['page']['page_size']+1,
-        "type"=>$return['information']['data']['type']==2?"2":"1,2,3,5","fields"=>"id,title"],
+    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,
+        "type"=>$return['information']['data']['type']!=4?"4":"1,2,3,5","fields"=>"id,title"],
 ];
 
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
@@ -164,6 +164,27 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
             </ul>
           </div>
         </div>
+          <div class="saishi">
+              <div class="titleBox">
+                  <?php if($return['information']['data']['type']!=4){?>
+                      <h3>最新攻略</h3>
+                      <a href="zixun-list.php?type=strategy">更多</a>
+                  <?php }else{?>
+                      <h3>最新资讯</h3>
+                      <a href="zixun-list.php">更多</a>
+                  <?php }?>
+              </div>
+              <div class="col-xs-24">
+                  <ul class="saishiList_box">
+                      <?php foreach($return3['informationList']['data'] as $key => $value) {
+                          if($value['id']!=$id){?>
+                              <li class="list-item">
+                                  <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
+                              </li>
+                          <?php }}?>
+                  </ul>
+              </div>
+          </div>
         <div class="saishi">
           <div class="titleBox">
             <h3>热门战队</h3>
@@ -226,21 +247,6 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
         </ul>
       </div>
     </div>
-    <div class="saishi">
-      <div class="titleBox">
-        <h3>最新资讯</h3>
-      </div>
-      <div class="col-xs-24">
-        <ul class="saishiList_box">
-            <?php foreach($return3['informationList']['data'] as $key => $value) {
-                if($value['id']!=$id){?>
-                <li class="list-item">
-                    <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
-                </li>
-            <?php }}?>
-        </ul>
-      </div>
-    </div>
   </div>
 </div>
     </div>
@@ -289,8 +295,6 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
       </div>
     </div>
   </footer>
-
-
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
