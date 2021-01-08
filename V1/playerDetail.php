@@ -15,7 +15,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
 if(count($return["keywordMapList"]['data'])>0)
 {
     $data2 = [
-        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>6,"fields"=>"id,title"]
+        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>5,"fields"=>"id,title"]
     ];
     $return2 = curl_post($config['api_get'],json_encode($data2),1);
     $connectedInformationList = $return2["informationList"]["data"];
@@ -32,8 +32,9 @@ else
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
-  <title>队员介绍-<?php echo $return['totalPlayerInfo']['data']['player_name'];?></title>
+  <meta name="description" content="<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>，真名为<?php echo $return['totalPlayerInfo']['data']['player_name'];?>，<?php echo $return['totalPlayerInfo']['data']['country'];?>人，<?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo "在".$return['totalTeamInfo']['data']['team_name']."中长期打".$return['totalPlayerInfo']['data']['position'].".位置，";}?><?php if(count($return['totalPlayerInfo']['data']['playerList'])>0){echo "与".implode(",",array_column($return['totalPlayerInfo']['data']['playerList'],"player_name"))."为队友";}?>。">
+    <meta name=”Keywords” Content=”<?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料,<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介">
+  <title><?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料_<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介-<?php echo $config['site_name']?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -51,7 +52,7 @@ else
         <span class="icon-bar"></span>
       </button>
 
-      <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
+      <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -62,6 +63,11 @@ else
 </nav><!-- /.navbar -->
 
 <div class="container margin120 teamMember">
+    <ol class="breadcrumb">
+        <li><a href="index.php">首页</a></li>
+        <li><a href="playerList.php"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></li>
+        <li><a href="playerDetail.php?team_id=<?php echo $return['totalPlayerInfo']['data']['player_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?></a></li>
+    </ol>
   <div class="row teamLogo">
 
     <div class="col-lg-5 col-sm-4 col-md-5 col-xs-12 left">

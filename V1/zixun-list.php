@@ -41,7 +41,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
+        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">

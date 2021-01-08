@@ -35,7 +35,8 @@ else
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="description" content="<?php echo $return['totalTeamInfo']['data']['description'];?>">
-    <meta name=”Keywords” Content=”<?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部,<?php echo $return['totalTeamInfo']['data']['team_name'];?>战队,<?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍″>
+    <meta name=”Keywords” Content=”<?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部,<?php
+    if(substr_count($return['totalTeamInfo']['data']['team_name'],"战队")==0){echo $return['totalTeamInfo']['data']['team_name'].'战队,';}?><?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍″>
     <title><?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部_<?php echo $return['totalTeamInfo']['data']['team_name'];?>战队_<?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
@@ -53,7 +54,7 @@ else
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
+          <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">

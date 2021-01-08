@@ -42,7 +42,7 @@ $info['page']['total_page'] = intval($return['totalTeamList']['count']/$info['pa
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
+        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -62,7 +62,7 @@ $info['page']['total_page'] = intval($return['totalTeamList']['count']/$info['pa
               </ol>
         <div class="icon_title">
           <h3>
-            热门战队
+            战队列表
           </h3>
         </div>
         <div>
