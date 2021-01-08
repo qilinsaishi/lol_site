@@ -129,7 +129,7 @@
             'hero'=>['url'=>"hero-list.php","name"=>"英雄介绍"],
             'info'=>['url'=>"zixun-list.php","name"=>"游戏资讯"],
             'stra'=>['url'=>"zixun-list.php?type=strategy","name"=>"游戏攻略"],
-            'faq'=>['url'=>"wenda-list.html","name"=>"游戏问答"],
+            //'faq'=>['url'=>"wenda-list.html","name"=>"游戏问答"],
         ];
         foreach($navList as $key => $value)
         {
