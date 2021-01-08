@@ -100,7 +100,7 @@ else
           </h3>
         </div>
         <div class="cont">
-            <p><?php if($return['totalTeamInfo']['data']['team_history']!=""){echo $return['totalTeamInfo']['data']['team_history'];}else{echo "暂无";}?> </p>
+            <p><?php if($return['totalTeamInfo']['data']['team_history']!=""){echo htmlspecialchars_decode($return['totalTeamInfo']['data']['team_history']);}else{echo "暂无";}?> </p>
         </div>
       </div>
 
