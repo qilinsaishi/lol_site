@@ -72,7 +72,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                                 foreach($return['totalPlayerList']['data'] as $playerInfo)
                                 {   ?>
                                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                                        <a href="teamDetail.php?team_id=<?php echo $playerInfo['team_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                                        <a href="playerDetail.php?player_id=<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                                             <div>
                                                 <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
                                             </div>
