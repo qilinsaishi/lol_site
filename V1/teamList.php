@@ -9,7 +9,7 @@ $data = [
     "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
@@ -22,8 +22,9 @@ $info['page']['total_page'] = intval($return['totalTeamList']['count']/$info['pa
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
-  <meta name="description" content="">
-  <title><?php echo $config['game_name'];?>-战队列表</title>
+  <meta name="description" content="<?php echo $config['site_name'];?>提供完善的<?php echo $config['game_name'];?>战队信息及<?php echo $config['game_name'];?>电子竞技俱乐部赛事信息资讯及数据分析内容解读。">
+  <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>战队,<?php echo $config['game_name'];?>电竞战队,<?php echo $config['game_name'];?>电子竞技俱乐部″>
+    <title><?php echo $config['game_name'];?>战队_<?php echo $config['game_name'];?>电子竞技战队-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/reset.css" />
@@ -55,6 +56,10 @@ $info['page']['total_page'] = intval($return['totalTeamList']['count']/$info['pa
 
     <div class="row heroList">
       <div class="col-md-12">
+              <ol class="breadcrumb">
+                  <li><a href="index.php">首页</a></li>
+                  <li><a href="##"><?php echo $config['game_name'];?>战队</a></li>
+              </ol>
         <div class="icon_title">
           <h3>
             热门战队
@@ -84,6 +89,30 @@ $info['page']['total_page'] = intval($return['totalTeamList']['count']/$info['pa
             </ul>
           </div>
         </div>
+          <div class="icon_title">
+              <h3>
+                  热门选手<a href="playerList.php">更多</a>
+              </h3>
+          </div>
+          <div>
+              <div class="iconList">
+                  <ul>
+                      <?php
+                      foreach($return['totalPlayerList']['data'] as $playerInfo)
+                      {   ?>
+                          <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
+                              <a href="teamDetail.php?team_id=<?php echo $playerInfo['team_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                                  <div>
+                                      <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                                  </div>
+                                  <p><?php echo $playerInfo['player_name'];?></p>
+                              </a>
+                          </li>
+                      <?php }?>
+                      <div style="clear: both;"></div>
+                  </ul>
+              </div>
+          </div>
       </div>
         <div class="container margin120">
 

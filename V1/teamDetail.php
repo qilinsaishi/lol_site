@@ -15,14 +15,18 @@ $return = curl_post($config['api_get'],json_encode($data),1);
 if(count($return["keywordMapList"]['data'])>0)
 {
     $data2 = [
-        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>6,"fields"=>"id,title"]
+        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>5,"fields"=>"id,title"]
     ];
     $return2 = curl_post($config['api_get'],json_encode($data2),1);
     $connectedInformationList = $return2["informationList"]["data"];
 }
 else
 {
-    $connectedInformationList = [];
+    $data2 = [
+        "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,"type"=>"1,2,3,5"],
+    ];
+    $return2 = curl_post($config['api_get'],json_encode($data2),1);
+    $connectedInformationList = $return2["informationList"]["data"];
 }
 ?>
 <html lang="zh-CN">
@@ -30,8 +34,9 @@ else
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
-    <title><?php echo $config['game_name'];?>-战队-<?php echo $return['totalTeamInfo']['data']['team_name'];?>-介绍</title>
+  <meta name="description" content="<?php echo $return['totalTeamInfo']['data']['description'];?>">
+    <meta name=”Keywords” Content=”<?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部,<?php echo $return['totalTeamInfo']['data']['team_name'];?>战队,<?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍″>
+    <title><?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部_<?php echo $return['totalTeamInfo']['data']['team_name'];?>战队_<?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -59,7 +64,12 @@ else
   </nav><!-- /.navbar -->
 
   <div class="container margin120">
-    <div class="row teamLogo">
+      <ol class="breadcrumb">
+          <li><a href="index.php">首页</a></li>
+          <li><a href="teamList.php"><?php echo $config['game_name'];?>战队</a></li>
+          <li><a href="teamDetail.php?team_id=<?php echo $return['totalTeamInfo']['data']['team_id'];?>"><?php echo $return['totalTeamInfo']['data']['team_name'];?></a></li>
+      </ol>
+      <div class="row teamLogo">
 
       <div class="col-lg-3 col-sm-4 col-md-3 col-xs-12 left">
         <img src="<?php echo $return['totalTeamInfo']['data']['logo'];?>" />
