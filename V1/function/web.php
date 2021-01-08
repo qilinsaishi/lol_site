@@ -1,6 +1,6 @@
 <?php
-$config = require_once ("config.php");
-$api_root = "/lol/get";
+    $config = require_once "config.php";
+    $api_root = "/lol/get";
      $url = $config['api_url'].$api_root;
      function curl_post($url,$data,$json = 1)
      {
