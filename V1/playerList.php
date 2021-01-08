@@ -5,7 +5,7 @@ $page = $_GET['page']??1;
 require_once "function/init.php";
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
-    "totalTeamList"=>["page"=>$page,"page_size"=>18,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
+    "totalTeamList"=>["page"=>1,"page_size"=>18,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "matchList"=>["page"=>1,"page_size"=>4],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
