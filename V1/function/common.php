@@ -15,9 +15,10 @@
     }
     function render_page_pagination($total_count,$page_size,$current_page,$url)
     {
+
         $p = 5;
         $p2 = 2;
-        $totalPage = intval($total_count/$page_size);
+        $totalPage = ceil($total_count/$page_size);
         if($current_page>1)
         {
             echo '<li><a href="'.$url."&page=".($current_page-1).'"><<</a></li>';

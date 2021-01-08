@@ -82,7 +82,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                                 <?php }?>
                                 <div class="page">
                                     <ul class="pagination">
-                                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,"teamList.php?"); ?>
+                                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,"playerList.php?"); ?>
                                     </ul>
                                 </div>
                                 <div style="clear: both;"></div>
