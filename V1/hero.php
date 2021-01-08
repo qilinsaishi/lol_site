@@ -9,8 +9,8 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
+    "keywordMapList"=>["fields"=>"content_id","source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information"]
 ];
-//echo json_encode($data);
 $return = curl_post($config['api_get'],json_encode($data),1);
 foreach($return['lolHero']['data']["skinList"] as $key => $skinInfo)
 {
@@ -19,6 +19,18 @@ foreach($return['lolHero']['data']["skinList"] as $key => $skinInfo)
 foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
 {
     $return['lolHero']['data']["spellList"][$key]['data'] = json_decode($spellInfo['data'],true);
+}
+if(count($return["keywordMapList"]['data'])>0)
+{
+    $data2 = [
+        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>5,"fields"=>"id,title"]
+    ];
+    $return2 = curl_post($config['api_get'],json_encode($data2),1);
+    $connectedInformationList = $return2["informationList"]["data"];
+}
+else
+{
+    $connectedInformationList = [];
 }
 ?>
 
@@ -280,111 +292,24 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
         </h3>
       </div>
       <div class="strategy-box">
-        <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 gameInt_video">
-          <ul class="list_box">
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <div style="clear: both;"></div>
-          </ul>
-
-        </div>
-
         <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 gameInt_zixun">
           <ul class="list_box">
-            <li class="list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <span>视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </a>
-            </li>
-            <li class="list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <span>视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </a>
-            </li>
-            <li class="list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <span>视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </a>
-            </li>
-            <li class="list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <span>视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </a>
-            </li>
-            <li class="list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <span>视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </a>
-            </li>
-            <li class="list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <span>视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </a>
-            </li>
-            <li class="list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <span>视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </a>
-            </li>
-            <li class="list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <span>视频</span>
-                <p>热议：娱乐还是实用？卢锡安带偷钱天赋收益高吗？</p>
-              </a>
-            </li>
+              <?php
+              if(count($connectedInformationList)>0)
+              {
+                  $i = 1;
+                  foreach($connectedInformationList as $key => $value) {?>
+                      <li class="list-item">
+                          <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                              <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
+                                  <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">图文</span>';}?>
+                                  <p><?php echo $value['title'];?></p>
+                              </div>
+                              <p class="right"><?php echo ($value["type"]==2)?$value['site_time']:$value['create_time'];?></p>
+                          </a>
+                      </li>
+                      <?php $i++;}}else{?><li class="list-item"><div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left"><p>暂无</p></div></li>
+              <?php }?>
 
 
           </ul>

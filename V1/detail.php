@@ -124,9 +124,13 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
                      {
                         $url = "teamDetail.php?team_id=".$info['id'];
                      }
-                     else
+                     elseif($info['type']=="player")
                      {
                          $url = "playerDetail.php?player_id=".$info['id'];
+                     }
+                     elseif($info['type']=="hero")
+                     {
+                         $url = "hero.php?hero=".$info['id'];
                      }
                      echo '<li><a href="'.$url.'">'.$word.'</a></li>';
                  }
