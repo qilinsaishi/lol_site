@@ -11,7 +11,7 @@ $data = [
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
 ];
 //echo json_encode($data);
-$return = curl_post($url,json_encode($data),1);
+$return = curl_post($config['api_get'],json_encode($data),1);
 foreach($return['lolHero']['data']["skinList"] as $key => $skinInfo)
 {
     $return['lolHero']['data']["skinList"][$key]['data'] = json_decode($skinInfo['data'],true);

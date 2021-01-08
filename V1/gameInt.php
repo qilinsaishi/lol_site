@@ -11,7 +11,7 @@ $data = [
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
     "gameConfig"=>$config['game']
 ];
-$return = curl_post($url,json_encode($data),1);
+$return = curl_post($config['api_get'],json_encode($data),1);
 ?>
 <html lang="zh-CN">
 <head>

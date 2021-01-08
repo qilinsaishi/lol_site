@@ -11,7 +11,7 @@ $data = [
     "totalPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
 ];
-$return = curl_post($url,json_encode($data),1);
+$return = curl_post($config['api_get'],json_encode($data),1);
 $info['page']['total_count'] = $return['totalPlayerList']['count'];
 $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['page']['page_size']);
 ?>

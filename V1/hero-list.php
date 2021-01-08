@@ -11,7 +11,7 @@ $data = [
     "lolEquipmentList"=>["page"=>1,"page_size"=>12],
     "lolSummonerList"=>["page"=>1,"page_size"=>12],
 ];
-$return = curl_post($url,json_encode($data),1);
+$return = curl_post($config['api_get'],json_encode($data),1);
 ?>
 <html lang="zh-CN">
 <head>

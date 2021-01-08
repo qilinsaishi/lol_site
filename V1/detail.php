@@ -11,7 +11,7 @@ $data = [
     "playerList"=>["page"=>1,"page_size"=>9],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
 ];
-$return = curl_post($url,json_encode($data),1);
+$return = curl_post($config['api_get'],json_encode($data),1);
 
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 if(is_array($return["information"]['data']['keywords_list']))
