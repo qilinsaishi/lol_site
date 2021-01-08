@@ -8,7 +8,7 @@ $data = [
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "tournament"=>["page"=>1,"page_size"=>8],
     "teamList"=>["page"=>1,"page_size"=>3],
-    "playerList"=>["page"=>1,"page_size"=>9],
+    "playerList"=>["page"=>1,"page_size"=>6],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
