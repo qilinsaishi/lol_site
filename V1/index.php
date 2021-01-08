@@ -4,11 +4,11 @@ require_once "function/init.php";
 $data = [
         "matchList"=>["page"=>1,"page_size"=>9],
         "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
-        "tournament"=>["page"=>1,"page_size"=>8],
+        "tournament"=>["page"=>1,"page_size"=>6],
         "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
         "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-        "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
-        "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"1,2,3,5"],
+        "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
+        "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>10,"type"=>"1,2,3,5"],
 ];
 $return = curl_post($url,json_encode($data),1);
 
@@ -22,8 +22,9 @@ $return2 = curl_post($url,json_encode($data2),1);
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
-  <title>首页</title>
+  <meta name="description" content="<?php echo $config['site_description'];?>">
+  <meta name=”Keywords” Content=”<?php echo $config['site_name'];?>″>
+    <title><?php echo $config['site_name'];?>_<?php echo $config['game_name'];?>电子竞技赛事资讯分析网</title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -41,7 +42,7 @@ $return2 = curl_post($url,json_encode($data2),1);
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="麒麟赛事" /></a>
+        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name']?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -89,7 +90,7 @@ $return2 = curl_post($url,json_encode($data2),1);
 
       <div class="col-lg-8 col-sm-12 col-md-8 col-xs-12 newMsg">
         <div>
-          <h2 class="bigTitle"><?php echo $config['game_name'];?>最新资讯</h2>
+          <h2 class="bigTitle"><?php echo $config['game_name'];?>最新资讯</h2><a href="zixun-list.php">更多</a>
           <ul>
                 <?php foreach($return['informationList']['data'] as $key => $value) {?>
               <li>
@@ -107,7 +108,7 @@ $return2 = curl_post($url,json_encode($data2),1);
       </div>
       <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 hotTame">
         <div>
-          <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2>
+          <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="teamList.php">更多</a>
           <ul>
               <?php
               foreach($return['totalTeamList']['data'] as $teamInfo)
@@ -129,7 +130,7 @@ $return2 = curl_post($url,json_encode($data2),1);
 
       <div class="col-lg-12 GameGl newMsg">
         <div>
-          <h2 class="bigTitle"><?php echo $config['game_name'];?>游戏攻略</h2>
+          <h2 class="bigTitle"><?php echo $config['game_name'];?>游戏攻略</h2><a href="zixun-list.php?type=strategy">更多</a>
           <ul>
               <?php foreach($return2['informationList']['data'] as $key => $value) {?>
                   <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
