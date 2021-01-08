@@ -18,8 +18,9 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
-  <meta name="description" content="">
-    <title><?php echo $config['game_name'];?>-英雄介绍</title>
+  <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game_name'];?>英雄列表，想了解<?php echo $config['game_name'];?>有哪些英雄，以及<?php echo $config['game_name'];?>英雄玩法攻略等，尽在<?php echo $config['site_name'];?>。">
+    <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>英雄列表,<?php echo $config['game_name'];?>有哪些英雄″>
+    <title><?php echo $config['game_name'];?>英雄列表_<?php echo $config['game_name'];?>有哪些英雄-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/reset.css" />
@@ -50,6 +51,10 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   <div class="container margin120">
     <div class="row heroList">
       <div class="col-md-12">
+          <ol class="breadcrumb">
+              <li><a href="index.php">首页</a></li>
+              <li><a href="##"><?php echo $config['game_name'];?>英雄列表</a></li>
+          </ol>
         <div class="icon_title">
           <h3>
             <svg t="1607948885693" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"

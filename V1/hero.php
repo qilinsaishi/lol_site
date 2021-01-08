@@ -28,8 +28,9 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
-  <meta name="description" content="">
-  <title><?php echo $config['game_name']."-".$return['lolHero']['data']['cn_name'];?></title>
+  <meta name="description" content="<?php echo mb_str_split($return['lolHero']['data']['description'],200);?>;?>">
+    <meta name=”Keywords” Content=”<?php echo $return['lolHero']['data']['hero_name'];?>,<?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['hero_name'];?>″>
+    <title><?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['hero_name'];?>介绍_<?php echo $return['lolHero']['data']['hero_name'];?>攻略-<?php echo $config['site_name'];?><?php echo $config['game_name']."-".$return['lolHero']['data']['cn_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
@@ -61,8 +62,12 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
   </nav>
 
   <div class="container margin120">
-
-    <div class="row">
+      <ol class="breadcrumb">
+      <li><a href="index.php">首页</a></li>
+      <li><a href="hero-list.php"><?php echo $config['game_name'];?>英雄列表</a></li>
+      <li><a href="hero.php?hero_id=<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
+      </ol>
+          <div class="row">
 
       <div class="gameInt">
         <div class="col-lg-6 col-md-6 col-xs-12 left">
@@ -177,7 +182,7 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
         </h3>
       </div>
       <div id="content" class="heroStory-cont">
-        <p>    <?php echo $return['lolHero']['data']['description'];?></p>
+        <p><?php echo $return['lolHero']['data']['description'];?></p>
         <div id="get_ct_more" class="get_ct_more">
           <span>Read More</span>
         </div>
@@ -389,138 +394,6 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
       </div>
     </div>
 
-    <div class="row">
-
-      <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 gameInt_zixun">
-        <div class="title">
-          <h3>
-            <i class="fa fa-trophy" aria-hidden="true"></i>
-            英雄赛事
-          </h3>
-        </div>
-        <div>
-          <ul class="list_box">
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-              <a href="##" title="【快速上手英雄技能】盘古" target="_blank">
-                <img
-                  src="https://itea-cdn.qq.com/file/tgl/20190218/190214.1550491561.ea1c8cc6e47089f752338925ce22c9bb.230x140_26408.jpg"
-                  alt="【快速上手英雄技能】盘古">
-                <p>【快速上手英雄技能】盘古</p>
-              </a>
-            </li>
-            <div style="clear: both;"></div>
-          </ul>
-        </div>
-      </div>
-
-
-
-      <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 gameInt_team">
-        <div class="title">
-          <h3>
-            <i class="fa fa-trophy" aria-hidden="true"></i>
-            英雄玩家
-          </h3>
-        </div>
-        <div>
-          <ul class="zhanduiList_box">
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6  list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_1.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_5.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_1.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_5.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_2.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_2.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_3.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_4.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_3.png" alt="img" />
-              </a>
-            </li>
-            <li class="col-lg-3 col-sm-6 col-md-3 col-xs-6 list-item">
-              <a href="##" title="凤凰战队" target="_blank">
-                <img src="images/photo_4.png" alt="img" />
-              </a>
-            </li>
-            <div style="clear: both;"></div>
-          </ul>
-
-        </div>
-
-      </div>
-    </div>
 
     <div class="row heroRecommend">
       <div class="col-md-12">

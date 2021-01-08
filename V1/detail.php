@@ -55,7 +55,8 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
-  <title><?php echo $config['game_name']."-".$return['information']['data']['title'];?></title>
+    <meta name=”Keywords” Content=”<?php echo implode(",",array_keys($keywordsList));?>″>
+    <title><?php echo $return['information']['data']['title'];?>_<?php echo $config['game_name'];?>资讯-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -93,6 +94,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
           <ol class="breadcrumb">
               <li><a href="index.php">首页</a></li>
               <li><a href="zixun-list.php"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
+              <li><a href="detail.php?id=<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
           </ol>
         <div class="show_cont">
 
