@@ -14,7 +14,7 @@ $data = [
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 $info['page']['total_count'] = $return['totalTeamList']['count'];
-$info['page']['total_page'] = intval($return['totalTeamList']['count']/$info['page']['page_size']);
+$info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page']['page_size']);
 ?>
 <html lang="zh-CN">
 
