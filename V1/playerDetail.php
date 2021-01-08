@@ -17,7 +17,7 @@ if(count($return["keywordMapList"]['data'])>0)
     $data2 = [
         "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>6,"fields"=>"id,title"]
     ];
-    $return2 = curl_post($url,json_encode($data2),1);
+    $return2 = curl_post($config['api_get'],json_encode($data2),1);
     $connectedInformationList = $return2["informationList"]["data"];
 }
 else

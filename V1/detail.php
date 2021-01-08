@@ -44,8 +44,8 @@ $data3 = [
         "type"=>$return['information']['data']['type']==2?"2":"1,2,3,5","fields"=>"id,title"],
 ];
 
-$return2 = curl_post($url,json_encode($data2),1);
-$return3 = curl_post($url,json_encode($data3),1);
+$return2 = curl_post($config['api_get'],json_encode($data2),1);
+$return3 = curl_post($config['api_get'],json_encode($data3),1);
 
 ?>
 <html lang="zh-CN">
