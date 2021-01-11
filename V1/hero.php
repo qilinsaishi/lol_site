@@ -46,8 +46,8 @@ else
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 
 </head>
 
@@ -75,9 +75,15 @@ else
 
   <div class="container margin120">
       <ol class="breadcrumb">
+<<<<<<< HEAD
       <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
       <li><a href="hero-list.php"><?php echo $config['game_name'];?>英雄列表</a></li>
       <li><a href="hero.php?hero_id=<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
+=======
+      <li><a href="index.php">首页</a></li>
+      <li><a href="<?php echo $config['site_url']; ?>/heroList/"><?php echo $config['game_name'];?>英雄列表</a></li>
+      <li><a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
+>>>>>>> 0294179a060a2cfb8bfde72c1c57a829ece2f7d9
       </ol>
           <div class="row">
 
@@ -302,7 +308,7 @@ else
                       if($i<=6){?>
 
                       <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-                          <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                          <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                               <img
                                       src="<?php echo $value['logo'];?>"
                                       alt="<?php echo $value['title'];?>">
@@ -323,7 +329,7 @@ else
                   foreach($connectedInformationList as $key => $value) {
                       if($i>6){?>
                           <li class="list-item">
-                          <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                          <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                               <span>图文</span>
                               <p><?php echo $value['title'];?></p>
                           </a>
@@ -360,7 +366,7 @@ else
                             { $count++;if($count==15){break;}?>
 
               <li>
-                <a href="hero.php?hero_id=<?php echo $heroInfo['hero_id'];?>">
+                <a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $heroInfo['hero_id'];?>">
                   <img src="<?php echo $heroInfo['logo'];?>" />
                   <p><?php echo $heroInfo['hero_name'];?></p>
                 </a>
@@ -394,7 +400,7 @@ else
             foreach($return['playerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>
@@ -421,7 +427,7 @@ else
   </footer>
 
 
-  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="<?php echo $config['site_url']; ?>/js/jquery-1.11.0.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
   <script>
