@@ -65,7 +65,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
   <div class="container margin120">
           <ol class="breadcrumb">
               <li><a href="index.php">首页</a></li>
-              <li><a href="<?php echo $config['site_url']; ?>/newsList/"><?php echo $config['game_name'];?><?php echo ($info['type']!="info")?"攻略":"资讯";?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?><?php echo ($info['type']!="info")?"/strategyList/":"/newsList/";?>"><?php echo $config['game_name'];?><?php echo ($info['type']!="info")?"攻略":"资讯";?></a></li>
           </ol>
     <div class="row">
 
@@ -184,7 +184,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
             foreach($return['playerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
           </ul>
       </div>

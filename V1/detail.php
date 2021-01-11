@@ -7,7 +7,7 @@ $data = [
     "information"=>[$id],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "tournament"=>["page"=>1,"page_size"=>8],
-    "teamList"=>["page"=>1,"page_size"=>3],
+    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "playerList"=>["page"=>1,"page_size"=>6],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
 ];
@@ -93,7 +93,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
       <div class="col-md-8">
           <ol class="breadcrumb">
               <li><a href="index.php">首页</a></li>
-              <li><a href="<?php echo $config['site_url']; ?>/newsList/"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?><?php echo ($info['type']!="info")?"/strategyList/":"/newsList/";?>"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
               <li><a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
           </ol>
         <div class="show_cont">
@@ -153,7 +153,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
         <div class="saishi">
           <div class="titleBox">
             <h3>热门赛事</h3>
-            <a href="##">更多</a>
+            <a href="javascript:;">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="saishiList_box">
@@ -172,7 +172,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
               <div class="titleBox">
                   <?php if($return['information']['data']['type']!=4){?>
                       <h3>最新攻略</h3>
-                      <a href="/newsList/type=strategy">更多</a>
+                      <a href="<?php echo $config['site_url']; ?>/strategyList/">更多</a>
                   <?php }else{?>
                       <h3>最新资讯</h3>
                       <a href="<?php echo $config['site_url']; ?>/newsList/">更多</a>
@@ -183,7 +183,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
                       <?php foreach($return3['informationList']['data'] as $key => $value) {
                           if($value['id']!=$id){?>
                               <li class="list-item">
-                                  <a href="<?php echo $config['site_url']; ?>/detail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
+                                  <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
                               </li>
                           <?php }}?>
                   </ul>
@@ -192,12 +192,12 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
         <div class="saishi">
           <div class="titleBox">
             <h3>热门战队</h3>
-            <a href="##">更多</a>
+            <a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box text-center">
                 <?php
-                foreach($return['teamList']['data'] as $teamInfo)
+                foreach($return['totalTeamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
                         <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
@@ -212,7 +212,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
         <div class="saishi">
           <div class="titleBox">
             <h3>明星队员</h3>
-            <a href="##">更多</a>
+            <a href="<?php echo $config['site_url']; ?>/playerList/">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box  text-center">
@@ -244,7 +244,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
 
             <?php foreach($return2['informationList']['data'] as $key => $value) {?>
                 <li class="list-item">
-                    <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
+                    <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
                 </li>
             <?php }?>
 
@@ -263,7 +263,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
             <?php
             foreach($return['tournament']['data'] as $tournamentInfo)
             {   ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="javascript:;"><?php echo $tournamentInfo['tournament_name'];?></a></li>
             <?php }?>
         </ul>
       </div>
@@ -274,7 +274,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
             foreach($return['playerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>

@@ -61,7 +61,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
       <div class="col-md-12">
               <ol class="breadcrumb">
                   <li><a href="/">首页</a></li>
-                  <li><a href="##"><?php echo $config['game_name'];?>战队</a></li>
+                  <li><a href="<?php echo $config['site_url']; ?>/teamList/"><?php echo $config['game_name'];?>战队</a></li>
               </ol>
         <div class="icon_title">
           <h3>
@@ -210,7 +210,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
             {
                 if($i<=8){
                 ?>
-                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="player_detail?player_id=<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php $i++;}}?>
         </ul>
       </div>
