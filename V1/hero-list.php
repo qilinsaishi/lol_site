@@ -23,8 +23,8 @@ $return = curl_post($config['api_get'],json_encode($data),1);
     <title><?php echo $config['game_name'];?>英雄列表_<?php echo $config['game_name'];?>有哪些英雄-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 </head>
 
 <body>
@@ -38,7 +38,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+        <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -53,7 +53,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
       <div class="col-md-12">
           <ol class="breadcrumb">
               <li><a href="index.php">首页</a></li>
-              <li><a href="##"><?php echo $config['game_name'];?>英雄列表</a></li>
+              <li><a href="<?php echo $config['site_url']; ?>/heroList/"><?php echo $config['game_name'];?>英雄列表</a></li>
           </ol>
         <div class="icon_title">
           <h3>
@@ -74,7 +74,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                 foreach($return['lolHeroList']['data'] as $heroInfo)
                 {   ?>
               <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="hero.php?hero_id=<?php echo $heroInfo['hero_id'];?>">
+                <a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $heroInfo['hero_id'];?>">
                   <img src="<?php echo $heroInfo['logo'];?>" />
                   <p><?php echo $heroInfo['hero_name'];?></p>
                 </a>
@@ -199,7 +199,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
             foreach($return['playerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>
