@@ -39,7 +39,7 @@
 }
 
 .navbar-nav>li {
-	margin: 0px 15px;
+	margin-right:15px;
 }
 
 .navbar-nav>li>a {
@@ -54,6 +54,12 @@
 .navbar-nav>li.active {
 	border-bottom: 3px solid #f8af3c;
 }
+
+
+
+
+
+
 
 .row {
 	margin-left: 0;
@@ -449,10 +455,17 @@
 
 .zhanduiList_box .list-item a p {
 	text-align: center;
-	line-height: 1.7;
+	line-height: 1.3;
 	color: #dae7f8;
-	font-size: 14px;
+	font-size: 13px;
 	margin-top: 8px;
+	height: 34px;
+	word-break: break-all;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
 }
 
 .page {
@@ -482,10 +495,19 @@
 
 .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
 	z-index: 2;
+	border-color: #e1eeff;
+	background-color: #e1eeff;
 	color: #06181e;
-	background-color: #8294aa;
-	border-color: #8294aa;
 }
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover {
+	cursor: default;
+	border-color: #e1eeff;
+	background-color: #e1eeff;
+	color: #06181e;
+	font-weight: bold;
+}
+
 
 .show_cont {
 	margin-bottom: 30px;
@@ -1203,14 +1225,14 @@
 }
 
 .heroList .iconList ul {
-	display: table;
-	padding: 0px 20px 28px;
+	display: block;
+	padding: 45px 20px 0px;
 	background-color: #1a2634;
 }
 
 .heroList .iconList ul li {
 	margin: 0px;
-	margin-top: 35px;
+	margin-bottom: 20px;
 	overflow: hidden;
 	font-size: 12px;
 	text-align: center;
@@ -1235,11 +1257,12 @@
 }
 
 .heroList .iconList ul li a p {
-	font-size: 13px;
-	color: #c8d5e5;
 	text-align: center;
-	line-height: 1.7;
-	margin-top: 16px;
+	line-height: 1.3;
+	color: #dae7f8;
+	font-size: 13px;
+	margin-top: 8px;
+	height: 34px;
 	word-break: break-all;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -2321,6 +2344,53 @@
 /* 文章面包屑 */
 
 
+
+
+
+
+
+
+
+.iconList .pagination>li>a, .pagination>li>span {
+	display: inline-block;
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #8092a8;
+	text-decoration: none;
+	background-color: #1a2634;
+	border: 1px solid #8092a8;
+}
+
+.iconList .page {
+	margin: 0px auto;
+	text-align: center;
+}
+.iconList  .pagination{
+	display: inline-block!important;
+}
+.iconList  .pagination>li {
+	display: inline;
+}
+.iconList .pagination>li>a:focus, .iconList  .pagination>li>a:hover, .iconList  .pagination>li>span:focus,  .iconList  .pagination>li>span:hover {
+	z-index: 2;
+	border-color: #e1eeff;
+	background-color: #e1eeff;
+	color: #06181e;
+}
+
+.iconList  .pagination>.active>a, .iconList .pagination>.active>a:focus, .iconList .pagination>.active>a:hover {
+	cursor: default;
+	border-color: #e1eeff;
+	background-color: #e1eeff;
+	color: #06181e;
+	font-weight: bold;
+}
+
+
+
 @media (max-width: 1024px) {
 
 	.wenda_list.col-lg-8, .wenda_list.col-md-8{
@@ -2757,15 +2827,32 @@
 	}
 }
 
-@media (min-width: 1336px) {
-
-	.navbar-brand {
-		margin-right: 77px;
-	}
-}
 
 @media screen and (device-width: 768px) {
 	.margin120 {
 		margin-top: 162px;
 	}
 }
+
+
+@media (min-width: 1200px){
+	.nav-item.dropdown:hover .dropdown-menu {
+		opacity: 1;
+		visibility: visible;
+		top: 100%;
+	}
+}
+
+@media (min-width: 1200px){
+	.nav-item.dropdown .dropdown-menu {
+		display: block;
+		visibility: hidden;
+		opacity: 0;
+		top: 120%;
+	}
+}
+
+
+
+
+
