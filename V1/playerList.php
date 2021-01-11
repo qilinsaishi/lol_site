@@ -2,10 +2,13 @@
 <?php
 $info['page']['page_size'] = 54;
 $page = $_GET['page']??1;
+if($page==''){
+	$page=1;
+}
 require_once "function/init.php";
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
-    "totalTeamList"=>["page"=>1,"page_size"=>18,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
+    "totalTeamList"=>["page"=>1,"page_size"=>18,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "matchList"=>["page"=>1,"page_size"=>4],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
@@ -27,8 +30,8 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
     <title><?php echo $config['game_name'];?>职业选手名单大全-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 </head>
 
 <body>
@@ -42,7 +45,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+        <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -72,7 +75,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                                 foreach($return['totalPlayerList']['data'] as $playerInfo)
                                 {   ?>
                                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                                        <a href="playerDetail.php?player_id=<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                                        <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                                             <div>
                                                 <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
                                             </div>
@@ -82,7 +85,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                                 <?php }?>
                                 <div class="page">
                                     <ul class="pagination">
-                                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,"playerList.php?"); ?>
+                                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/playerList"); ?>
                                     </ul>
                                 </div>
                                 <div style="clear: both;"></div>
@@ -91,7 +94,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                     </div>
                     <div class="icon_title">
                         <h3>
-                            热门战队<a href="teamList.php">更多</a>
+                            热门战队<a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
                         </h3>
                     </div>
                     <div>
@@ -101,7 +104,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                                 foreach($return['totalTeamList']['data'] as $teamInfo)
                                 {   ?>
                                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                                        <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                                        <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                                             <div>
                                                 <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
                                             </div>

@@ -31,8 +31,8 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
     <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>,<?php echo $config['game_name'];?>电竞<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>″>
     <title><?php echo $config['game_name'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>_<?php echo $config['game_name'];?>电竞头条-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 </head>
 
 <body>
@@ -46,7 +46,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+        <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -62,7 +62,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
   <div class="container margin120">
           <ol class="breadcrumb">
               <li><a href="index.php">首页</a></li>
-              <li><a href="zixun-list.php"><?php echo $config['game_name'];?><?php echo ($info['type']!="info")?"攻略":"资讯";?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?>/newsList/"><?php echo $config['game_name'];?><?php echo ($info['type']!="info")?"攻略":"资讯";?></a></li>
           </ol>
     <div class="row">
 
@@ -72,7 +72,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
 
               <?php foreach($return['informationList']['data'] as $key => $value) {?>
                   <li>
-                      <a href="detail.php?id=<?php echo $value['id'];?>">
+                      <a href="<?php echo $config['site_url']; ?>/newDdetail/<?php echo $value['id'];?>">
                           <div class="left">
                               <img src="<?php echo $value['logo'];?>" alt="<?php echo $value['title'];?>">
                           </div>
@@ -118,7 +118,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         <div class="saishi">
           <div class="titleBox">
             <h3>热门战队</h3>
-            <a href="teamList.php">更多</a>
+            <a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box text-center">
@@ -138,7 +138,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         <div class="saishi">
           <div class="titleBox">
             <h3>明星队员</h3>
-            <a href="playerList.php">更多</a>
+            <a href="<?php echo $config['site_url']; ?>/playerList/">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box  text-center">
@@ -146,7 +146,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
                 foreach($return['playerList']['data'] as $playerInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                        <a href="##" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                             <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
                             <p><?php echo $playerInfo['player_name'];?></p>
                         </a>

@@ -36,8 +36,8 @@ else
     <meta name=”Keywords” Content=”<?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料,<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介">
   <title><?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料_<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介-<?php echo $config['site_name']?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 </head>
 
 <body>
@@ -52,7 +52,7 @@ else
         <span class="icon-bar"></span>
       </button>
 
-      <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+      <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -65,8 +65,8 @@ else
 <div class="container margin120 teamMember">
     <ol class="breadcrumb">
         <li><a href="index.php">首页</a></li>
-        <li><a href="playerList.php"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></li>
-        <li><a href="playerDetail.php?team_id=<?php echo $return['totalPlayerInfo']['data']['player_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?></a></li>
+        <li><a href="<?php echo $config['site_url']; ?>/playerList/"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></li>
+        <li><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $return['totalPlayerInfo']['data']['player_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?></a></li>
     </ol>
   <div class="row teamLogo">
 
@@ -85,7 +85,7 @@ else
             国籍：<span><?php echo $return['totalPlayerInfo']['data']['country'];?></span>
           </li>
           <li>
-              战队：<a href = 'teamDetail.php?team_id=<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_id'];?>'><span><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></span>
+              战队：<a href = '<?php echo $config['site_url']; ?>/teamDetail/<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_id'];?>'><span><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></span>
           </li>
           <li>
             游戏id：<span><?php echo $return['totalPlayerInfo']['data']['player_name'];?></span>
@@ -121,7 +121,7 @@ else
               $i = 1;
               foreach($connectedInformationList as $key => $value) {?>
                   <li class="list-item">
-                      <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                      <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
                               <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">图文</span>';}?>
                               <p><?php echo $value['title'];?></p>
@@ -174,7 +174,7 @@ else
         <ul class="zhanduiList_box">
           <?php foreach ($return['totalPlayerInfo']['data']['playerList'] as $key => $playerInfo) {?>
             <li class="col-lg-3 col-sm-4 col-md-3 col-xs-6  list-item">
-            <a href="playerDetail.php?player_id=<?php echo $playerInfo['player_id']?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+            <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id']?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
               <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
               <p><?php echo $playerInfo['player_name'];?></p>
             </a>
