@@ -92,7 +92,7 @@ else
           </li>
         </ul>
         <p>
-            <span><?php echo $return['totalPlayerInfo']['data']['description'];?></p>
+            <span><?php echo $return['totalPlayerInfo']['data']['description'];?></span></p>
       </div>
 
     </div>
@@ -204,36 +204,16 @@ else
     </div>
     <div class="col-xs-12">
       <ul class="iconList">
+		 <?php
+			foreach($return['totalPlayerList']['data'] as $playerInfo)
+			{   ?>
         <li class="col-lg-2 col-sm-3 col-md-2 col-xs-6  list-item">
-          <a href="##" title="凤凰战队" target="_blank">
-            <img src="images/photo_1.png" alt="img" />
-            <p>凤凰</p>
+          <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+            <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
+            <p><?php echo $playerInfo['player_name'];?></p>
           </a>
         </li>
-        <li class="col-lg-2 col-sm-3 col-md-2 col-xs-6 list-item">
-          <a href="##" title="凤凰战队" target="_blank">
-            <img src="images/photo_5.png" alt="img" />
-            <p>凤凰</p>
-          </a>
-        </li>
-        <li class="col-lg-2 col-sm-3 col-md-2 col-xs-6 list-item">
-          <a href="##" title="凤凰战队" target="_blank">
-            <img src="images/photo_1.png" alt="img" />
-            <p>凤凰</p>
-          </a>
-        </li>
-        <li class="col-lg-2 col-sm-3 col-md-2 col-xs-6 list-item">
-          <a href="##" title="凤凰战队" target="_blank">
-            <img src="images/photo_5.png" alt="img" />
-            <p>凤凰</p>
-          </a>
-        </li>
-        <li class="col-lg-2 col-sm-3 col-md-2 col-xs-6 list-item">
-          <a href="##" title="凤凰战队" target="_blank">
-            <img src="images/photo_2.png" alt="img" />
-            <p>凤凰</p>
-          </a>
-        </li>
+        <?php }?>
         <div style="clear: both;"></div>
       </ul>
 
@@ -248,34 +228,31 @@ else
     <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
       <div class="title">热门赛事</div>
       <ul>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
+        <?php
+            foreach($return['tournament']['data'] as $tournamentInfo)
+            {   ?>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
+            <?php }?>
       </ul>
     </div>
     <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
       <div class="title">热门选手</div>
       <ul>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">fewioj</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">ewrfwerf221</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">2020年KPL赛季</a></li>
-        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##">132e4rfqe35wtf</a></li>
+        <?php
+            $i=1;
+            foreach($return['totalPlayerList']['data'] as $playerInfo)
+            {
+                if($i<=8){
+                ?>
+                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+            <?php $i++;}}?>
       </ul>
     </div>
     <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
       <div class="title">关于我们</div>
       <ul>
-        <li class="col-md-12"><a href="##">联系我们</a></li>
-        <li class="col-md-12"><a href="##">站点地图</a></li>
+         <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['contact']['value']?>"><?php echo $return['defaultConfig']['data']['contact']['name']?></a></li>
+              <li class="col-md-12"><a href="<?php echo $return['defaultConfig']['data']['sitemap']['value']?>"><?php echo $return['defaultConfig']['data']['sitemap']['name']?></a></li>
       </ul>
     </div>
   </div>
@@ -283,12 +260,11 @@ else
     <div class="col-md-12">
       <div class="title">友情链接</div>
       <ul>
-        <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-        <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-        <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-        <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-        <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
-        <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a href="##"><img src="images/qedj.png" /></a></li>
+        <?php
+            foreach($return['links']['data'] as $linksInfo)
+            {   ?>
+                <li class="col-lg-2 col-sm-3 col-md-3 col-xs-6"><a title = "<?php echo $linksInfo['name'];?>" href="<?php echo $linksInfo['url'];?>"><img src="<?php echo $linksInfo['logo'];?>" /></a></li>
+            <?php }?>
       </ul>
     </div>
   </div>

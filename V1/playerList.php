@@ -61,7 +61,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-                        <li><a href="##"><?php echo $config['game_name'];?>选手</a></li>
+                        <li><a href="<?php echo $config['site_url']; ?>/playerList/"><?php echo $config['game_name'];?>选手</a></li>
                     </ol>
                     <div class="icon_title">
                         <h3>

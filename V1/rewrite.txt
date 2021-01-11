@@ -5,4 +5,6 @@ rewrite  ^/playerList/(.*)$  /playerList.php?page=$1?  last;
 rewrite  ^/newsList/(.*)$  /zixun-list.php?page=$1?  last;
 rewrite  ^/newsDetail/(.*)$  /detail.php?id=$1?  last;
 rewrite  ^/strategyList/(.*)$  /zixun-list.php?type=strategy&page=$1?  last;
-rewrite  /  /index.php last;
+rewrite  ^/gameInt  /gameInt.php  last;
+rewrite  ^/heroList  /hero-list.php  last;
+rewrite  ^/heroDetail/(.*)$  /hero.php?hero_id=$1?  last;

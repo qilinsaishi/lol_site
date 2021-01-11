@@ -75,15 +75,10 @@ else
 
   <div class="container margin120">
       <ol class="breadcrumb">
-<<<<<<< HEAD
       <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
       <li><a href="hero-list.php"><?php echo $config['game_name'];?>英雄列表</a></li>
       <li><a href="hero.php?hero_id=<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
-=======
-      <li><a href="index.php">首页</a></li>
-      <li><a href="<?php echo $config['site_url']; ?>/heroList/"><?php echo $config['game_name'];?>英雄列表</a></li>
-      <li><a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
->>>>>>> 0294179a060a2cfb8bfde72c1c57a829ece2f7d9
+
       </ol>
           <div class="row">
 
