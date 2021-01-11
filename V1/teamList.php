@@ -94,7 +94,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
         </div>
           <div class="icon_title">
               <h3>
-                  热门选手<a href="playerList.php">更多</a>
+                  热门选手<a href="<?php echo $config['site_url']; ?>/playerList/">更多</a>
               </h3>
           </div>
           <div>
@@ -104,7 +104,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                       foreach($return['totalPlayerList']['data'] as $playerInfo)
                       {   ?>
                           <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                              <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $playerInfo['team_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                              <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                                   <div>
                                       <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
                                   </div>
@@ -136,7 +136,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                 foreach($return['informationList']['data'] as $information)
                 {   ?>
                     <li class="list-item">
-                        <a href="detail.php?id=<?php echo $information['id'];?>" title="<?php echo $information['title'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $information['id'];?>" title="<?php echo $information['title'];?>" target="_blank">
                             <p><?php echo $information['title'];?></p>
                         </a>
                     </li>
