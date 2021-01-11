@@ -9,7 +9,7 @@ if($page==''){
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
-    "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
+    "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
@@ -60,7 +60,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
     <div class="row heroList">
       <div class="col-md-12">
               <ol class="breadcrumb">
-                  <li><a href="index.php">首页</a></li>
+                  <li><a href="/">首页</a></li>
                   <li><a href="##"><?php echo $config['game_name'];?>战队</a></li>
               </ol>
         <div class="icon_title">
