@@ -23,8 +23,8 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   <title><?php echo $config['game_name'];?>-游戏介绍</title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet"  href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 </head>
 
 <body>
@@ -38,7 +38,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+        <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -80,7 +80,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
 
               <?php foreach($return['informationList']['data'] as $key => $value) {?>
                   <li class="list-item">
-                      <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                      <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <p><?php echo $value['title'];?></p>
                       </a>
                   </li>
@@ -105,7 +105,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                 foreach($return['totalTeamList']['data'] as $teamInfo)
                 {   ?>
                 <li class="col-lg-3 col-sm-3 col-md-3 col-xs-6  list-item">
-                <a href="##" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                   <img src="<?php echo $teamInfo['logo'];?>" alt="img" />
                   <p><?php echo $teamInfo['team_name'];?></p>
                 </a>
@@ -140,7 +140,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
             foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="player_detail?player_id=<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>

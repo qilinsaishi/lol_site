@@ -153,7 +153,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
         <div class="saishi">
           <div class="titleBox">
             <h3>热门赛事</h3>
-            <a href="javascript:;">更多</a>
+            <a  href="javascript:;">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="saishiList_box">
@@ -162,7 +162,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
                   foreach($return['tournament']['data'] as $tournamentInfo)
                   {   if($i<=3){?>
                 <li class="list-item">
-                      <a href="##" title="<?php echo $tournamentInfo['tournament_name'];?>" target="_blank"><?php echo $tournamentInfo['tournament_name'];?></a>
+                      <a  href="javascript:;" title="<?php echo $tournamentInfo['tournament_name'];?>" target="_blank"><?php echo $tournamentInfo['tournament_name'];?></a>
                 </li>
                       <?php $i++;}}?>
             </ul>
@@ -263,7 +263,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
             <?php
             foreach($return['tournament']['data'] as $tournamentInfo)
             {   ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="javascript:;"><?php echo $tournamentInfo['tournament_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a  href="javascript:;"><?php echo $tournamentInfo['tournament_name'];?></a></li>
             <?php }?>
         </ul>
       </div>
