@@ -4,7 +4,7 @@ require_once "function/init.php";
 $team_id = $_GET['team_id']??0;
 $data = [
     "totalTeamInfo"=>[$team_id],
-    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
+    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
     "tournament"=>["page"=>1,"page_size"=>8],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
@@ -39,8 +39,8 @@ else
     if(substr_count($return['totalTeamInfo']['data']['team_name'],"战队")==0){echo $return['totalTeamInfo']['data']['team_name'].'战队,';}?><?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍″>
     <title><?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部_<?php echo $return['totalTeamInfo']['data']['team_name'];?>战队_<?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 </head>
 
 <body>
@@ -54,7 +54,7 @@ else
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+          <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">

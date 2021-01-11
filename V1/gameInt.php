@@ -3,7 +3,7 @@
 require_once "function/init.php";
 $data = [
     "matchList"=>["page"=>1,"page_size"=>9],
-    "totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
+    "totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],

@@ -4,7 +4,7 @@ require_once "function/init.php";
 $player_id = $_GET['player_id']??0;
 $data = [
     "totalPlayerInfo"=>[$player_id],
-    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
+    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
     "tournament"=>["page"=>1,"page_size"=>8],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],

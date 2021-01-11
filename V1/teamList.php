@@ -3,10 +3,13 @@
 require_once "function/init.php";
 $info['page']['page_size'] = 54;
 $page = $_GET['page']??1;
+if($page==''){
+	$page=1;
+}
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
-    "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
+    "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
@@ -27,8 +30,8 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
     <title><?php echo $config['game_name'];?>战队_<?php echo $config['game_name'];?>电子竞技战队-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 </head>
 
 <body>
@@ -42,7 +45,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+        <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -72,7 +75,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                 foreach($return['totalTeamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                        <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <div>
                                 <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
                             </div>
@@ -82,7 +85,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                 <?php }?>
                 <div class="page">
                     <ul class="pagination">
-                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,"teamList.php?"); ?>
+                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/teamList"); ?>
                     </ul>
                 </div>
               <div style="clear: both;"></div>
@@ -101,7 +104,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                       foreach($return['totalPlayerList']['data'] as $playerInfo)
                       {   ?>
                           <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                              <a href="teamDetail.php?team_id=<?php echo $playerInfo['team_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                              <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $playerInfo['team_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                                   <div>
                                       <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
                                   </div>
