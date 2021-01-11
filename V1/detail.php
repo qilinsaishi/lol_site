@@ -73,7 +73,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+        <a class="navbar-brand" href="<?php echo $config['site_url'];?>"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -92,7 +92,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
 
       <div class="col-md-8">
           <ol class="breadcrumb">
-              <li><a href="index.php">首页</a></li>
+              <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
               <li><a href="<?php echo $config['site_url']; ?><?php echo ($info['type']!="info")?"/strategyList/":"/newsList/";?>"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
               <li><a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
           </ol>

@@ -52,7 +52,7 @@ else
         <span class="icon-bar"></span>
       </button>
 
-      <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+      <a class="navbar-brand" href="<?php echo $config['site_url'];?>"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -64,7 +64,7 @@ else
 
 <div class="container margin120 teamMember">
     <ol class="breadcrumb">
-        <li><a href="index.php">首页</a></li>
+        <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
         <li><a href="<?php echo $config['site_url']; ?>/playerList/"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></li>
         <li><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $return['totalPlayerInfo']['data']['player_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?></a></li>
     </ol>

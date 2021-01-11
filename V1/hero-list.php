@@ -38,7 +38,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+        <a class="navbar-brand" href="<?php echo $config['site_url'];?>"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -52,7 +52,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
     <div class="row heroList">
       <div class="col-md-12">
           <ol class="breadcrumb">
-              <li><a href="index.php">首页</a></li>
+              <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
               <li><a href="<?php echo $config['site_url']; ?>/heroList/"><?php echo $config['game_name'];?>英雄列表</a></li>
           </ol>
         <div class="icon_title">

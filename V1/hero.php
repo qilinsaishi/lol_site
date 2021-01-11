@@ -62,7 +62,7 @@ else
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+          <a class="navbar-brand" href="<?php echo $config['site_url'];?>"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -75,7 +75,7 @@ else
 
   <div class="container margin120">
       <ol class="breadcrumb">
-      <li><a href="index.php">首页</a></li>
+      <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
       <li><a href="hero-list.php"><?php echo $config['game_name'];?>英雄列表</a></li>
       <li><a href="hero.php?hero_id=<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
       </ol>
