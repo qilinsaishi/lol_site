@@ -126,7 +126,7 @@
             'game'=>['url'=>"gameInt/","name"=>$config['game_name']],
             'team'=>['url'=>"teamList/","name"=>$config['game_name']."战队"],
             'player'=>['url'=>"playerList/","name"=>$config['game_name']."队员"],
-            'hero'=>['url'=>"hero-list.php","name"=>"英雄介绍"],
+            'hero'=>['url'=>"heroList/","name"=>"英雄介绍"],
             'info'=>['url'=>"newsList/","name"=>"游戏资讯"],
             'stra'=>['url'=>"strategyList/","name"=>"游戏攻略"],
             //'faq'=>['url'=>"wenda-list.html","name"=>"游戏问答"],
