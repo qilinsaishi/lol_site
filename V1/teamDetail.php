@@ -54,7 +54,7 @@ else
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+          <a class="navbar-brand" href="/"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -162,7 +162,7 @@ else
                     $i = 1;
                     foreach($connectedInformationList as $key => $value) {?>
                     <li class="list-item">
-                        <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                             <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
                                 <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">图文</span>';}?>
                                 <p><?php echo $value['title'];?></p>
@@ -202,7 +202,7 @@ else
             foreach($return['totalTeamList']['data'] as $teamInfo)
             {   ?>
                 <li class="list-item">
-                    <a href="teamDetail.php?team_id=<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                    <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                         <img src="<?php echo $teamInfo['logo'];?>" alt="img" />
                     </a>
                 </li>
@@ -233,7 +233,7 @@ else
             foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="player_detail?player_id=<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>

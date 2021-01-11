@@ -58,8 +58,8 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
     <meta name=”Keywords” Content=”<?php echo implode(",",array_keys($keywordsList));?>″>
     <title><?php echo $return['information']['data']['title'];?>_<?php echo $config['game_name'];?>资讯-<?php echo $config['site_name'];?></title>
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
+  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
 </head>
 
 <body>
@@ -73,7 +73,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+        <a class="navbar-brand" href="index.php"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -93,8 +93,8 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
       <div class="col-md-8">
           <ol class="breadcrumb">
               <li><a href="index.php">首页</a></li>
-              <li><a href="zixun-list.php"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
-              <li><a href="detail.php?id=<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?>/newsList/"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
           </ol>
         <div class="show_cont">
 
@@ -122,17 +122,17 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
                  {
                      if($info['type']=="team")
                      {
-                        $url = "teamDetail.php?team_id=".$info['id'];
+                        $url = "teamDetail/".$info['id'];
                      }
                      elseif($info['type']=="player")
                      {
-                         $url = "playerDetail.php?player_id=".$info['id'];
+                         $url = "playerDetail/".$info['id'];
                      }
                      elseif($info['type']=="hero")
                      {
-                         $url = "hero.php?hero=".$info['id'];
+                         $url ="hero/".$info['id'];
                      }
-                     echo '<li><a href="'.$url.'">'.$word.'</a></li>';
+                     echo '<li><a href="'.$config['site_url'].'/'.$url.'">'.$word.'</a></li>';
                  }
                  $i++;
              }?>
@@ -172,10 +172,10 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
               <div class="titleBox">
                   <?php if($return['information']['data']['type']!=4){?>
                       <h3>最新攻略</h3>
-                      <a href="zixun-list.php?type=strategy">更多</a>
+                      <a href="/newsList/type=strategy">更多</a>
                   <?php }else{?>
                       <h3>最新资讯</h3>
-                      <a href="zixun-list.php">更多</a>
+                      <a href="<?php echo $config['site_url']; ?>/newsList/">更多</a>
                   <?php }?>
               </div>
               <div class="col-xs-24">
@@ -183,7 +183,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
                       <?php foreach($return3['informationList']['data'] as $key => $value) {
                           if($value['id']!=$id){?>
                               <li class="list-item">
-                                  <a href="detail.php?id=<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
+                                  <a href="<?php echo $config['site_url']; ?>/detail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
                               </li>
                           <?php }}?>
                   </ul>
@@ -200,7 +200,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
                 foreach($return['teamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                        <a href="##" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['title'];?>" />
                         </a>
                     </li>
@@ -220,7 +220,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
                 foreach($return['playerList']['data'] as $playerInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                        <a href="##" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                             <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
                             <p><?php echo $playerInfo['player_name'];?></p>
                         </a>

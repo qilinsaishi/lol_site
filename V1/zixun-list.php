@@ -4,9 +4,12 @@ require_once "function/init.php";
 $info['page']['page_size'] = 18;
 $info['type'] = $_GET['type']??"info";
 $page = $_GET['page']??1;
+if($page==''){
+	$page=1;
+}
 $data = [
     "matchList"=>["page"=>1,"page_size"=>9],
-    "teamList"=>["page"=>1,"page_size"=>6],
+	"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
@@ -72,7 +75,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
 
               <?php foreach($return['informationList']['data'] as $key => $value) {?>
                   <li>
-                      <a href="<?php echo $config['site_url']; ?>/newDdetail/<?php echo $value['id'];?>">
+                      <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>">
                           <div class="left">
                               <img src="<?php echo $value['logo'];?>" alt="<?php echo $value['title'];?>">
                           </div>
@@ -123,10 +126,10 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
           <div class="col-xs-24">
             <ul class="zhanduiList_box text-center">
                 <?php
-                foreach($return['teamList']['data'] as $teamInfo)
+                foreach($return['totalTeamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                        <a href="##" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['title'];?>" />
                         </a>
                     </li>
@@ -146,7 +149,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
                 foreach($return['playerList']['data'] as $playerInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                        <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                             <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
                             <p><?php echo $playerInfo['player_name'];?></p>
                         </a>
