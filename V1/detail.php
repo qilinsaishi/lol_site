@@ -36,17 +36,12 @@ if(is_array($return["information"]['data']['keywords_list']))
 }
 array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
 $data2 = [
-    "informationList"=>["game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
+    "infoListWithAuthor"=>["dataType"=>"informationList","game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
         "type"=>$return['information']['data']['type']==4?"4":"1,2,3,5","fields"=>"id,title"],
-];
-$data3 = [
-    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,
+    "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>5,
         "type"=>$return['information']['data']['type']!=4?"4":"1,2,3,5","fields"=>"id,title"],
 ];
-
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
-$return3 = curl_post($config['api_get'],json_encode($data3),1);
-
 ?>
 <html lang="zh-CN">
 
@@ -180,7 +175,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
               </div>
               <div class="col-xs-24">
                   <ul class="saishiList_box">
-                      <?php foreach($return3['informationList']['data'] as $key => $value) {
+                      <?php foreach($return2['infoList']['data'] as $key => $value) {
                           if($value['id']!=$id){?>
                               <li class="list-item">
                                   <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
@@ -242,7 +237,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
       <div class="col-xs-24">
         <ul class="saishiList_box">
 
-            <?php foreach($return2['informationList']['data'] as $key => $value) {?>
+            <?php foreach($return2['infoListWithAuthor']['data'] as $key => $value) {?>
                 <li class="list-item">
                     <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
                 </li>
