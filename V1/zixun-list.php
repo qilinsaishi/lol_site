@@ -16,6 +16,7 @@ $data = [
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "informationList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>$info['type']=="info"?"1,2,3,5":"4","fields"=>"*"],
 ];
+$zxtype=($info['type']!="info")?"/strategyList":"/newsList";
 $return = curl_post($config['api_get'],json_encode($data),1);
 $info['page']['total_count'] = $return['informationList']['count'];
 $info['page']['total_page'] = intval($return['informationList']['count']/$info['page']['page_size']);
@@ -95,7 +96,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         </div>
         <div class="page">
           <ul class="pagination">
-              <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,"zixun-list.php?type=".$info['type']); ?>
+              <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$zxtype); ?>
           </ul>
         </div>
       </div>

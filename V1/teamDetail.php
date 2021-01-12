@@ -54,7 +54,7 @@ else
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="/"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
+          <a class="navbar-brand" href="<?php echo $config['site_url'];?>"><img src="<?php echo $config['site_url']; ?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -67,7 +67,7 @@ else
   <div class="container margin120">
       <ol class="breadcrumb">
           <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-          <li><a href="<?php echo $config['site_url']; ?>/teamList"><?php echo $config['game_name'];?>战队</a></li>
+          <li><a href="<?php echo $config['site_url']; ?>/teamList/"><?php echo $config['game_name'];?>战队</a></li>
           <li><a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $return['totalTeamInfo']['data']['team_id'];?>"><?php echo $return['totalTeamInfo']['data']['team_name'];?></a></li>
       </ol>
       <div class="row teamLogo">
@@ -126,7 +126,7 @@ else
               {
                   ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
-              <a href="playerDetail.php?player_id=<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
+              <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
                 <img src="<?php echo $playerInfo['logo']?>" alt="img" />
                 <p><?php echo $playerInfo['player_name']?></p>
               </a>
