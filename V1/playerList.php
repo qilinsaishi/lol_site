@@ -72,7 +72,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                                 foreach($return['totalPlayerList']['data'] as $playerInfo)
                                 {   ?>
                                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                                        <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                                        <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                                             <div>
                                                 <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
                                                     <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
@@ -213,7 +213,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
             {
                 if($i<=8){
                 ?>
-                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php $i++;}}?>
         </ul>
       </div>

@@ -72,7 +72,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                 foreach($return['lolHeroList']['data'] as $heroInfo)
                 {   ?>
               <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                <a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $heroInfo['hero_id'];?>">
+                <a href="<?php echo $config['site_url']; ?>/herodetail/<?php echo $heroInfo['hero_id'];?>">
                     <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
                         <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $heroInfo['logo'];?>" title="<?php echo $heroInfo['hero_name'];?>" />
                     <?php }else{?>
@@ -202,7 +202,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
             foreach($return['playerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>

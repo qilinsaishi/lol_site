@@ -73,7 +73,7 @@ else
       <ol class="breadcrumb">
       <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
       <li><a href="<?php echo $config['site_url']; ?>/heroList/"><?php echo $config['game_name'];?>英雄列表</a></li>
-      <li><a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
+      <li><a href="<?php echo $config['site_url']; ?>/herodetail/<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
 
       </ol>
           <div class="row">
@@ -357,7 +357,7 @@ else
                             { $count++;if($count==15){break;}?>
 
               <li>
-                <a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $heroInfo['hero_id'];?>">
+                <a href="<?php echo $config['site_url']; ?>/herodetail/<?php echo $heroInfo['hero_id'];?>">
                   <img src="<?php echo $heroInfo['logo'];?>" />
                   <p><?php echo $heroInfo['hero_name'];?></p>
                 </a>
@@ -391,7 +391,7 @@ else
             foreach($return['playerList']['data'] as $playerInfo)
             {
                 ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php }?>
         </ul>
       </div>
