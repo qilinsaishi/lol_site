@@ -8,13 +8,16 @@ $data = [
         "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
         "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
         "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
-        "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>10,"type"=>"1,2,3,5"],
-];
+        "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>10,"type"=>"1,2,3,5"],
+        "straList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
+    ];
 $return = curl_post($config['api_get'],json_encode($data),1);
+/*
 $data2 = [
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
 ];
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
+*/
 ?>
 <html lang="zh-CN">
 <head>
@@ -94,7 +97,7 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
             </div>
 
             <ul>
-                <?php foreach($return['informationList']['data'] as $key => $value) {?>
+                <?php foreach($return['infoList']['data'] as $key => $value) {?>
               <li>
               <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                 <div>
@@ -139,7 +142,7 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
           <h2 class="bigTitle"><?php echo $config['game_name'];?>游戏攻略</h2><a href="<?php echo $config['site_url']; ?>/strategyList/">更多</a>
             </div>
                 <ul>
-              <?php foreach($return2['informationList']['data'] as $key => $value) {?>
+              <?php foreach($return['straList']['data'] as $key => $value) {?>
                   <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                       <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <div>
