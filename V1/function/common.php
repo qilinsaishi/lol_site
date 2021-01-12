@@ -123,7 +123,7 @@
     function generateNav($config,$current = "index")
     {
         $navList = ['index'=>['url'=>"","name"=>"首页"],
-            'game'=>['url'=>"gameInt/","name"=>$config['game_name']],
+            'game'=>['url'=>"gameint/","name"=>$config['game_name']],
             'team'=>['url'=>"teamlist/","name"=>$config['game_name']."战队"],
             'player'=>['url'=>"playerlist/","name"=>$config['game_name']."队员"],
             'hero'=>['url'=>"herolist/","name"=>"英雄介绍"],
