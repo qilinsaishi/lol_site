@@ -94,8 +94,9 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                     </div>
                     <div class="icon_title">
                         <h3>
-                            热门战队<a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
+                            热门战队
                         </h3>
+                        <a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
                     </div>
                     <div>
                         <div class="iconList">

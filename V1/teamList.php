@@ -95,8 +95,9 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
         </div>
           <div class="icon_title">
               <h3>
-                  热门选手<a href="<?php echo $config['site_url']; ?>/playerList/">更多</a>
+                  热门选手
               </h3>
+              <a href="<?php echo $config['site_url']; ?>/playerList/">更多</a>
           </div>
           <div>
               <div class="iconList">
