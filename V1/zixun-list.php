@@ -16,7 +16,7 @@ $data = [
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "informationList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>$info['type']=="info"?"1,2,3,5":"4","fields"=>"*"],
 ];
-$zxtype=($info['type']!="info")?"/strategyList":"/newsList";
+$zxtype=($info['type']!="info")?"/strategylist":"/newslist";
 $return = curl_post($config['api_get'],json_encode($data),1);
 $info['page']['total_count'] = $return['informationList']['count'];
 $info['page']['total_page'] = intval($return['informationList']['count']/$info['page']['page_size']);
@@ -64,7 +64,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
   <div class="container margin120">
           <ol class="breadcrumb">
               <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-              <li><a href="<?php echo $config['site_url']; ?><?php echo ($info['type']!="info")?"/strategyList/":"/newsList/";?>"><?php echo $config['game_name'];?><?php echo ($info['type']!="info")?"攻略":"资讯";?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?><?php echo ($info['type']!="info")?"/strategylist/":"/newslist/";?>"><?php echo $config['game_name'];?><?php echo ($info['type']!="info")?"攻略":"资讯";?></a></li>
           </ol>
     <div class="row">
 

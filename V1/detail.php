@@ -100,7 +100,7 @@ foreach ($keywordsList as $word => $info) {
       <div class="col-md-8">
           <ol class="breadcrumb">
               <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-              <li><a href="<?php echo $config['site_url']; ?><?php echo ($return['information']['data']['type']==4)?"/strategyList/":"/newsList/";?>"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?><?php echo ($return['information']['data']['type']==4)?"/strategylist/":"/newslist/";?>"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
               <li><a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
           </ol>
         <div class="show_cont">
@@ -162,10 +162,10 @@ foreach ($keywordsList as $word => $info) {
               <div class="titleBox">
                   <?php if($return['information']['data']['type']!=4){?>
                       <h3>最新攻略</h3>
-                      <a href="<?php echo $config['site_url']; ?>/strategyList/">更多</a>
+                      <a href="<?php echo $config['site_url']; ?>/strategylist/">更多</a>
                   <?php }else{?>
                       <h3>最新资讯</h3>
-                      <a href="<?php echo $config['site_url']; ?>/newsList/">更多</a>
+                      <a href="<?php echo $config['site_url']; ?>/newslist/">更多</a>
                   <?php }?>
               </div>
               <div class="col-xs-24">
