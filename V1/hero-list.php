@@ -5,7 +5,7 @@ $data = [
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
     "teamList"=>["page"=>1,"page_size"=>8],
     "tournament"=>["page"=>1,"page_size"=>8],
-    "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "lolHeroList"=>["page"=>1,"page_size"=>1000],
     "lolEquipmentList"=>["page"=>1,"page_size"=>1000],
@@ -73,8 +73,12 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                 {   ?>
               <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
                 <a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $heroInfo['hero_id'];?>">
-                  <img src="<?php echo $heroInfo['logo'];?>" />
-                  <p><?php echo $heroInfo['hero_name'];?></p>
+                    <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
+                        <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $heroInfo['logo'];?>" title="<?php echo $heroInfo['hero_name'];?>" />
+                    <?php }else{?>
+                        <img src="<?php echo $heroInfo['logo'];?>" title="<?php echo $heroInfo['hero_name'];?>" />
+                    <?php }?>
+                    <p><?php echo $heroInfo['hero_name'];?></p>
                 </a>
               </li>
                 <?php }?>
