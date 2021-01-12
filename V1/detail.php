@@ -97,7 +97,7 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
 
 
           <div class="show_txt">
-              <?php echo $return['information']['data']['content'];?>
+              <?php echo htmlspecialchars_decode($return['information']['data']['content']);?>
           </div>
 
 
