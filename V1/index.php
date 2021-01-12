@@ -108,7 +108,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
       <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 hotTame">
         <div>
             <div class="more_title">
-            <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
+            <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
             </div>
 
             <ul>

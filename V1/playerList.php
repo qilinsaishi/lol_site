@@ -58,7 +58,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-                        <li><a href="<?php echo $config['site_url']; ?>/playerList/"><?php echo $config['game_name'];?>选手</a></li>
+                        <li><a href="<?php echo $config['site_url']; ?>/playerlist/"><?php echo $config['game_name'];?>选手</a></li>
                     </ol>
                     <div class="icon_title">
                         <h3>
@@ -85,7 +85,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                                 <?php }?>
                                 <div class="page">
                                     <ul class="pagination">
-                                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/playerList"); ?>
+                                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/playerlist"); ?>
                                     </ul>
                                 </div>
                                 <div style="clear: both;"></div>
@@ -96,7 +96,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                         <h3>
                             热门战队
                         </h3>
-                        <a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
+                        <a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
                     </div>
                     <div>
                         <div class="iconList">

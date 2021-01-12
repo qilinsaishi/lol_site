@@ -182,7 +182,7 @@ foreach ($keywordsList as $word => $info) {
         <div class="saishi">
           <div class="titleBox">
             <h3>热门战队</h3>
-            <a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
+            <a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box text-center">
@@ -202,7 +202,7 @@ foreach ($keywordsList as $word => $info) {
         <div class="saishi">
           <div class="titleBox">
             <h3>明星队员</h3>
-            <a href="<?php echo $config['site_url']; ?>/playerList/">更多</a>
+            <a href="<?php echo $config['site_url']; ?>/playerlist/">更多</a>
           </div>
           <div class="col-xs-24">
             <ul class="zhanduiList_box  text-center">

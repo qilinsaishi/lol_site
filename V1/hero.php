@@ -72,7 +72,7 @@ else
   <div class="container margin120">
       <ol class="breadcrumb">
       <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-      <li><a href="<?php echo $config['site_url']; ?>/heroList/"><?php echo $config['game_name'];?>英雄列表</a></li>
+      <li><a href="<?php echo $config['site_url']; ?>/herolist/"><?php echo $config['game_name'];?>英雄列表</a></li>
       <li><a href="<?php echo $config['site_url']; ?>/herodetail/<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
 
       </ol>

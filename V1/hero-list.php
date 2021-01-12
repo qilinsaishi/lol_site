@@ -51,7 +51,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
       <div class="col-md-12">
           <ol class="breadcrumb">
               <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-              <li><a href="<?php echo $config['site_url']; ?>/heroList/"><?php echo $config['game_name'];?>英雄列表</a></li>
+              <li><a href="<?php echo $config['site_url']; ?>/herolist/"><?php echo $config['game_name'];?>英雄列表</a></li>
           </ol>
         <div class="icon_title">
           <h3>

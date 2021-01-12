@@ -65,7 +65,7 @@ else
   <div class="container margin120">
       <ol class="breadcrumb">
           <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-          <li><a href="<?php echo $config['site_url']; ?>/teamList/"><?php echo $config['game_name'];?>战队</a></li>
+          <li><a href="<?php echo $config['site_url']; ?>/teamlist/"><?php echo $config['game_name'];?>战队</a></li>
           <li><a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['totalTeamInfo']['data']['team_id'];?>"><?php echo $return['totalTeamInfo']['data']['team_name'];?></a></li>
       </ol>
       <div class="row teamLogo">
