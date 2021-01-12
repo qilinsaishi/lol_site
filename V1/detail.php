@@ -93,7 +93,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
       <div class="col-md-8">
           <ol class="breadcrumb">
               <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-              <li><a href="<?php echo $config['site_url']; ?><?php echo ($info['type']!="info")?"/strategyList/":"/newsList/";?>"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?><?php echo ($return['information']['data']['type']==4)?"/strategyList/":"/newsList/";?>"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
               <li><a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
           </ol>
         <div class="show_cont">
@@ -130,7 +130,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
                      }
                      elseif($info['type']=="hero")
                      {
-                         $url ="hero/".$info['id'];
+                         $url ="heroDetail/".$info['id'];
                      }
                      echo '<li><a href="'.$config['site_url'].'/'.$url.'">'.$word.'</a></li>';
                  }
