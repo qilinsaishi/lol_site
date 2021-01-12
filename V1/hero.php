@@ -43,12 +43,7 @@ else
   <meta name="description" content="<?php echo mb_str_split($return['lolHero']['data']['description'],200);?>;?>">
     <meta name=”Keywords” Content=”<?php echo $return['lolHero']['data']['hero_name'];?>,<?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['hero_name'];?>″>
     <title><?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['hero_name'];?>介绍_<?php echo $return['lolHero']['data']['hero_name'];?>攻略-<?php echo $config['site_name'];?><?php echo $config['game_name']."-".$return['lolHero']['data']['cn_name'];?></title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
 </head>
 
 <body>

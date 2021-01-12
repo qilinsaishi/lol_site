@@ -12,12 +12,6 @@ $data = [
         "straList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
     ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-/*
-$data2 = [
-    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
-];
-$return2 = curl_post($config['api_get'],json_encode($data2),1);
-*/
 ?>
 <html lang="zh-CN">
 <head>
@@ -210,8 +204,7 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
   </footer>
 
 
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php renderFooterJsCss($config);?>
 </body>
 
 </html>

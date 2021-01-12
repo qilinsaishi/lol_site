@@ -36,17 +36,12 @@ if(is_array($return["information"]['data']['keywords_list']))
 }
 array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
 $data2 = [
-    "informationList"=>["game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
+    "infoListWithAuthor"=>["dataType"=>"informationList","game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
         "type"=>$return['information']['data']['type']==4?"4":"1,2,3,5","fields"=>"id,title"],
-];
-$data3 = [
-    "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,
+    "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>5,
         "type"=>$return['information']['data']['type']!=4?"4":"1,2,3,5","fields"=>"id,title"],
 ];
-
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
-$return3 = curl_post($config['api_get'],json_encode($data3),1);
-
 ?>
 <html lang="zh-CN">
 
@@ -57,9 +52,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
   <meta name="description" content="">
     <meta name=”Keywords” Content=”<?php echo implode(",",array_keys($keywordsList));?>″>
     <title><?php echo $return['information']['data']['title'];?>_<?php echo $config['game_name'];?>资讯-<?php echo $config['site_name'];?></title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
+    <?php renderHeaderJsCss($config);?>
 </head>
 
 <body>
@@ -180,7 +173,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
               </div>
               <div class="col-xs-24">
                   <ul class="saishiList_box">
-                      <?php foreach($return3['informationList']['data'] as $key => $value) {
+                      <?php foreach($return2['infoList']['data'] as $key => $value) {
                           if($value['id']!=$id){?>
                               <li class="list-item">
                                   <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
@@ -242,7 +235,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
       <div class="col-xs-24">
         <ul class="saishiList_box">
 
-            <?php foreach($return2['informationList']['data'] as $key => $value) {?>
+            <?php foreach($return2['infoListWithAuthor']['data'] as $key => $value) {?>
                 <li class="list-item">
                     <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
                 </li>
@@ -299,8 +292,7 @@ $return3 = curl_post($config['api_get'],json_encode($data3),1);
       </div>
     </div>
   </footer>
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php renderFooterJsCss($config);?>
 </body>
 
 </html>
