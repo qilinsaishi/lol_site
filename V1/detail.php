@@ -17,6 +17,7 @@ $urlList = ["hero"=>"heroDetail/",
             "player"=>"playerDetail/",
     ];
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
+$keywordsList = [];
 if(is_array($return["information"]['data']['keywords_list']))
 {
     foreach($return["information"]['data']['keywords_list'] as $type => $list)
@@ -51,7 +52,7 @@ $i = 1;
 foreach ($keywordsList as $word => $info) {
     //if ($i <= 3)
     {
-        $return['information']['data']['content'] = str_replace($word,'<a href="' . $config['site_url'] . '/' . $info['url'] . '">' . $word . '</a>',$return['information']['data']['content']);
+//        $return['information']['data']['content'] = str_replace($word,'<a href="' . $config['site_url'] . '/' . $info['url'] . '">' . $word . '</a>',$return['information']['data']['content']);
     }
     $i++;
 } ?>
