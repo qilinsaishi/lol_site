@@ -128,7 +128,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
                 foreach($return['totalTeamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                        <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['title'];?>" />
                         </a>
                     </li>

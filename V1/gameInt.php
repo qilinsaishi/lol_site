@@ -102,7 +102,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                 foreach($return['totalTeamList']['data'] as $teamInfo)
                 {   ?>
                 <li class="col-lg-3 col-sm-3 col-md-3 col-xs-6  list-item">
-                <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                   <img src="<?php echo $teamInfo['logo'];?>" alt="img" />
                   <p><?php echo $teamInfo['team_name'];?></p>
                 </a>

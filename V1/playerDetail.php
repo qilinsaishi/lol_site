@@ -63,7 +63,7 @@ else
 <div class="container margin120 teamMember">
     <ol class="breadcrumb">
         <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-        <li><a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></li>
+        <li><a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></li>
         <li><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $return['totalPlayerInfo']['data']['player_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?></a></li>
     </ol>
   <div class="row teamLogo">
@@ -83,7 +83,7 @@ else
             国籍：<span><?php echo $return['totalPlayerInfo']['data']['country'];?></span>
           </li>
           <li>
-              战队：<a href = '<?php echo $config['site_url']; ?>/teamDetail/<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_id'];?>'><span><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></span>
+              战队：<a href = '<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_id'];?>'><span><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></span>
           </li>
           <li>
             游戏id：<span><?php echo $return['totalPlayerInfo']['data']['player_name'];?></span>
