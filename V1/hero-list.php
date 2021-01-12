@@ -114,6 +114,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                 </a>
               </li>
                 <?php }?>
+                <div style="clear: both;"></div>
             </ul>
           </div>
 

@@ -89,8 +89,11 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
 
       <div class="col-lg-8 col-sm-12 col-md-8 col-xs-12 newMsg">
         <div>
-          <h2 class="bigTitle"><?php echo $config['game_name'];?>最新资讯</h2><a href="<?php echo $config['site_url']; ?>/newsList/">更多</a>
-          <ul>
+            <div class="more_title">
+            <h2 class="bigTitle"><?php echo $config['game_name'];?>最新资讯</h2><a href="<?php echo $config['site_url']; ?>/newsList/">更多</a>
+            </div>
+
+            <ul>
                 <?php foreach($return['informationList']['data'] as $key => $value) {?>
               <li>
               <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
@@ -107,8 +110,11 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
       </div>
       <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 hotTame">
         <div>
-          <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
-          <ul>
+            <div class="more_title">
+            <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="<?php echo $config['site_url']; ?>/teamList/">更多</a>
+            </div>
+
+            <ul>
               <?php
               foreach($return['totalTeamList']['data'] as $teamInfo)
               {   ?>
@@ -129,8 +135,10 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
 
       <div class="col-lg-12 GameGl newMsg">
         <div>
+            <div class="more_title">
           <h2 class="bigTitle"><?php echo $config['game_name'];?>游戏攻略</h2><a href="<?php echo $config['site_url']; ?>/strategyList/">更多</a>
-          <ul>
+            </div>
+                <ul>
               <?php foreach($return2['informationList']['data'] as $key => $value) {?>
                   <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                       <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
