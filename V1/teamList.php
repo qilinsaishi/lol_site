@@ -10,7 +10,7 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
     "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
-    "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
@@ -74,7 +74,11 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
                         <a href="<?php echo $config['site_url']; ?>/teamDetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <div>
+                                <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
+                                <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
+                                <?php }else{?>
                                 <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
+                                <?php }?>
                             </div>
                             <p><?php echo $teamInfo['team_name'];?></p>
                         </a>
@@ -103,7 +107,12 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                           <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
                               <a href="<?php echo $config['site_url']; ?>/playerDetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                                   <div>
-                                      <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                                      <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
+                                          <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                                      <?php }else{?>
+                                          <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                                      <?php }?>
+
                                   </div>
                                   <p><?php echo $playerInfo['player_name'];?></p>
                               </a>

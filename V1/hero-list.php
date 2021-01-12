@@ -5,11 +5,11 @@ $data = [
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
     "teamList"=>["page"=>1,"page_size"=>8],
     "tournament"=>["page"=>1,"page_size"=>8],
-    "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
+    "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "lolHeroList"=>["page"=>1,"page_size"=>20],
-    "lolEquipmentList"=>["page"=>1,"page_size"=>12],
-    "lolSummonerList"=>["page"=>1,"page_size"=>12],
+    "lolHeroList"=>["page"=>1,"page_size"=>1000],
+    "lolEquipmentList"=>["page"=>1,"page_size"=>1000],
+    "lolSummonerList"=>["page"=>1,"page_size"=>200],
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 ?>

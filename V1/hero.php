@@ -6,7 +6,7 @@ $data = [
     "lolHero"=>[$hero_id],
     "lolHeroList"=>["page"=>1,"page_size"=>15],
     "tournament"=>["page"=>1,"page_size"=>8],
-    "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
+    "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
     "keywordMapList"=>["fields"=>"content_id","source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information"]

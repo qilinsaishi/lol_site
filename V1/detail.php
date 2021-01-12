@@ -9,7 +9,7 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "playerList"=>["page"=>1,"page_size"=>6],
-    "defaultConfig"=>["keys"=>["contact","sitemap"],"field"=>["name","key","value"]],
+    "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 
