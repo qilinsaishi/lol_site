@@ -149,7 +149,7 @@ else
         </h3>
       </div>
       <ul class="iconList">
-          <div><?php echo $return['totalPlayerInfo']['data']['teamInfo']['description'];?></div>
+          <div><?php echo htmlspecialchars_decode($return['totalPlayerInfo']['data']['teamInfo']['description']);?></div>
       </ul>
     </div>
 
