@@ -112,7 +112,7 @@ foreach ($keywordsList as $word => $info) {
 
 
           <div class="show_txt">
-              <?php echo htmlspecialchars_decode($return['information']['data']['content']);?>
+              <?php echo $return['information']['data']['content'];?>
           </div>
           <br>
           <div class="xgTag">
