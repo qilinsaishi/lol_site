@@ -50,11 +50,9 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
 
 $i = 1;
 foreach ($keywordsList as $word => $info) {
-    //if ($i <= 3)
     {
 //        $return['information']['data']['content'] = str_replace($word,'<a href="' . $config['site_url'] . '/' . $info['url'] . '">' . $word . '</a>',$return['information']['data']['content']);
     }
-    $i++;
 } ?>
 
 
