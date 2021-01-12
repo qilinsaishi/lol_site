@@ -250,8 +250,8 @@ else
           英雄皮肤
         </h3>
       </div>
-      <div class="img-content">
-        <div class="small-img">
+        <div class="img-content" id="gallery">
+            <div class="small-img" id="gallery_nav">
               <?php
               $i = 1;
               foreach($return['lolHero']['data']['skinList'] as $key => $skinInfo)
