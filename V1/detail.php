@@ -12,7 +12,10 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-
+$urlList = ["hero"=>"heroDetail/",
+            "team"=>"teamDetail/",
+            "player"=>"playerDetail/",
+    ];
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 if(is_array($return["information"]['data']['keywords_list']))
 {
@@ -24,12 +27,12 @@ if(is_array($return["information"]['data']['keywords_list']))
             {
                 if($wordInfo['count']>$keywordsList[$word]['count'])
                 {
-                    $keywordsList[$word] = ["id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count']];
+                    $keywordsList[$word] = ["id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
                 }
             }
             else
             {
-                $keywordsList[$word] = ["id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count']];
+                $keywordsList[$word] = ["id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
             }
         }
     }
@@ -42,6 +45,18 @@ $data2 = [
         "type"=>$return['information']['data']['type']!=4?"4":"1,2,3,5","fields"=>"id,title"],
 ];
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
+
+
+$i = 1;
+foreach ($keywordsList as $word => $info) {
+    //if ($i <= 3)
+    {
+        $return['information']['data']['content'] = str_replace($word,'<a href="' . $config['site_url'] . '/' . $info['url'] . '">' . $word . '</a>',$return['information']['data']['content']);
+    }
+    $i++;
+} ?>
+
+
 ?>
 <html lang="zh-CN">
 
@@ -99,12 +114,7 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
           <div class="show_txt">
               <?php echo htmlspecialchars_decode($return['information']['data']['content']);?>
           </div>
-
-
-
-
           <br>
-
           <div class="xgTag">
             <ul class="col-lg-8 col-sm-8 col-md-12 col-xs-12">
              <?php
@@ -113,19 +123,7 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
              {
                  if($i<=3)
                  {
-                     if($info['type']=="team")
-                     {
-                        $url = "teamDetail/".$info['id'];
-                     }
-                     elseif($info['type']=="player")
-                     {
-                         $url = "playerDetail/".$info['id'];
-                     }
-                     elseif($info['type']=="hero")
-                     {
-                         $url ="heroDetail/".$info['id'];
-                     }
-                     echo '<li><a href="'.$config['site_url'].'/'.$url.'">'.$word.'</a></li>';
+                     echo '<li><a href="'.$config['site_url'].'/'.$info['url'].'">'.$word.'</a></li>';
                  }
                  $i++;
              }?>
