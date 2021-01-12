@@ -28,10 +28,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
   <meta name="description" content="">
     <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>职业选手名单,<?php echo $config['game_name'];?>职业选手大全″>
     <title><?php echo $config['game_name'];?>职业选手名单大全-<?php echo $config['site_name'];?></title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
+    <?php renderHeaderJsCss($config);?>
 </head>
 
 <body>
@@ -236,8 +233,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
   </footer>
 
 
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php renderFooterJsCss($config);?>
   <script>
     $(function () {
 

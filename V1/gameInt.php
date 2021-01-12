@@ -21,10 +21,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   <meta name="description" content="这是一个信息很完整的<?php echo $config['game_name'];?>游戏资讯站">
   <meta name="keywords" content="<?php echo $config['game_name'];?>">
   <title><?php echo $config['game_name'];?>-游戏介绍</title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet"  href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
+    <?php renderHeaderJsCss($config);?>
 </head>
 
 <body>
@@ -167,8 +164,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   </footer>
 
 
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php renderFooterJsCss($config);?>
 </body>
 
 </html>

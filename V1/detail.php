@@ -52,9 +52,7 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
   <meta name="description" content="">
     <meta name=”Keywords” Content=”<?php echo implode(",",array_keys($keywordsList));?>″>
     <title><?php echo $return['information']['data']['title'];?>_<?php echo $config['game_name'];?>资讯-<?php echo $config['site_name'];?></title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
+    <?php renderHeaderJsCss($config);?>
 </head>
 
 <body>
@@ -294,8 +292,7 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
       </div>
     </div>
   </footer>
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php renderFooterJsCss($config);?>
 </body>
 
 </html>

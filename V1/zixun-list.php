@@ -34,9 +34,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
     <?php }?>
     <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>,<?php echo $config['game_name'];?>电竞<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>″>
     <title><?php echo $config['game_name'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>_<?php echo $config['game_name'];?>电竞头条-<?php echo $config['site_name'];?></title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
+  <?php renderHeaderJsCss($config);?>
 </head>
 
 <body>
@@ -212,8 +210,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
   </footer>
 
 
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php renderFooterJsCss($config);?>
 </body>
 
 </html>

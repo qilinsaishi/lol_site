@@ -21,10 +21,8 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game_name'];?>英雄列表，想了解<?php echo $config['game_name'];?>有哪些英雄，以及<?php echo $config['game_name'];?>英雄玩法攻略等，尽在<?php echo $config['site_name'];?>。">
     <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>英雄列表,<?php echo $config['game_name'];?>有哪些英雄″>
     <title><?php echo $config['game_name'];?>英雄列表_<?php echo $config['game_name'];?>有哪些英雄-<?php echo $config['site_name'];?></title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
+    <?php renderHeaderJsCss($config);?>
+
 </head>
 
 <body>
@@ -227,8 +225,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   </footer>
 
 
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php renderFooterJsCss($config);?>
   <script>
     $(function () {
 

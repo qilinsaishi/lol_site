@@ -28,10 +28,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
   <meta name="description" content="<?php echo $config['site_name'];?>提供完善的<?php echo $config['game_name'];?>战队信息及<?php echo $config['game_name'];?>电子竞技俱乐部赛事信息资讯及数据分析内容解读。">
   <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>战队,<?php echo $config['game_name'];?>电竞战队,<?php echo $config['game_name'];?>电子竞技俱乐部″>
     <title><?php echo $config['game_name'];?>战队_<?php echo $config['game_name'];?>电子竞技战队-<?php echo $config['site_name'];?></title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/reset.css" />
-  <link rel="stylesheet" href="<?php echo $config['site_url']; ?>/css/style.css" />
+    <?php renderHeaderJsCss($config);?>
 </head>
 
 <body>
@@ -237,8 +234,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
   </footer>
 
 
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php renderFooterJsCss($config);?>
   <script>
     $(function () {
 
