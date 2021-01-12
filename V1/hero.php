@@ -44,6 +44,7 @@ else
     <meta name=”Keywords” Content=”<?php echo $return['lolHero']['data']['hero_name'];?>,<?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['hero_name'];?>″>
     <title><?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['hero_name'];?>介绍_<?php echo $return['lolHero']['data']['hero_name'];?>攻略-<?php echo $config['site_name'];?><?php echo $config['game_name']."-".$return['lolHero']['data']['cn_name'];?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
+	<?php renderHeaderJsCss($config);?>
 </head>
 
 <body>
@@ -71,8 +72,8 @@ else
   <div class="container margin120">
       <ol class="breadcrumb">
       <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-      <li><a href="hero-list.php"><?php echo $config['game_name'];?>英雄列表</a></li>
-      <li><a href="hero.php?hero_id=<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
+      <li><a href="<?php echo $config['site_url']; ?>/heroList/"><?php echo $config['game_name'];?>英雄列表</a></li>
+      <li><a href="<?php echo $config['site_url']; ?>/heroDetail/<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
 
       </ol>
           <div class="row">
@@ -416,9 +417,7 @@ else
     </div>
   </footer>
 
-
-  <script src="<?php echo $config['site_url']; ?>/js/jquery-1.11.0.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<?php renderFooterJsCss($config);?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
   <script>
     $(function () {

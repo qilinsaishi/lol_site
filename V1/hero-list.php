@@ -142,7 +142,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
               <div class="col-lg-4 col-sm-2 col-md-2 col-xs-4  on">
                 <a href="javascript:;;" title="<?php echo $summonerInfo['skill_name'];?>" >
                   <img src="<?php echo $summonerInfo['logo'];?>" alt="img" />
-                  <p>凤凰</p>
+                  <p><?php echo $summonerInfo['skill_name'];?></p>
                 </a>
               </div>
               <?php }?>
