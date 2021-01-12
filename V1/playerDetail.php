@@ -119,7 +119,7 @@ else
               $i = 1;
               foreach($connectedInformationList as $key => $value) {?>
                   <li class="list-item">
-                      <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                      <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <div class="col-lg-10 col-sm-10 col-md-12 col-xs-12 left">
                               <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">图文</span>';}?>
                               <p><?php echo $value['title'];?></p>

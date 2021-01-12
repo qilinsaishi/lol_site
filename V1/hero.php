@@ -299,7 +299,7 @@ else
                       if($i<=6){?>
 
                       <li class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-                          <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                          <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                               <img
                                       src="<?php echo $value['logo'];?>"
                                       alt="<?php echo $value['title'];?>">
@@ -320,7 +320,7 @@ else
                   foreach($connectedInformationList as $key => $value) {
                       if($i>6){?>
                           <li class="list-item">
-                          <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                          <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                               <span>图文</span>
                               <p><?php echo $value['title'];?></p>
                           </a>

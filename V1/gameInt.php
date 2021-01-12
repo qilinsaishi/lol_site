@@ -77,7 +77,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
 
               <?php foreach($return['informationList']['data'] as $key => $value) {?>
                   <li class="list-item">
-                      <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                      <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <p><?php echo $value['title'];?></p>
                       </a>
                   </li>

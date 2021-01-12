@@ -74,7 +74,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
 
               <?php foreach($return['informationList']['data'] as $key => $value) {?>
                   <li>
-                      <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>">
+                      <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>">
                           <div class="left">
                               <img src="<?php echo $value['logo'];?>" alt="<?php echo $value['title'];?>">
                           </div>

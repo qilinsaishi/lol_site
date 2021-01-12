@@ -101,7 +101,7 @@ foreach ($keywordsList as $word => $info) {
           <ol class="breadcrumb">
               <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
               <li><a href="<?php echo $config['site_url']; ?><?php echo ($return['information']['data']['type']==4)?"/strategylist/":"/newslist/";?>"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>
-              <li><a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
+              <li><a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $return['information']['data']['id'];?>"><?php echo $return['information']['data']['title'];?></a></li>
           </ol>
         <div class="show_cont">
 
@@ -173,7 +173,7 @@ foreach ($keywordsList as $word => $info) {
                       <?php foreach($return2['infoList']['data'] as $key => $value) {
                           if($value['id']!=$id){?>
                               <li class="list-item">
-                                  <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
+                                  <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
                               </li>
                           <?php }}?>
                   </ul>
@@ -234,7 +234,7 @@ foreach ($keywordsList as $word => $info) {
 
             <?php foreach($return2['infoListWithAuthor']['data'] as $key => $value) {?>
                 <li class="list-item">
-                    <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
+                    <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank"><?php echo $value['title'];?></a>
                 </li>
             <?php }?>
 

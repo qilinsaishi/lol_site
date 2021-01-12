@@ -93,7 +93,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
             <ul>
                 <?php foreach($return['infoList']['data'] as $key => $value) {?>
               <li>
-              <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+              <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                 <div>
                   <img src="<?php echo $value['logo'];?>" />
                   <p><?php echo $value['title'];?></p>
@@ -138,7 +138,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                 <ul>
               <?php foreach($return['straList']['data'] as $key => $value) {?>
                   <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                      <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
+                      <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <div>
                               <img src="<?php echo $value['logo'];?>" />
                               <p><?php echo $value['title'];?></p>

@@ -139,7 +139,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                 foreach($return['informationList']['data'] as $information)
                 {   ?>
                     <li class="list-item">
-                        <a href="<?php echo $config['site_url']; ?>/newsDetail/<?php echo $information['id'];?>" title="<?php echo $information['title'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $information['id'];?>" title="<?php echo $information['title'];?>" target="_blank">
                             <p><?php echo $information['title'];?></p>
                         </a>
                     </li>
