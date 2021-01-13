@@ -7,7 +7,7 @@ $data = [
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
     "tournament"=>["page"=>1,"page_size"=>8],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
-    "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$team_id,"page_size"=>100,"content_type"=>"information"]
 ];
@@ -125,7 +125,11 @@ else
                   ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
               <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
-                <img src="<?php echo $playerInfo['logo']?>" alt="img" />
+                  <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
+                      <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                  <?php }else{?>
+                      <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                  <?php }?>
                 <p><?php echo $playerInfo['player_name']?></p>
               </a>
             </li>
