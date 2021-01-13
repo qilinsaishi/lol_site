@@ -108,23 +108,22 @@ $return = curl_post($config['api_get'],json_encode($data),1);
       <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 hotTame">
         <div>
             <div class="more_title">
-            <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
+                <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
             </div>
-
-            <ul>
-              <?php
+            <ul class="zhanduiList_box text-center">
+                <?php
               foreach($return['totalTeamList']['data'] as $teamInfo)
               {   ?>
-            <li>
-              <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+            <li  class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
+                <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                 <div class="pic">
                   <img src="<?php echo $teamInfo['logo'];?>" />
                 </div>
-                <p><?php echo $teamInfo['team_name'];?></p>
               </a>
             </li>
               <?php }?>
           </ul>
+            <div style="clear: both;"></div>
         </div>
       </div>
     </div>

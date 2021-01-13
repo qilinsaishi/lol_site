@@ -42,6 +42,9 @@
 	margin-right:15px;
 }
 
+
+
+
 .navbar-nav>li>a {
 	background-image: linear-gradient(0deg,#b76d20,#fdcb55);
 	-webkit-background-clip: text;
@@ -173,6 +176,14 @@
 	padding: 30px 30px 20px 30px;
 	background-color: #1a2633;
 }
+
+
+
+.hotTame .zhanduiList_box{
+	margin-top: 40px;
+}
+
+
 .newMsg>div:first-child ul li a,.GameGl ul li a {
 	display: flex;
 	padding: 6px 0px;
@@ -1114,6 +1125,7 @@
 	overflow: hidden;
 	width: 70px;
 	text-align: center;
+	line-height: 1.5;
 }
 
 .img-content .big-img {
@@ -1204,6 +1216,7 @@
 
 .strategy-box .gameInt_video .list_box a img {
 	width: 100%;
+	height: 80px;
 }
 
 .strategy-box .gameInt_video .list_box a p {
@@ -2346,7 +2359,7 @@
 }
 .breadcrumb > li + li:before {
 	color: #CCCCCC;
-	content: ">> ";
+	content: "》";
 	padding: 0 5px;
 	font-size: small;
 }
@@ -2677,6 +2690,15 @@
 	.heroList .iconList ul li{
 		padding: 0px;
 	}
+	.newMsg ul li a div, .GameGl ul li a div {
+		width: 100%;
+	}
+	.newMsg li span{
+		display: none;
+	}
+	.navbar-nav{
+		padding: 0px 15px;
+	}
 
 }
 
@@ -2807,7 +2829,9 @@
 		padding-left: 0px;
 	}
 
-
+	.navbar-nav>li:first-child{
+		margin-left: 30px;
+	}
 }
 
 @media (min-width: 768px) {
