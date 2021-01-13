@@ -7,8 +7,9 @@ $data = [
     "information"=>[$id],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "tournament"=>["page"=>1,"page_size"=>8],
-    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
-    "playerList"=>["page"=>1,"page_size"=>6],
+    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","rand"=>1,"cacheWith"=>"information","fields"=>'team_id,team_name,logo'],
+    "totalPlayerList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","rand"=>1,"cacheWith"=>"information","fields"=>'player_id,player_name,logo'],
+    "playerList"=>["dataType"=>"totalPlayerList","page"=>1,"page_size"=>6,"source"=>"cpseo"],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
@@ -207,7 +208,7 @@ foreach ($keywordsList as $word => $info) {
           <div class="col-xs-24">
             <ul class="zhanduiList_box  text-center">
                 <?php
-                foreach($return['playerList']['data'] as $playerInfo)
+                foreach($return['totalPlayerList']['data'] as $playerInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
                         <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
