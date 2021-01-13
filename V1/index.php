@@ -3,7 +3,7 @@
 require_once "function/init.php";
 $data = [
         "matchList"=>["page"=>1,"page_size"=>9],
-        "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
+        "totalTeamList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
         "tournament"=>["page"=>1,"page_size"=>6],
         "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
         "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
@@ -38,7 +38,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="<?php echo $config['site_url'];?>"><img src="images/logo.png" alt="<?php echo $config['site_name']?>" /></a>
+          <a class="navbar-brand" href="<?php echo $config['site_url'];?>"><img src="<?php echo $config['site_url'];?>/images/logo.png" alt="<?php echo $config['site_name'];?>" /></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
