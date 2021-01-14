@@ -42,7 +42,7 @@ else
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
   <meta name="description" content="<?php echo mb_str_split($return['lolHero']['data']['description'],200);?>;?>">
     <meta name=”Keywords” Content=”<?php echo $return['lolHero']['data']['hero_name'];?>,<?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['hero_name'];?>″>
-    <title><?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['hero_name'];?>介绍_<?php echo $return['lolHero']['data']['hero_name'];?>攻略-<?php echo $config['site_name'];?><?php echo $config['game_name']."-".$return['lolHero']['data']['cn_name'];?></title>
+    <title><?php echo $config['game_name'];?><?php echo $return['lolHero']['data']['cn_name'].$return['lolHero']['data']['hero_name'];?>介绍_<?php echo $return['lolHero']['data']['cn_name'].$return['lolHero']['data']['hero_name'];?>攻略-<?php echo $config['site_name'];?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
 	<?php renderHeaderJsCss($config);?>
 </head>
