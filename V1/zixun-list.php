@@ -207,6 +207,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
             <?php }?>
         </ul>
       </div>
+        <div align="center">Copyright©2021.Company 麒麟电竞 All rights reserved</div>
     </div>
   </footer>
 

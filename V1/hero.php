@@ -414,6 +414,7 @@ else
             <?php }?>
         </ul>
       </div>
+        <div align="center">Copyright©2021.Company 麒麟电竞 All rights reserved</div>
     </div>
   </footer>
 
