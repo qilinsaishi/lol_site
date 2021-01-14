@@ -8,7 +8,7 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"lolHero"],
     "keywordMapList"=>["fields"=>"content_id","source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information"]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
@@ -388,7 +388,7 @@ else
         <div class="title">热门选手</div>
         <ul>
             <?php
-            foreach($return['playerList']['data'] as $playerInfo)
+            foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 ?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>

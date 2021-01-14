@@ -7,16 +7,17 @@ $page = $_GET['page']??1;
 if($page==''){
 	$page=1;
 }
+$zxtype=($info['type']!="info")?"/strategylist":"/newslist";
 $data = [
     "matchList"=>["page"=>1,"page_size"=>9],
-	"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
+	"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "informationList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>$info['type']=="info"?"1,2,3,5":"4","fields"=>"*"],
+    "currentPage"=>["page"=>"infoList","type"=>$zxtype,"page"=>$page,"page_size"=>$info['page']['page_size']]
 ];
-$zxtype=($info['type']!="info")?"/strategylist":"/newslist";
 $return = curl_post($config['api_get'],json_encode($data),1);
 $info['page']['total_count'] = $return['informationList']['count'];
 $info['page']['total_page'] = intval($return['informationList']['count']/$info['page']['page_size']);
@@ -145,7 +146,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
           <div class="col-xs-24">
             <ul class="zhanduiList_box  text-center">
                 <?php
-                foreach($return['playerList']['data'] as $playerInfo)
+                foreach($return['totalPlayerList']['data'] as $playerInfo)
                 {   ?>
                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
                         <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
@@ -180,7 +181,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         <div class="title">热门选手</div>
         <ul>
             <?php
-            foreach($return['playerList']['data'] as $playerInfo)
+            foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 ?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>

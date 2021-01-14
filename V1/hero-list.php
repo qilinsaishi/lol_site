@@ -2,14 +2,15 @@
 <?php
 require_once "function/init.php";
 $data = [
-    "playerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8],
-    "teamList"=>["page"=>1,"page_size"=>8],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
+    //"totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage"],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "lolHeroList"=>["page"=>1,"page_size"=>1000],
     "lolEquipmentList"=>["page"=>1,"page_size"=>1000],
     "lolSummonerList"=>["page"=>1,"page_size"=>200],
+    "currentPage"=>["page"=>"heroList"]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 ?>
@@ -167,16 +168,10 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                   </div>
               <?php }?>
 
-
-
           </div>
           <div style="clear: both;"></div>
   
         </div>
-
-       
-
-
 
       </div>
     </div>
@@ -199,7 +194,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
         <div class="title">热门选手</div>
         <ul>
             <?php
-            foreach($return['playerList']['data'] as $playerInfo)
+            foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
                 ?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
