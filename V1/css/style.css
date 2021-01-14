@@ -2359,7 +2359,7 @@
 }
 .breadcrumb > li + li:before {
 	color: #CCCCCC;
-	content: "》";
+	content: ">>";
 	padding: 0 5px;
 	font-size: small;
 }
