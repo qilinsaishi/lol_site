@@ -156,4 +156,9 @@
         echo '<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>';
         echo '<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
     }
+    function renderCertification()
+    {
+        echo '<div align="center">Copyright©2021.Company 麒麟电竞 All rights reserved   <a href="https://beian.miit.gov.cn/#/Integrated/index">琼ICP备19001306号-2</a></div>';
+
+    }
     ?>

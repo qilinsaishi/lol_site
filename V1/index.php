@@ -201,7 +201,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
             <?php }?>
         </ul>
       </div>
-        <div align="center">Copyright©2021.Company 麒麟电竞 All rights reserved</div>
+        <?php renderCertification();?>
     </div>
   </footer>
 
