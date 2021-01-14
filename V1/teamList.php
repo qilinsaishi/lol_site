@@ -9,6 +9,7 @@ if($page==''){
 $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "matchList"=>["page"=>1,"page_size"=>4],
+    "teamList"=>["dataType"=>"totalTeamList","page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo'],
     "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
@@ -71,7 +72,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
           <div class="iconList">
             <ul>
                 <?php
-                foreach($return['totalTeamList']['data'] as $teamInfo)
+                foreach($return['teamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
                         <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
