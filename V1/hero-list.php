@@ -10,7 +10,7 @@ $data = [
     "lolHeroList"=>["page"=>1,"page_size"=>1000],
     "lolEquipmentList"=>["page"=>1,"page_size"=>1000],
     "lolSummonerList"=>["page"=>1,"page_size"=>200],
-    "currentPage"=>["page"=>"heroList"]
+    "currentPage"=>["name"=>"heroList"]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 ?>

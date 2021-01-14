@@ -12,9 +12,10 @@ $data = [
     "matchList"=>["page"=>1,"page_size"=>4],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "playerList"=>["dataType"=>"totalPlayerList","game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>"cpseo","fields"=>'player_id,player_name,logo'],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
-    "currentPage"=>["page"=>"playerList","page"=>$page,"page_size"=>$info['page']['page_size']]
+    "currentPage"=>["name"=>"playerList","page"=>$page,"page_size"=>$info['page']['page_size']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 $info['page']['total_count'] = $return['totalPlayerList']['count'];
@@ -70,7 +71,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
                         <div class="iconList">
                             <ul>
                                 <?php
-                                foreach($return['totalPlayerList']['data'] as $playerInfo)
+                                foreach($return['playerList']['data'] as $playerInfo)
                                 {   ?>
                                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
                                         <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
