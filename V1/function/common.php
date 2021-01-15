@@ -147,7 +147,7 @@
     function renderHeaderJsCss($config)
     {
         echo '<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">';
-        echo '<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">';
+        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/font-awesome-4.7.0/css/font-awesome.min.css">';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/reset.css" />';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/style.css" />';
     }
