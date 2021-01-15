@@ -29,12 +29,12 @@ if(is_array($return["information"]['data']['keywords_list']))
             {
                 if($wordInfo['count']>$keywordsList[$word]['count'])
                 {
-                    $keywordsList[$word] = ["id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
+                    $keywordsList[$word] = ["word"=>$word,"id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
                 }
             }
             else
             {
-                $keywordsList[$word] = ["id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
+                $keywordsList[$word] = ["word"=>$word,"id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
             }
         }
     }
@@ -47,14 +47,7 @@ $data2 = [
         "type"=>$return['information']['data']['type']!=4?"4":"1,2,3,5","fields"=>"id,title"],
 ];
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
-
-
-$i = 1;
-foreach ($keywordsList as $word => $info) {
-    {
-//        $return['information']['data']['content'] = str_replace($word,'<a href="' . $config['site_url'] . '/' . $info['url'] . '">' . $word . '</a>',$return['information']['data']['content']);
-    }
-} ?>
+ ?>
 
 
 ?>
@@ -123,7 +116,7 @@ foreach ($keywordsList as $word => $info) {
              {
                  if($i<=3)
                  {
-                     echo '<li><a href="'.$config['site_url'].'/'.$info['url'].'">'.$word.'</a></li>';
+                     echo '<li><a href="'.$config['site_url'].'/'.$info['url'].'">'.$info['word'].'</a></li>';
                  }
                  $i++;
              }?>
