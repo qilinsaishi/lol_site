@@ -89,10 +89,8 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
   </nav><!-- /.navbar -->
 
   <div class="container margin120">
-
-    <div class="row">
-
-      <div class="col-md-8">
+      <div class="row heroList">
+          <div class="col-md-12">
           <ol class="breadcrumb">
               <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
               <li><a href="<?php echo $config['site_url']; ?><?php echo ($return['information']['data']['type']==4)?"/strategylist/":"/newslist/";?>"><?php echo ($return['information']['data']['type']==4)?"攻略":"资讯";?></a></li>

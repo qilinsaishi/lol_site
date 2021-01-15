@@ -63,7 +63,9 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
   </nav><!-- /.navbar -->
 
   <div class="container margin120">
-          <ol class="breadcrumb">
+      <div class="row heroList">
+          <div class="col-md-12">
+              <ol class="breadcrumb">
               <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
               <li><a href="<?php echo $config['site_url']; ?><?php echo ($info['type']!="info")?"/strategylist/":"/newslist/";?>"><?php echo $config['game_name'];?><?php echo ($info['type']!="info")?"攻略":"资讯";?></a></li>
           </ol>
@@ -161,7 +163,9 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         </div>
       </div>
     </div>
+  </div>
 
+  </div>
 
   </div>
 
