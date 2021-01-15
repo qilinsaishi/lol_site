@@ -256,7 +256,7 @@ else
               $i = 1;
               foreach($return['lolHero']['data']['skinList'] as $key => $skinInfo)
               { ?>
-                  <a <?php if($i==1){?>class="on"<?php }?> rel="img<?php echo $i;?>" href="javascript:;">
+                  <a <?php if($i==1){?>class="on"<?php }?> rel="img<?php echo $i;?>" href="##">
                       <img class="moveimg<?php if($i==1){?> active <?php }?>" src="<?php echo $skinInfo['data']['mainImg'];?>">
                       <p class="img-name"><?php echo $skinInfo['data']['name'];?></p>
                   </a>
