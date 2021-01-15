@@ -7,10 +7,11 @@ $data = [
     "information"=>[$id],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
     "tournament"=>["page"=>1,"page_size"=>8],
-    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","rand"=>1,"cacheWith"=>"information","fields"=>'team_id,team_name,logo'],
-    "totalPlayerList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","rand"=>1,"cacheWith"=>"information","fields"=>'player_id,player_name,logo'],
+    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","rand"=>1,"cacheWith"=>"currentPage","fields"=>'team_id,team_name,logo'],
+    "totalPlayerList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"cpseo","rand"=>1,"cacheWith"=>"currentPage","fields"=>'player_id,player_name,logo'],
     "playerList"=>["dataType"=>"totalPlayerList","page"=>1,"page_size"=>6,"source"=>"cpseo"],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
+    "currentPage"=>["name"=>"info","id"=>$id]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 $urlList = ["hero"=>"herodetail/",

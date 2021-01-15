@@ -14,7 +14,7 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>9,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "informationList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>$info['type']=="info"?"1,2,3,5":"4","fields"=>"*"],
     "currentPage"=>["name"=>"infoList","type"=>$zxtype,"page"=>$page,"page_size"=>$info['page']['page_size']]
 ];
@@ -181,11 +181,12 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         <div class="title">热门选手</div>
         <ul>
             <?php
+                $i = 1;
             foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
-                ?>
+                if($i<=8){?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
-            <?php }?>
+            <?php $i++;}}?>
           </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">
