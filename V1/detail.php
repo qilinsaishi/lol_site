@@ -15,8 +15,8 @@ $data = [
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 $urlList = ["hero"=>"herodetail/",
-    "team"=>"teamdetail/",
-    "player"=>"playerdetail/",
+            "team"=>"teamdetail/",
+            "player"=>"playerdetail/",
 ];
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 $keywordsList = [];
@@ -240,8 +240,6 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
         <?php renderCertification();?>
     </div>
 </footer>
-
-
 <?php renderFooterJsCss($config);?>
 </body>
 
