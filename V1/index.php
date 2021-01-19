@@ -23,9 +23,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   <meta name="description" content="<?php echo $config['site_description'];?>">
   <meta name=”Keywords” Content=”<?php echo $config['site_name'];?>″>
     <title><?php echo $config['site_name'];?>_<?php echo $config['game_name'];?>电子竞技赛事资讯分析网</title>
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+    <?php renderHeaderJsCss($config);?>
 </head>
 
 <body>
