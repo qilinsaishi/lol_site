@@ -64,6 +64,13 @@ if(count($return2['anotherKeyword']['data']))
         $keywordsList[$wordInfo['word']]['url'] = $wordInfo['url'];
     }
 }
+foreach($keywordsList as $word => $wordInfo)
+{
+    if(strlen($word)>=3)
+    {
+        $return['information']['data']['content'] = str_replace($word,'<a href="'.$wordInfo['url'].'">'.$word.'</a>',$return['information']['data']['content']);
+    }
+}
 ?>
 <html lang="zh-CN">
 
