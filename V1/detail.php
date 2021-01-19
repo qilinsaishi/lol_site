@@ -19,13 +19,18 @@ $urlList = ["hero"=>"herodetail/",
             "player"=>"playerdetail/",
 ];
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
-$keywordsList = [];
+$keywordsList = [];$anotherList = [];
 if(is_array($return["information"]['data']['keywords_list']))
 {
     foreach($return["information"]['data']['keywords_list'] as $type => $list)
     {
+
         foreach($list as $word => $wordInfo)
         {
+            if($type=="another")
+            {
+                $anotherList[] = $wordInfo['id'];
+            }
             if(isset($keywordsList[$word]))
             {
                 if($wordInfo['count']>$keywordsList[$word]['count'])
@@ -35,7 +40,7 @@ if(is_array($return["information"]['data']['keywords_list']))
             }
             else
             {
-                $keywordsList[$word] = ["word"=>$word,"id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
+                $keywordsList[$word] = ["word"=>$word,"id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>isset($urlList[$type])?($urlList[$type].$wordInfo['id']):""];
             }
         }
     }
@@ -47,7 +52,18 @@ $data2 = [
     "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>5,
         "type"=>$return['information']['data']['type']!=4?"4":"1,2,3,5","fields"=>"id,title"],
 ];
+if(count($anotherList)>0)
+{
+    $data2["anotherKeyword"] = ["dataType"=>"anotherKeyword","ids"=>$anotherList,"fields"=>"id,word,url","pageSize"=>count($anotherList)];
+}
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
+if(count($return2['anotherKeyword']['data']))
+{
+    foreach($return2['anotherKeyword']['data'] as  $wordInfo)
+    {
+        $keywordsList[$wordInfo['word']]['url'] = $wordInfo['url'];
+    }
+}
 ?>
 <html lang="zh-CN">
 
