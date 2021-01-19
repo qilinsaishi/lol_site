@@ -14,9 +14,9 @@ $data = [
     "currentPage"=>["name"=>"info","id"=>$id]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-$urlList = ["hero"=>"herodetail/",
-            "team"=>"teamdetail/",
-            "player"=>"playerdetail/",
+$urlList = ["hero"=>$config['site_url']."/herodetail/",
+            "team"=>$config['site_url']."/teamdetail/",
+            "player"=>$config['site_url']."/playerdetail/",
 ];
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 $keywordsList = [];$anotherList = [];
