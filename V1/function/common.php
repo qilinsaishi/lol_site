@@ -161,4 +161,14 @@
         echo '<div align="center">Copyright©2021.Company 麒麟电竞 All rights reserved   <a href="https://beian.miit.gov.cn/#/Integrated/index">琼ICP备19001306号-2</a></div>';
 
     }
+    function str_replace_limit($search, $replace, $subject, $limit=-1){
+        if(is_array($search)){
+            foreach($search as $k=>$v){
+                $search[$k] = '`'. preg_quote($search[$k], '`'). '`';
+            }
+        }else{
+            $search = '`'. preg_quote($search, '`'). '`';
+        }
+        return preg_replace($search, $replace, $subject, $limit);
+    }
     ?>

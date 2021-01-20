@@ -64,11 +64,13 @@ if(count($return2['anotherKeyword']['data']))
         $keywordsList[$wordInfo['word']]['url'] = $wordInfo['url'];
     }
 }
+$i = 1;$count = 1;
 foreach($keywordsList as $word => $wordInfo)
 {
-    if(strlen($word)>=3)
+    if($i<=3 && strlen($word)>=3)
     {
-        $return['information']['data']['content'] = str_replace($word,'<a href="'.$wordInfo['url'].'">'.$word.'</a>',$return['information']['data']['content']);
+        $return['information']['data']['content'] = str_replace_limit($word,'<a href="'.$wordInfo['url'].'">'.$word.'</a>',$return['information']['data']['content'],1);
+        $i++;
     }
 }
 ?>
