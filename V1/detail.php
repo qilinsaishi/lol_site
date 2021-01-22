@@ -19,6 +19,7 @@ $urlList = ["hero"=>$config['site_url']."/herodetail/",
             "player"=>$config['site_url']."/playerdetail/",
 ];
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
+$return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
 $keywordsList = [];$anotherList = [];
 if(is_array($return["information"]['data']['keywords_list']))
 {
@@ -132,11 +133,11 @@ foreach($keywordsList as $word => $wordInfo)
                     <ul class="col-lg-8 col-sm-8 col-md-12 col-xs-12">
                         <?php
                         $i = 1;
-                        foreach($keywordsList as $word => $info)
+                        foreach($return["information"]['data']['scws_list'] as $info)
                         {
                             if($i<=3)
                             {
-                                echo '<li><a href="'.$config['site_url'].'/'.$info['url'].'">'.$info['word'].'</a></li>';
+                                echo '<li><a href="'.$config['site_url'].'/scws/'.urlencode($info['keyword_id']).'">'.$info['word'].'</a></li>';
                             }
                             $i++;
                         }?>

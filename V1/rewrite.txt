@@ -8,3 +8,4 @@ rewrite  ^/strategylist/(.*)$  /zixun-list.php?type=strategy&page=$1?  last;
 rewrite  ^/gameint  /gameInt.php  last;
 rewrite  ^/herolist  /hero-list.php  last;
 rewrite  ^/herodetail/(.*)$  /hero.php?hero_id=$1?  last;
+rewrite  ^/scws/(.*)/(.*)$  /scwsList.php?ids=$1&page=$2?  last;
