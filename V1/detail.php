@@ -137,7 +137,7 @@ foreach($keywordsList as $word => $wordInfo)
                         {
                             if($i<=3)
                             {
-                                echo '<li><a href="'.$config['site_url'].'/scws/'.urlencode($info['keyword_id']).'">'.$info['word'].'</a></li>';
+                                echo '<li><a href="'.$config['site_url'].'/scws/'.urlencode($info['keyword_id']).'/1">'.$info['word'].'</a></li>';
                             }
                             $i++;
                         }?>
