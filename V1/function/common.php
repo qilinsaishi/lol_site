@@ -15,7 +15,6 @@
     }
     function render_page_pagination($total_count,$page_size,$current_page,$url)
     {
-
         $p = 5;
         $p2 = 2;
         $totalPage = ceil($total_count/$page_size);

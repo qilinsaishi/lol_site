@@ -46,25 +46,22 @@ if(is_array($return["information"]['data']['keywords_list']))
         }
     }
 }
+
+//$ids = array_column($keywordsList,"id");
+
 array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
+$ids = array_column($return["information"]['data']['scws_list'],"keyword_id");
+$ids = count($ids)>0?implode(",",$ids):"0";
 $data2 = [
-    "infoListWithAuthor"=>["dataType"=>"informationList","game"=>$config['game'],"author_id"=>$return['information']['data']['author_id'],"page"=>1,"page_size"=>$info['page']['page_size'],
-        "type"=>$return['information']['data']['type']==4?"4":"1,2,3,5","fields"=>"id,title"],
-    "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>5,
-        "type"=>$return['information']['data']['type']!=4?"4":"1,2,3,5","fields"=>"id,title"],
+    "ConnectInformationList"=>["dataType"=>"scwsInformaitonList","ids"=>$ids,"game"=>$config['game'],"page"=>1,"page_size"=>3,/*"type"=>$info['type']=="info"?"1,2,3,5":"4",*/"fields"=>"*"],
+    "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>3,
+        "type"=>$return['information']['data']['type']==4?"4":"1,2,3,5","fields"=>"id,title","expect_id"=>$id],
 ];
 if(count($anotherList)>0)
 {
     $data2["anotherKeyword"] = ["dataType"=>"anotherKeyword","ids"=>$anotherList,"fields"=>"id,word,url","pageSize"=>count($anotherList)];
 }
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
-if(count($return2['anotherKeyword']['data']))
-{
-    foreach($return2['anotherKeyword']['data'] as  $wordInfo)
-    {
-        $keywordsList[$wordInfo['word']]['url'] = $wordInfo['url'];
-    }
-}
 $i = 1;$count = 1;
 foreach($keywordsList as $word => $wordInfo)
 {
@@ -75,6 +72,7 @@ foreach($keywordsList as $word => $wordInfo)
     }
 }
 ?>
+
 <html lang="zh-CN">
 
 <head>
@@ -215,9 +213,37 @@ foreach($keywordsList as $word => $wordInfo)
                 </div>
             </div>
         </div>
-
+<div class="row">
+    <div class="col-md-8 padding0">
+        <div class="saishi">
+            <div class="titleBox">
+                <h3>相关文章推荐</h3>
+            </div>
+            <div class="col-xs-24">
+                <ul class="saishiList_box">
+                    <?php foreach($return2['ConnectInformationList']['data'] as $info){?>
+                        <li class="list-item">
+                            <a href="<?php echo $config['site_url']."/detail/".$info['content']['id']?>" title="<?php echo $info['content']['title'];?>" target="_blank"><?php echo $info['content']['title'];?></a>
+                        </li>
+                    <?php }?>
+                </ul>
+            </div>
+        </div>
+        <div class="saishi">
+            <div class="titleBox">
+                <h3>最新资讯</h3>
+            </div>
+            <div class="col-xs-24">
+                <ul class="saishiList_box">
+                    <?php foreach($return2['infoList']['data'] as $info){?>
+                        <li class="list-item">
+                            <a href="<?php echo $config['site_url']."/detail/".$info['id']?>" title="<?php echo $info['title'];?>" target="_blank"><?php echo $info['title'];?></a>
+                        </li>
+                    <?php }?>
+                </ul>
+            </div>
+        </div>
     </div>
-
 </div>
 
 <footer class="container footer">
