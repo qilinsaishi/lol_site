@@ -53,7 +53,7 @@ array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsLi
 $ids = array_column($return["information"]['data']['scws_list'],"keyword_id");
 $ids = count($ids)>0?implode(",",$ids):"0";
 $data2 = [
-    "ConnectInformationList"=>["dataType"=>"scwsInformaitonList","ids"=>$ids,"game"=>$config['game'],"page"=>1,"page_size"=>3,/*"type"=>$info['type']=="info"?"1,2,3,5":"4",*/"fields"=>"*"],
+    "ConnectInformationList"=>["dataType"=>"scwsInformaitonList","ids"=>$ids,"game"=>$config['game'],"page"=>1,"page_size"=>3,/*"type"=>$info['type']=="info"?"1,2,3,5":"4",*/"fields"=>"*","expect_id"=>$id],
     "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>3,
         "type"=>$return['information']['data']['type']==4?"4":"1,2,3,5","fields"=>"id,title","expect_id"=>$id],
 ];
@@ -212,7 +212,6 @@ foreach($keywordsList as $word => $wordInfo)
                     </div>
                 </div>
             </div>
-        </div>
 <div class="row">
     <div class="col-md-8 padding0">
         <div class="saishi">
