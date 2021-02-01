@@ -5,12 +5,12 @@ $data = [
         "matchList"=>["page"=>1,"page_size"=>9],
         "totalTeamList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history'],
         "tournament"=>["page"=>1,"page_size"=>8],
-        "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
-        "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+        "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+        "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
         "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
         "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>9,"type"=>"1,2,3,5"],
         "straList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
-        "currentPage"=>["name"=>"index"]
+        "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
     ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 

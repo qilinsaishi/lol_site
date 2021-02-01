@@ -6,11 +6,11 @@ $data = [
     //"totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage"],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
-    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "lolHeroList"=>["page"=>1,"page_size"=>1000],
     "lolEquipmentList"=>["page"=>1,"page_size"=>1000],
     "lolSummonerList"=>["page"=>1,"page_size"=>200],
-    "currentPage"=>["name"=>"heroList"]
+    "currentPage"=>["name"=>"heroList","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 ?>
