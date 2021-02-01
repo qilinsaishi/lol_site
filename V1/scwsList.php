@@ -15,7 +15,7 @@ $data = [
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
-    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>9,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "currentPage"=>["name"=>"infoList","type"=>$zxtype,"page"=>$page,"page_size"=>$info['page']['page_size']]
 ];

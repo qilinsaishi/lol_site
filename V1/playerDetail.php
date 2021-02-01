@@ -8,9 +8,9 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
-    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "keywordMapList"=>["fields"=>"content_id","source_type"=>"player","source_id"=>$player_id,"page_size"=>100,"content_type"=>"information"],
-    "currentPage"=>["name"=>"player","id"=>$player_id]
+    "currentPage"=>["name"=>"player","id"=>$player_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 if(count($return["keywordMapList"]['data'])>0)

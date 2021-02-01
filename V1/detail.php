@@ -5,13 +5,13 @@ $info['page']['page_size'] = 4;
 $id = $_GET['id']??1;
 $data = [
     "information"=>[$id],
-    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6],
+    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "tournament"=>["page"=>1,"page_size"=>8],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"cpseo","rand"=>1,"cacheWith"=>"currentPage","fields"=>'team_id,team_name,logo'],
     "totalPlayerList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"cpseo","rand"=>1,"cacheWith"=>"currentPage","fields"=>'player_id,player_name,logo'],
     "playerList"=>["dataType"=>"totalPlayerList","page"=>1,"page_size"=>6,"source"=>"cpseo"],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
-    "currentPage"=>["name"=>"info","id"=>$id]
+    "currentPage"=>["name"=>"info","id"=>$id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 $urlList = ["hero"=>$config['site_url']."/herodetail/",
