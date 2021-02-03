@@ -222,7 +222,7 @@ foreach($keywordsList as $word => $wordInfo)
                 <ul class="saishiList_box">
                     <?php foreach($return2['ConnectInformationList']['data'] as $info){?>
                         <li class="list-item">
-                            <a href="<?php echo $config['site_url']."/detail/".$info['content']['id']?>" title="<?php echo $info['content']['title'];?>" target="_blank"><?php echo $info['content']['title'];?></a>
+                            <a href="<?php echo $config['site_url']."/newsdetail/".$info['content']['id']?>" title="<?php echo $info['content']['title'];?>" target="_blank"><?php echo $info['content']['title'];?></a>
                         </li>
                     <?php }?>
                 </ul>
@@ -236,7 +236,7 @@ foreach($keywordsList as $word => $wordInfo)
                 <ul class="saishiList_box">
                     <?php foreach($return2['infoList']['data'] as $info){?>
                         <li class="list-item">
-                            <a href="<?php echo $config['site_url']."/detail/".$info['id']?>" title="<?php echo $info['title'];?>" target="_blank"><?php echo $info['title'];?></a>
+                            <a href="<?php echo $config['site_url']."/newsdetail/".$info['id']?>" title="<?php echo $info['title'];?>" target="_blank"><?php echo $info['title'];?></a>
                         </li>
                     <?php }?>
                 </ul>
