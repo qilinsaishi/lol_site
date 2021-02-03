@@ -8,8 +8,8 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
-    "keywordMapList"=>["fields"=>"content_id","source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information"],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>3,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
+    "keywordMapList"=>["fields"=>"content_id","game"=>$config['game'],"source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information"],
     "currentPage"=>["name"=>"hero","id"=>$hero_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
@@ -34,8 +34,6 @@ else
     $connectedInformationList = [];
 }
 ?>
-
-
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -64,7 +62,6 @@ else
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <?php generateNav($config,"hero");?>
-
         </ul>
       </div>
     </div>
@@ -75,10 +72,8 @@ else
       <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
       <li><a href="<?php echo $config['site_url']; ?>/herolist/"><?php echo $config['game_name'];?>英雄列表</a></li>
       <li><a href="<?php echo $config['site_url']; ?>/herodetail/<?php echo $return['lolHero']['data']['hero_id'];?>"><?php echo $return['lolHero']['data']['hero_name'];?></a></li>
-
       </ol>
           <div class="row">
-
       <div class="gameInt">
         <div class="col-lg-6 col-md-6 col-xs-12 left">
           <img src="              

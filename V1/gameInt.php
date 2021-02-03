@@ -10,7 +10,7 @@ $data = [
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
     "gameConfig"=>$config['game'],
-    "currentPage"=>["name"=>"gameInt"]
+    "currentPage"=>["name"=>"gameInt","site_id"=>$config['site_id']]
 
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
