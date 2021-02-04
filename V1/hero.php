@@ -9,7 +9,7 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>3,"source"=>"cpseo","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
-    "keywordMapList"=>["fields"=>"content_id","game"=>$config['game'],"source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information"],
+    "keywordMapList"=>["fields"=>"content_id","game"=>$config['game'],"source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>13,"fields"=>"id,title,logo,create_time"]],
     "currentPage"=>["name"=>"hero","id"=>$hero_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
@@ -21,18 +21,7 @@ foreach($return['lolHero']['data']["spellList"] as $key => $spellInfo)
 {
     $return['lolHero']['data']["spellList"][$key]['data'] = json_decode($spellInfo['data'],true);
 }
-if(count($return["keywordMapList"]['data'])>0)
-{
-    $data2 = [
-        "informationList"=>["ids"=>array_column($return["keywordMapList"]['data'],"content_id"),"page_size"=>13,"fields"=>"id,title,logo"]
-    ];
-    $return2 = curl_post($config['api_get'],json_encode($data2),1);
-    $connectedInformationList = $return2["informationList"]["data"];
-}
-else
-{
-    $connectedInformationList = [];
-}
+$connectedInformationList = $return["keywordMapList"]["data"];
 ?>
 <html lang="zh-CN">
 <head>
