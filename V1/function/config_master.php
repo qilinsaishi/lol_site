@@ -7,6 +7,7 @@ $base_config = [
     'game_name'=>"英雄联盟",
     'game'=>"lol",
     'site_id'=>1,
+    'source'=>"cpseo",
     'cacheConfig'=>[
         'matchList'=>['prefix'=>"matchList","expire"=>3600],
         'links'=>['prefix'=>"links","expire"=>7200]
