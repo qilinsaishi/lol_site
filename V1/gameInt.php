@@ -11,7 +11,6 @@ $data = [
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
     "gameConfig"=>$config['game'],
     "currentPage"=>["name"=>"gameInt","site_id"=>$config['site_id']]
-
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
 ?>
@@ -59,7 +58,6 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   
         <div class="col-lg-6 col-md-6 col-xs-12 right">
           <h2>游戏介绍</h2>
-          <p><?php echo $return['gameConfig']['data']['description'];?></p>
             <p><?php echo $return['gameConfig']['data']['content'];?></p>
   
         </div>

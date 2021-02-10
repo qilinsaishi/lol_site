@@ -167,7 +167,7 @@ else
                                 <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">图文</span>';}?>
                                 <p><?php echo $value['title'];?></p>
                             </div>
-                            <p class="right"><?php echo ($value["type"]==2)?$value['site_time']:$value['create_time'];?></p>
+                            <p class="right"><?php echo ($value["type"]??1==2)?$value['site_time']:$value['create_time'];?></p>
                         </a>
                     </li>
                         <?php $i++;}}else{?>

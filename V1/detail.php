@@ -101,7 +101,7 @@ foreach($keywordsList as $word => $wordInfo)
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <?php
-                $type = $info['type']=="info" ?"info":"stra";
+                $type = $return['information']['data']['type']==4 ?"info":"stra";
                 generateNav($config, $type);
                 ?>
             </ul>

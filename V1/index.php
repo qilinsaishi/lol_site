@@ -98,7 +98,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                   <img src="<?php echo $value['logo'];?>" />
                   <p><?php echo $value['title'];?></p>
                 </div>
-                <span><?php echo substr((($value["type"]==2)?$value['site_time']:$value['create_time']),0,10);?></span>
+                <span><?php echo substr((($value["type"]??1==2)?$value['site_time']:$value['create_time']),0,10);?></span>
               </a>
             </li>
               <?php }?>
