@@ -58,7 +58,8 @@ if(count($t)>0)
 function push2Baidu($urls,$config)
 {
     $url = explode('//',$config['site_url']);
-    $api = 'http://data.zz.baidu.com/urlssite='.$url[1].'&token='.$config['baidu_token'];
+    $api = 'http://data.zz.baidu.com/urls?site='.$url[1].'&token='.$config['baidu_token'];
+    $api = htmlspecialchars_decode($api);
     $ch = curl_init();
     $options =  array(
         CURLOPT_URL => $api,
