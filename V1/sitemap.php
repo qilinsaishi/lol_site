@@ -30,7 +30,8 @@ $return[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset>\n";
 
 foreach($urlList as $url)
 {
-    $return[] = "<url>\n<loc>".$url."</loc>\n<lastmod>".date('Y-m-d')."</lastmod>\n<changefreq>daily</changefreq>\n<priority>1.0</priority>\n</url>\n";
+    $priority = ($url==$config['site_url'])?1:0.8;
+    $return[] = "<url>\n<loc>".$url."</loc>\n<lastmod>".date('Y-m-d')."</lastmod>\n<changefreq>daily</changefreq>\n<priority>".$priority."</priority>\n</url>\n";
 }
 $return[] = '</urlset>';
 $myfile = fopen(dirname(__FILE__)."/sitemap.xml", "w") or die("Unable to open file!");
