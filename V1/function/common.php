@@ -121,6 +121,8 @@
     }
     function generateNav($config,$current = "index")
     {
+        $navList = $config['navList'];
+        /*
         $navList = ['index'=>['url'=>"","name"=>"首页"],
             'game'=>['url'=>"gameint/","name"=>$config['game_name']],
             'team'=>['url'=>"teamlist/","name"=>$config['game_name']."战队"],
@@ -130,6 +132,7 @@
             'stra'=>['url'=>"strategylist/","name"=>"游戏攻略"],
             //'faq'=>['url'=>"wenda-list.html","name"=>"游戏问答"],
         ];
+        */
         foreach($navList as $key => $value)
         {
             if($key == $current)
