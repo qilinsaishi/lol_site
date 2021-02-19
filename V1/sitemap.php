@@ -45,10 +45,7 @@ foreach($urlList as $url)
     $i++;
     if($i>$page_size)
     {
-        $myfile = fopen(dirname(__FILE__) . "/robot_" . $page . ".txt", "w") or die("Unable to open file!");
-        $txt = implode("\n", $t);
-        fwrite($myfile, $txt);
-        fclose($myfile);
+        push2Baidu($t,$config);
         $i = 1;
         $page++;
         $t = [];
@@ -56,10 +53,22 @@ foreach($urlList as $url)
 }
 if(count($t)>0)
 {
-    $myfile = fopen(dirname(__FILE__)."/robot_".$page.".txt", "w") or die("Unable to open file!");
-    $txt = implode("\n",$t);
-    fwrite($myfile, $txt);
-    fclose($myfile);
+    push2Baidu($t,$config);
 }
-
+function push2Baidu($urls,$config)
+{
+    $url = explode('//',$config['site_url']);
+    $api = 'http://data.zz.baidu.com/urlssite='.$url[1].'&token='.$config['baidu_token'];
+    $ch = curl_init();
+    $options =  array(
+        CURLOPT_URL => $api,
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POSTFIELDS => implode("\n", $urls),
+        CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+    );
+    curl_setopt_array($ch, $options);
+    $result = curl_exec($ch);
+    echo $result;
+}
 ?>
