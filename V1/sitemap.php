@@ -37,4 +37,29 @@ $myfile = fopen(dirname(__FILE__)."/sitemap.xml", "w") or die("Unable to open fi
 $txt = implode($return);
 fwrite($myfile, $txt);
 fclose($myfile);
+$page = 1;$i = 1;$page_size = 1500;
+$t = [];
+foreach($urlList as $url)
+{
+    $t[] = $url;
+    $i++;
+    if($i>$page_size)
+    {
+        $myfile = fopen(dirname(__FILE__) . "/robot_" . $page . ".txt", "w") or die("Unable to open file!");
+        $txt = implode("\n", $t);
+        fwrite($myfile, $txt);
+        fclose($myfile);
+        $i = 1;
+        $page++;
+        $t = [];
+    }
+}
+if(count($t)>0)
+{
+    $myfile = fopen(dirname(__FILE__)."/robot_".$page.".txt", "w") or die("Unable to open file!");
+    $txt = implode("\n",$t);
+    fwrite($myfile, $txt);
+    fclose($myfile);
+}
+
 ?>
