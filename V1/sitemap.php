@@ -30,7 +30,7 @@ $return[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset>\n";
 
 foreach($urlList as $url)
 {
-    $priority = ($url==$config['site_url'])?1:0.8;
+    $priority = ($url==$config['site_url'].'/')?1:0.8;
     $return[] = "<url>\n<loc>".$url."</loc>\n<lastmod>".date('Y-m-d')."</lastmod>\n<changefreq>daily</changefreq>\n<priority>".$priority."</priority>\n</url>\n";
 }
 $return[] = '</urlset>';
