@@ -1,7 +1,7 @@
 <?php
 
 $base_config = [
-    'site_name'=>"麒麟赛事",
+    'site_name'=>"麒麟电竞",
     'api_url'=>'http://dev_lol_api.querylist.cn',//api站点URL
     'site_url'=>'http://dev.lol_info.com',//本站URl
     'game_name'=>"英雄联盟",

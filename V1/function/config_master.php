@@ -1,7 +1,7 @@
 <?php
 
 $base_config = [
-    'site_name'=>"麒麟赛事",
+    'site_name'=>"麒麟电竞",
     'api_url'=>'http://api.qilindianjing.com',//api站点URL
     'site_url'=>'https://www.qilindianjing.com',//本站URl
     'game_name'=>"英雄联盟",
