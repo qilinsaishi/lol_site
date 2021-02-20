@@ -20,9 +20,9 @@ $return = curl_post($config['api_get'],json_encode($data),1);
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-  <meta name="description" content="<?php echo $config['site_description'];?>">
-  <meta name=”Keywords” Content=”<?php echo $config['site_name'];?>″>
     <title><?php echo $config['site_name'];?>_<?php echo $config['game_name'];?>电子竞技赛事资讯分析网</title>
+    <meta name="description" content="<?php echo $config['site_description'];?>">
+  <meta name=”Keywords” Content=”<?php echo $config['site_name'];?>″>
     <?php renderHeaderJsCss($config);?>
 </head>
 

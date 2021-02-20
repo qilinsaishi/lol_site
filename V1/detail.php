@@ -79,9 +79,9 @@ foreach($keywordsList as $word => $wordInfo)
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title><?php echo $return['information']['data']['title'];?>_<?php echo $config['game_name'];?>资讯-<?php echo $config['site_name'];?></title>
     <meta name="description" content="">
     <meta name=”Keywords” Content=”<?php echo implode(",",array_keys($keywordsList));?>″>
-    <title><?php echo $return['information']['data']['title'];?>_<?php echo $config['game_name'];?>资讯-<?php echo $config['site_name'];?></title>
     <?php renderHeaderJsCss($config);?>
 </head>
 
