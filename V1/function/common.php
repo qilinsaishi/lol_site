@@ -155,6 +155,7 @@
     }
     function renderFooterJsCss($config)
     {
+        echo '<script src="'.$config['site_url'].'/js/tongji.js"></script>';
         echo '<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>';
         echo '<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
     }
