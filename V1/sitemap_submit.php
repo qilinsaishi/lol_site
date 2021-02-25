@@ -32,19 +32,26 @@ if(count($t)>0)
 }
 function push2Baidu($urls,$config)
 {
-    $url = explode('//',$config['site_url']);
-    $api = 'http://data.zz.baidu.com/urls?site='.$url[1].'&token='.$config['baidu_token'];
-    $api = htmlspecialchars_decode($api);
-    $ch = curl_init();
-    $options =  array(
-        CURLOPT_URL => $api,
-        CURLOPT_POST => true,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POSTFIELDS => implode("\n", $urls),
-        CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
-    );
-    curl_setopt_array($ch, $options);
-    $result = curl_exec($ch);
+    if(count($urls)>0)
+    {
+        $url = explode('//',$config['site_url']);
+        $api = 'http://data.zz.baidu.com/urls?site='.$url[1].'&token='.$config['baidu_token'];
+        $api = htmlspecialchars_decode($api);
+        $ch = curl_init();
+        $options =  array(
+            CURLOPT_URL => $api,
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS => implode("\n", $urls),
+            CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+        );
+        curl_setopt_array($ch, $options);
+        $result = curl_exec($ch);
+    }
+    else
+    {
+        $result = json_encode(["empty"]);
+    }
     echo $result;
 }
 ?>
