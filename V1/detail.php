@@ -124,7 +124,7 @@ foreach($keywordsList as $word => $wordInfo)
 
 
                 <div class="show_txt">
-                    <?php echo $return['information']['data']['content'];?>
+                    <?php echo html_entity_decode($return['information']['data']['content']);?>
                 </div>
                 <br>
                 <div class="xgTag">
