@@ -174,4 +174,10 @@
         }
         return preg_replace($search, $replace, $subject, $limit);
     }
+    function render404($config)
+    {
+        header('location:'.$config['site_url'] . '/' . '404');
+        exit;
+        return true;
+    }
     ?>

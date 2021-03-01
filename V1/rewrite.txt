@@ -10,3 +10,4 @@ rewrite  ^/herolist  /hero-list.php  last;
 rewrite  ^/herodetail/(.*)$  /hero.php?hero_id=$1?  last;
 rewrite  ^/scws/(.*)/(.*)$  /scwsList.php?ids=$1&page=$2?  last;
 rewrite  ^/detail/(.*)$  /detail_301.php?id=$1?  last;
+rewrite  ^/404  /404.php  last;

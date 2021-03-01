@@ -3,6 +3,10 @@
 require_once "function/init.php";
 $info['page']['page_size'] = 4;
 $id = $_GET['id']??1;
+if($id<=0)
+{
+    render404($config);
+}
 $data = [
     "information"=>[$id],
     "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
@@ -14,6 +18,10 @@ $data = [
     "currentPage"=>["name"=>"info","id"=>$id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
+if(!isset($return["information"]['data']['id']))
+{
+    render404($config);
+}
 $urlList = ["hero"=>$config['site_url']."/herodetail/",
             "team"=>$config['site_url']."/teamdetail/",
             "player"=>$config['site_url']."/playerdetail/",
