@@ -85,7 +85,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
                           <div class="right">
                               <h2><?php echo $value['content']['title'];?></h2>
                               <p><?php echo strip_tags(html_entity_decode($value['content']['content'])); ?></p>
-                              <div class="more"><span class="more_btn">More</span> <span><?php echo substr((($value["type"]==2)?$value['site_time']:$value['create_time']),0,10);?></span> </div>
+                              <div class="more"><span class="more_btn">More</span> <span><?php echo substr((($value['content']["type"]==2)?$value['content']['site_time']:$value['content']['create_time']),0,10);?></span> </div>
                           </div>
                       </a>
                   </li>
