@@ -2,6 +2,10 @@
 <?php
 require_once "function/init.php";
 $player_id = $_GET['player_id']??0;
+if($player_id<=0)
+{
+    render404($config);
+}
 $data = [
     "totalPlayerInfo"=>[$player_id],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage"],
@@ -13,6 +17,10 @@ $data = [
     "currentPage"=>["name"=>"player","id"=>$player_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
+if(!isset($return["totalPlayerInfo"]['data']['player_id']))
+{
+    render404($config);
+}
 $connectedInformationList = $return["keywordMapList"]["data"];
 ?>
 <html lang="zh-CN">

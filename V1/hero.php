@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
 $hero_id = $_GET['hero_id'];
+if($hero_id<=0)
+{
+    render404($config);
+}
 require_once "function/init.php";
 $data = [
     "lolHero"=>[$hero_id],
@@ -13,6 +17,10 @@ $data = [
     "currentPage"=>["name"=>"hero","id"=>$hero_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
+if(!isset($return["lolHero"]['data']['hero_id']))
+{
+    render404($config);
+}
 foreach($return['lolHero']['data']["skinList"] as $key => $skinInfo)
 {
     $return['lolHero']['data']["skinList"][$key]['data'] = json_decode($skinInfo['data'],true);
