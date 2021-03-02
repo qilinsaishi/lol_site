@@ -29,7 +29,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title><?php echo $config['game_name'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>_<?php echo $config['game_name'];?>电竞头条-<?php echo $config['site_name'];?></title>
+    <title><?php echo $return['scwsKeyword']['data']['keyword'];?>_<?php echo $config['game_name'];?><?php echo $return['scwsKeyword']['data']['keyword'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>-<?php echo $config['site_name'];?></title>
     <?php if($info['type']=="info"){?>
     <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game_name'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>，了解<?php echo $config['game_name'];?>电子竞技头条<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>，尽在<?php echo $config['site_name'];?>。">
     <?php }else{?>
