@@ -6,7 +6,7 @@ $data = [
     //"totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage"],
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
-    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
+    "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "lolHeroList"=>["page"=>1,"page_size"=>1000],
     "lolEquipmentList"=>["page"=>1,"page_size"=>1000],
     "lolSummonerList"=>["page"=>1,"page_size"=>200],

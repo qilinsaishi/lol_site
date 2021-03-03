@@ -12,7 +12,7 @@ $data = [
     "teamList"=>["dataType"=>"totalTeamList","page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo'],
     "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
-    "links"=>["game"=>$config['game'],"page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
+    "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "playerList"=>["dataType"=>"totalPlayerList","game"=>$config['game'],"page"=>1,"page_size"=>18,"source"=>$config['source'],"fields"=>'player_id,player_name,logo'],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
