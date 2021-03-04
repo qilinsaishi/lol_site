@@ -1,11 +1,26 @@
 <?php
 require_once "function/init.php";
 
+$h = date("i");
+echo "currentHour:".$h."\n";
+if(!in_array($h,[9,10,11,12,13,14,15,16,17,18,23]))
+{
+    die();
+}
 $urlList = [];
-$data = [
-    "site_id"=>$config['site_id'],
-    "recent"=>3600,
-];
+if($h==23)
+{
+    $data = [
+        "site_id"=>$config['site_id'],
+    ];
+}
+else
+{
+    $data = [
+        "site_id"=>$config['site_id'],
+        "recent"=>7200,
+    ];
+}
 $return = curl_post($config['api_sitemap'],json_encode($data),1);
 $type = "newsdetail";
 foreach($return[$type] as $key)
