@@ -1,7 +1,7 @@
 <?php
 require_once "function/init.php";
 
-$h = date("i");
+$h = date("H");
 echo "currentHour:".$h."\n";
 if(!in_array($h,[9,10,11,12,13,14,15,16,17,18,23]))
 {
