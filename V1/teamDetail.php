@@ -18,7 +18,7 @@ $data = [
 
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-if(!isset($return["totalTeamInfo"]['data']['team_id']))
+if(!isset($return["totalTeamInfo"]['data']['team_id']) || $return["totalTeamInfo"]['data']['game'] != $config['game'] )
 {
     render404($config);
 }

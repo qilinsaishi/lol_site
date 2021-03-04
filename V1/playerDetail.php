@@ -17,7 +17,7 @@ $data = [
     "currentPage"=>["name"=>"player","id"=>$player_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-if(!isset($return["totalPlayerInfo"]['data']['player_id']))
+if(!isset($return["totalPlayerInfo"]['data']['player_id'])  || $return["totalPlayerInfo"]['data']['game'] != $config['game'])
 {
     render404($config);
 }
