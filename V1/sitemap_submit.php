@@ -68,7 +68,6 @@ function push2Baidu($urls,$config)
         );
         curl_setopt_array($ch, $options);
         $result = curl_exec($ch);
-        $result = json_decode($result,true);
     }
     else
     {
