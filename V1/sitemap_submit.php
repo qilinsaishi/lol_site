@@ -74,6 +74,7 @@ function push2Baidu($urls,$config)
         $result = json_encode(["empty"]);
     }
     $result = json_decode($result,true);
-    echo $result;
+    print_R($result);
+    return $result;
 }
 ?>
