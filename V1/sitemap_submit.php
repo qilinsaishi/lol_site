@@ -21,13 +21,14 @@ else
         "recent"=>7200,
     ];
 }
+
 $return = curl_post($config['api_sitemap'],json_encode($data),1);
 $type = "newsdetail";
 foreach($return[$type] as $key)
 {
     $urlList[] = $config['site_url']."/".$type."/".$key;
 }
-$page = 1;$i = 1;$page_size = 1500;
+$page = 1;$i = 1;$page_size = 100;
 $t = [];
 foreach($urlList as $url)
 {
@@ -35,7 +36,12 @@ foreach($urlList as $url)
     $i++;
     if($i>$page_size)
     {
-        push2Baidu($t,$config);
+        $push = push2Baidu($t,$config);
+        $page_size = min($push["remain"]??0,$page_size);
+        if($page_size==0)
+        {
+            break;
+        }
         $i = 1;
         $page++;
         $t = [];
@@ -62,11 +68,13 @@ function push2Baidu($urls,$config)
         );
         curl_setopt_array($ch, $options);
         $result = curl_exec($ch);
+        $result = json_decode($result,true);
     }
     else
     {
         $result = json_encode(["empty"]);
     }
+    $result = json_decode($result,true);
     echo $result;
 }
 ?>
