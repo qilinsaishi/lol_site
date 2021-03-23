@@ -17,14 +17,16 @@ $data = [
     "site_id"=>$config['site_id'],
 ];
 $return = curl_post($config['api_sitemap'],json_encode($data),1);
-
-foreach($return as $type => $detail)
-{
-    foreach($detail as $key)
-    {
-        $urlList[] = $config['site_url']."/".$type."/".$key;
-    }
+if(isset($return)){
+	foreach($return as $type => $detail)
+	{
+		foreach($detail as $key)
+		{
+			$urlList[] = $config['site_url']."/".$type."/".$key;
+		}
+	}
 }
+
 $return = [];
 $return[] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset>\n";
 
