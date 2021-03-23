@@ -34,7 +34,7 @@ $urlList = ["hero"=>$config['site_url']."/herodetail/",
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title><?php echo $return['information']['data']['title'];?>_<?php echo $config['game_name'];?>资讯-<?php echo $config['site_name'];?></title>
     <meta name="description" content="">
-    <meta name=”Keywords” Content=”<?php echo implode(",",array_keys($keywordsList));?>″>
+   
     <?php renderHeaderJsCss($config);?>
 </head>
 
