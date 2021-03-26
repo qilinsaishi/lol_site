@@ -2,10 +2,10 @@
 <?php
 require_once "function/init.php";
 $data = [
-        "matchList"=>["page"=>1,"page_size"=>9],
+        "matchList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "totalTeamList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-        //"totalTeamList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history'],
-        "tournament"=>["page"=>1,"page_size"=>8],
+        //"totalTournamentList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history'],
+        "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
         "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
         "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -166,7 +166,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
         <div class="title">热门赛事</div>
         <ul>
             <?php
-            foreach($return['tournament']['data'] as $tournamentInfo)
+            foreach($return['tournamentList']['data'] as $tournamentInfo)
             {   ?>
           <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
             <?php }?>
