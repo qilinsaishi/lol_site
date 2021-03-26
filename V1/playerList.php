@@ -12,8 +12,10 @@ $data = [
     "matchList"=>["page"=>1,"page_size"=>4],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "playerList"=>["dataType"=>"totalPlayerList","game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>$config['source'],"fields"=>'player_id,player_name,logo'],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
+    "playerList"=>["dataType"=>"totalPlayerList","page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"scoregg","fields"=>'player_id,player_name,logo'],
+    //"playerList"=>["dataType"=>"totalPlayerList","game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>$config['source'],"fields"=>'player_id,player_name,logo'],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    //"totalPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
     "currentPage"=>["name"=>"playerList","page"=>$page,"page_size"=>$info['page']['page_size'],"site_id"=>$config['site_id']]
 ];

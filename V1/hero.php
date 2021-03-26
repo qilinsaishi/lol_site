@@ -12,7 +12,8 @@ $data = [
     "tournament"=>["page"=>1,"page_size"=>8],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>3,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>3,"source"=>"scoregg","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>3,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "keywordMapList"=>["fields"=>"content_id","game"=>$config['game'],"source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>13,"fields"=>"id,title,logo,create_time"]],
     "currentPage"=>["name"=>"hero","id"=>$hero_id,"site_id"=>$config['site_id']]
 ];

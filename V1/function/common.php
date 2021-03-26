@@ -169,4 +169,10 @@
         exit;
         return true;
     }
+
+    function  replace_html_tag( $string ,  $tagname  = "<img><br>"){
+        $string = html_entity_decode($string);
+        $string = strip_tags($string,$tagname); // 保留 <span>标签
+        return $string;
+    }
     ?>
