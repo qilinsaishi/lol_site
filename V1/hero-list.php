@@ -4,7 +4,7 @@ require_once "function/init.php";
 $data = [
     //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "tournament"=>["page"=>1,"page_size"=>8],
+    "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "lolHeroList"=>["page"=>1,"page_size"=>1000],
@@ -184,7 +184,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
         <div class="title">热门赛事</div>
         <ul>
             <?php
-            foreach($return['tournament']['data'] as $tournamentInfo)
+            foreach($return['tournamentList']['data'] as $tournamentInfo)
             {   ?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
             <?php }?>

@@ -12,7 +12,7 @@ $data = [
     "matchList"=>["page"=>1,"page_size"=>9],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
 	//"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
-    "tournament"=>["page"=>1,"page_size"=>8],
+    "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>9,"source"=>"scoregg","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -117,7 +117,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
             <ul class="saishiList_box">
                 <?php
                 $i = 1;
-                foreach($return['tournament']['data'] as $tournamentInfo)
+                foreach($return['tournamentList']['data'] as $tournamentInfo)
                 {   if($i<=3){?>
                     <li class="list-item">
                         <a href="##" title="<?php echo $tournamentInfo['tournament_name'];?>" target="_blank"><?php echo $tournamentInfo['tournament_name'];?></a>
@@ -181,7 +181,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
         <div class="title">热门赛事</div>
         <ul>
             <?php
-            foreach($return['tournament']['data'] as $tournamentInfo)
+            foreach($return['tournamentList']['data'] as $tournamentInfo)
             {   ?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
             <?php }?>

@@ -9,10 +9,10 @@ require_once "function/init.php";
 $data = [
     "lolHero"=>[$hero_id],
     "lolHeroList"=>["page"=>1,"page_size"=>15],
-    "tournament"=>["page"=>1,"page_size"=>8],
+    "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>3,"source"=>"scoregg","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>3,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "keywordMapList"=>["fields"=>"content_id","game"=>$config['game'],"source_type"=>"hero","source_id"=>$hero_id,"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>13,"fields"=>"id,title,logo,create_time"]],
     "currentPage"=>["name"=>"hero","id"=>$hero_id,"site_id"=>$config['site_id']]
@@ -372,7 +372,7 @@ $connectedInformationList = $return["keywordMapList"]["data"];
         <div class="title">热门赛事</div>
         <ul>
             <?php
-            foreach($return['tournament']['data'] as $tournamentInfo)
+            foreach($return['tournamentList']['data'] as $tournamentInfo)
             {   ?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
             <?php }?>

@@ -14,6 +14,7 @@ $data = [
         "straList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
         "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
     ];
+
 $return = curl_post($config['api_get'],json_encode($data),1);
 
 ?>

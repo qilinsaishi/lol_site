@@ -10,7 +10,7 @@ $data = [
     "totalPlayerInfo"=>[$player_id],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     //"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage"],
-    "tournament"=>["page"=>1,"page_size"=>8],
+    "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
@@ -227,7 +227,7 @@ $connectedInformationList = $return["keywordMapList"]["data"];
       <div class="title">热门赛事</div>
       <ul>
         <?php
-            foreach($return['tournament']['data'] as $tournamentInfo)
+            foreach($return['tournamentList']['data'] as $tournamentInfo)
             {   ?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
             <?php }?>

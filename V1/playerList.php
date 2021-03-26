@@ -7,9 +7,9 @@ if($page==''){
 }
 require_once "function/init.php";
 $data = [
-    "tournament"=>["page"=>1,"page_size"=>8],
+    "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalTeamList"=>["page"=>1,"page_size"=>18,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
-    "matchList"=>["page"=>1,"page_size"=>4],
+    "matchList"=>["page"=>1,"page_size"=>4,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "playerList"=>["dataType"=>"totalPlayerList","page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"scoregg","fields"=>'player_id,player_name,logo'],
@@ -202,7 +202,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
         <div class="title">热门赛事</div>
         <ul>
             <?php
-            foreach($return['tournament']['data'] as $tournamentInfo)
+            foreach($return['tournamentList']['data'] as $tournamentInfo)
             {   ?>
                 <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
             <?php }?>

@@ -10,7 +10,7 @@ if($id<=0)
 $data = [
     "information"=>[$id],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "tournament"=>["page"=>1,"page_size"=>8],
+    "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     //"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"rand"=>1,"cacheWith"=>"currentPage","fields"=>'team_id,team_name,logo'],
     "totalPlayerList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","fields"=>'player_id,player_name,logo',"cache_time"=>86400*7],
@@ -197,7 +197,7 @@ foreach($replace_list as $key => $txt)
                             <ul class="saishiList_box">
                                 <?php
                                 $i = 1;
-                                foreach($return['tournament']['data'] as $tournamentInfo)
+                                foreach($return['tournamentList']['data'] as $tournamentInfo)
                                 {   if($i<=3){?>
                                     <li class="list-item">
                                         <a href="##" title="<?php echo $tournamentInfo['tournament_name'];?>" target="_blank"><?php echo $tournamentInfo['tournament_name'];?></a>
@@ -288,7 +288,7 @@ foreach($replace_list as $key => $txt)
             <div class="title">热门赛事</div>
             <ul>
                 <?php
-                foreach($return['tournament']['data'] as $tournamentInfo)
+                foreach($return['tournamentList']['data'] as $tournamentInfo)
                 {   ?>
                     <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
                 <?php }?>

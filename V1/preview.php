@@ -8,7 +8,7 @@ $id = $_GET['id']??1;
 $cdata=$_POST;
 $data = [
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "tournament"=>["page"=>1,"page_size"=>8],
+    "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"rand"=>1,"cacheWith"=>"currentPage","fields"=>'team_id,team_name,logo'],
     "totalPlayerList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>$config['source'],"rand"=>1,"cacheWith"=>"currentPage","fields"=>'player_id,player_name,logo'],
     "playerList"=>["dataType"=>"totalPlayerList","page"=>1,"page_size"=>6,"source"=>$config['source']],
@@ -155,7 +155,7 @@ $urlList = ["hero"=>$config['site_url']."/herodetail/",
             <div class="title">热门赛事</div>
             <ul>
                 <?php
-                foreach($return['tournament']['data'] as $tournamentInfo)
+                foreach($return['tournamentList']['data'] as $tournamentInfo)
                 {   ?>
                     <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="##"><?php echo $tournamentInfo['tournament_name'];?></a></li>
                 <?php }?>
