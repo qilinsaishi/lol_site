@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <?php
 require_once "function/init.php";
-$team_id = $_GET['team_id']??0;
-if($team_id<=0)
+$tid = $_GET['tid']??0;
+if($tid<=0)
 {
     render404($config);
 }
 $data = [
-        "totalTeamInfo"=>[$team_id]
-];
-$return = curl_post($config['api_get'],json_encode($data),1);
-if(!isset($return["totalTeamInfo"]['data']['team_id']) || $return["totalTeamInfo"]['data']['game'] != $config['game'] )
-{
-    render404($config);
-}
-if($return["totalTeamInfo"]['data']['tid']>0)
-{
-    renderIntergratedTeam($return["totalTeamInfo"]['data']['tid']);
-    die();
-}
-$data = [
-    "totalTeamInfo"=>[$team_id],
-    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    //"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage"],
+    "intergratedTeam"=>[$tid],
+    "intergratedTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"fields"=>'tid,team_name,logo',"except_team"=>$tid,"rand"=>1,/*"cacheWith"=>"currentPage",*/"cache_time"=>0/*86400*7*/],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$team_id,"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>5,"fields"=>"id,title,create_time"]],
-    "currentPage"=>["name"=>"team","id"=>$team_id,"site_id"=>$config['site_id']]
+    "currentPage"=>["name"=>"intergratedTeam","id"=>$tid,"site_id"=>$config['site_id']]
 
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-if(!isset($return["totalTeamInfo"]['data']['team_id']) || $return["totalTeamInfo"]['data']['game'] != $config['game'] )
+if(!isset($return["intergratedTeam"]['data']['tid']) || $return["intergratedTeam"]['data']['game'] != $config['game'] )
 {
     render404($config);
 }
-if(count($return["keywordMapList"]["data"])==0)
+else
+{
+    $data3 = [
+            "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$return["intergratedTeam"]['data']['intergrated_id_list'],"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>5,"fields"=>"id,title,create_time"]],
+    ];
+    $return3 = curl_post($config['api_get'],json_encode($data3),1);
+
+}
+if(count($return3["keywordMapList"]["data"])==0)
 {
     $data2 = [
         "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,"type"=>"1,2,3,5"],
@@ -47,7 +40,7 @@ if(count($return["keywordMapList"]["data"])==0)
 }
 else
 {
-    $connectedInformationList = $return["keywordMapList"]["data"];
+    $connectedInformationList = $return3["keywordMapList"]["data"];
 }
 ?>
 <html lang="zh-CN">
@@ -55,10 +48,10 @@ else
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title><?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部_<?php echo $return['totalTeamInfo']['data']['team_name'];?>战队_<?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍-<?php echo $config['site_name'];?></title>
-    <meta name="description" content="<?php echo $return['totalTeamInfo']['data']['description'];?>">
-    <meta name=”Keywords” Content=”<?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部,<?php
-    if(substr_count($return['totalTeamInfo']['data']['team_name'],"战队")==0){echo $return['totalTeamInfo']['data']['team_name'].'战队,';}?><?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍″>
+    <title><?php echo $return['intergratedTeam']['data']['team_name'];?>电子竞技俱乐部_<?php echo $return['intergratedTeam']['data']['team_name'];?>战队_<?php echo $return['intergratedTeam']['data']['team_name'];?>电竞俱乐部成员介绍-<?php echo $config['site_name'];?></title>
+    <meta name="description" content="<?php echo $return['intergratedTeam']['data']['description'];?>">
+    <meta name=”Keywords” Content=”<?php echo $return['intergratedTeam']['data']['team_name'];?>电子竞技俱乐部,<?php
+    if(substr_count($return['intergratedTeam']['data']['team_name'],"战队")==0){echo $return['intergratedTeam']['data']['team_name'].'战队,';}?><?php echo $return['intergratedTeam']['data']['team_name'];?>电竞俱乐部成员介绍″>
   <?php renderHeaderJsCss($config);?>
 </head>
 
@@ -87,18 +80,18 @@ else
       <ol class="breadcrumb">
           <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
           <li><a href="<?php echo $config['site_url']; ?>/teamlist/"><?php echo $config['game_name'];?>战队</a></li>
-          <li><a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['totalTeamInfo']['data']['team_id'];?>"><?php echo $return['totalTeamInfo']['data']['team_name'];?></a></li>
+          <li><a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['intergratedTeam']['data']['team_id'];?>"><?php echo $return['intergratedTeam']['data']['team_name'];?></a></li>
       </ol>
       <div class="row teamLogo">
 
       <div class="col-lg-3 col-sm-4 col-md-3 col-xs-12 left">
-        <img src="<?php echo $return['totalTeamInfo']['data']['logo'];?>" />
+        <img src="<?php echo $return['intergratedTeam']['data']['logo'];?>" />
       </div>
       <div class="col-lg-9 col-sm-8 col-md-9 col-xs-12 right">
-        <h1 class="top"><?php echo $return['totalTeamInfo']['data']['team_name'];?></h1>
+        <h1 class="top"><?php echo $return['intergratedTeam']['data']['team_name'];?></h1>
 
         <div>
-            <?php echo htmlspecialchars_decode($return['totalTeamInfo']['data']['description']);?>
+            <?php echo htmlspecialchars_decode($return['intergratedTeam']['data']['description']);?>
         </div>
 
       </div>
@@ -119,7 +112,7 @@ else
           </h3>
         </div>
         <div class="cont">
-            <p><?php if($return['totalTeamInfo']['data']['team_history']!=""){echo htmlspecialchars_decode($return['totalTeamInfo']['data']['team_history']);}else{echo "暂无";}?> </p>
+            <p><?php if($return['intergratedTeam']['data']['team_history']!=""){echo htmlspecialchars_decode($return['intergratedTeam']['data']['team_history']);}else{echo "暂无";}?> </p>
         </div>
       </div>
 
@@ -141,7 +134,7 @@ else
         <div>
           <ul class="zhanduiList_box">
               <?php
-              foreach($return['totalTeamInfo']['data']['playerList'] as $playerInfo)
+              foreach($return['intergratedTeam']['data']['playerList'] as $playerInfo)
               {
                   ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
@@ -222,10 +215,10 @@ else
       <div class="col-xs-12">
         <ul class="iconList">
             <?php
-            foreach($return['totalTeamList']['data'] as $teamInfo)
+            foreach($return['intergratedTeamList']['data'] as $teamInfo)
             {   ?>
                 <li class="list-item">
-                    <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                    <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                         <img src="<?php echo $teamInfo['logo'];?>" alt="img" />
                     </a>
                 </li>

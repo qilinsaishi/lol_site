@@ -169,6 +169,12 @@
         exit;
         return true;
     }
+function renderIntergratedTeam($tid)
+{
+    header('location:'.$config['site_url'] . '/team/' . $tid);
+    exit;
+    return true;
+}
 
     function  replace_html_tag( $string ,  $tagname  = "<img><br>"){
         $string = html_entity_decode($string);
