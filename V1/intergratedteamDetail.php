@@ -137,7 +137,7 @@ else
               {
                   ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
-              <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
+              <a href="<?php echo $config['site_url']; ?>/player/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
                   <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
                       <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
                   <?php }else{?>
