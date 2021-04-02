@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <?php
-require_once "function/init.php";
 $info['page']['page_size'] = 54;
 $page = $_GET['page']??1;
 if($page==''){
 	$page=1;
 }
+require_once "function/init.php";
 $data = [
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "intergratedTeamList"=>["page"=>1,"page_size"=>18,"fields"=>'tid,team_name,logo',"game"=>$config['game'],"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "matchList"=>["page"=>1,"page_size"=>4,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "intergratedTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>'tid,team_name,logo',"game"=>$config['game'],"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "intergratedPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"fields"=>'pid,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "intergratedPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    //"totalPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
-    "currentPage"=>["name"=>"intergratedTeamList","page"=>$page,"page_size"=>$info['page']['page_size'],"site_id"=>$config['site_id']]
+    "currentPage"=>["name"=>"intergratedPlayerList","page"=>$page,"page_size"=>$info['page']['page_size'],"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-$info['page']['total_count'] = $return['intergratedTeamList']['count'];
-$info['page']['total_page'] = ceil($return['intergratedTeamList']['count']/$info['page']['page_size']);
+$info['page']['total_count'] = $return['intergratedPlayerList']['count'];
+$info['page']['total_page'] = intval($return['intergratedPlayerList']['count']/$info['page']['page_size']);
 ?>
 <html lang="zh-CN">
 
@@ -27,9 +28,9 @@ $info['page']['total_page'] = ceil($return['intergratedTeamList']['count']/$info
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
-    <title><?php echo $config['game_name'];?>战队_<?php echo $config['game_name'];?>电子竞技战队-<?php echo $config['site_name'];?></title>
-    <meta name="description" content="<?php echo $config['site_name'];?>提供完善的<?php echo $config['game_name'];?>战队信息及<?php echo $config['game_name'];?>电子竞技俱乐部赛事信息资讯及数据分析内容解读。">
-  <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>战队,<?php echo $config['game_name'];?>电竞战队,<?php echo $config['game_name'];?>电子竞技俱乐部″>
+    <title><?php echo $config['game_name'];?>职业选手名单大全-<?php echo $config['site_name'];?></title>
+    <meta name="description" content="">
+    <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>职业选手名单,<?php echo $config['game_name'];?>职业选手大全″>
     <?php renderHeaderJsCss($config);?>
 </head>
 
@@ -48,85 +49,81 @@ $info['page']['total_page'] = ceil($return['intergratedTeamList']['count']/$info
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <?php generateNav($config,"team");?>
+            <?php generateNav($config,"player");?>
         </ul>
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
   </nav><!-- /.navbar -->
 
-  <div class="container margin120">
-
-    <div class="row heroList">
-      <div class="col-md-12">
-              <ol class="breadcrumb">
-                  <li><a href="<?php echo $config['sige_url'];?>">首页</a></li>
-                  <li><a href="<?php echo $config['site_url']; ?>/teamlist/"><?php echo $config['game_name'];?>战队</a></li>
-              </ol>
-        <div class="icon_title">
-          <h3>
-            战队列表
-          </h3>
-        </div>
-        <div>
-          <div class="iconList">
-            <ul>
-                <?php
-                foreach($return['intergratedTeamList']['data'] as $teamInfo)
-                {   ?>
-                    <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                        <a href="<?php echo $config['site_url']; ?>/team/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
-                            <div>
-                                <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
-                                <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
-                                <?php }else{?>
-                                <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
-                                <?php }?>
-                            </div>
-                            <p><?php echo $teamInfo['team_name'];?></p>
-                        </a>
-                    </li>
-                <?php }?>
-                <div class="page">
-                    <ul class="pagination">
-                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/teams"); ?>
-                    </ul>
-                </div>
-              <div style="clear: both;"></div>
-            </ul>
-          </div>
-        </div>
-          <div class="icon_title">
-              <h3>
-                  热门选手
-              </h3>
-              <a href="<?php echo $config['site_url']; ?>/players/">更多</a>
-          </div>
-          <div>
-              <div class="iconList">
-                  <ul>
-                      <?php
-                      foreach($return['intergratedPlayerList']['data'] as $playerInfo)
-                      {   ?>
-                          <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                              <a href="<?php echo $config['site_url']; ?>/player/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
-                                  <div>
-                                      <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
-                                          <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
-                                      <?php }else{?>
-                                          <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
-                                      <?php }?>
-
-                                  </div>
-                                  <p><?php echo $playerInfo['player_name'];?></p>
-                              </a>
-                          </li>
-                      <?php }?>
-                      <div style="clear: both;"></div>
-                  </ul>
-              </div>
-          </div>
-      </div>
         <div class="container margin120">
+
+            <div class="row heroList">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
+                        <li><a href="<?php echo $config['site_url']; ?>/playerlist/"><?php echo $config['game_name'];?>选手</a></li>
+                    </ol>
+                    <div class="icon_title">
+                        <h3>
+                            选手列表
+                        </h3>
+                    </div>
+                    <div>
+                        <div class="iconList">
+                            <ul>
+                                <?php
+                                foreach($return['intergratedPlayerList']['data'] as $playerInfo)
+                                {   ?>
+                                    <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
+                                        <a href="<?php echo $config['site_url']; ?>/player/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                                            <div>
+                                                <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
+                                                    <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                                                <?php }else{?>
+                                                    <img src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
+                                                <?php }?>                                            </div>
+                                            <p><?php echo $playerInfo['player_name'];?></p>
+                                        </a>
+                                    </li>
+                                <?php }?>
+                                <div class="page">
+                                    <ul class="pagination">
+                                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/players"); ?>
+                                    </ul>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="icon_title">
+                        <h3>
+                            热门战队
+                        </h3>
+                        <a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
+                    </div>
+                    <div>
+                        <div class="iconList">
+                            <ul>
+                                <?php
+                                foreach($return['intergratedTeamList']['data'] as $teamInfo)
+                                {   ?>
+                                    <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
+                                        <a href="<?php echo $config['site_url']; ?>/team/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                                            <div>
+                                                <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
+                                                    <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
+                                                <?php }else{?>
+                                                    <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
+                                                <?php }?>                                            </div>
+                                            <p><?php echo $teamInfo['team_name'];?></p>
+                                        </a>
+                                    </li>
+                                <?php }?>
+                                <div style="clear: both;"></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
 
       
