@@ -102,7 +102,7 @@ $info['page']['total_page'] = ceil($return['intergratedTeamList']['count']/$info
               <h3>
                   热门选手
               </h3>
-              <a href="<?php echo $config['site_url']; ?>/playerlist/">更多</a>
+              <a href="<?php echo $config['site_url']; ?>/players/">更多</a>
           </div>
           <div>
               <div class="iconList">

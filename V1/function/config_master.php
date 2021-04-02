@@ -18,7 +18,7 @@ $additional_config = [
     'navList' => ['index'=>['url'=>"","name"=>"首页"],
         'game'=>['url'=>"gameint/","name"=>$base_config['game_name']],
         'team'=>['url'=>"teams/","name"=>$base_config['game_name']."战队"],
-        'player'=>['url'=>"playerlist/","name"=>$base_config['game_name']."队员"],
+        'player'=>['url'=>"players/","name"=>$base_config['game_name']."队员"],
         'hero'=>['url'=>"herolist/","name"=>"英雄介绍"],
         'info'=>['url'=>"newslist/","name"=>"游戏资讯"],
         'stra'=>['url'=>"strategylist/","name"=>"游戏攻略"],
