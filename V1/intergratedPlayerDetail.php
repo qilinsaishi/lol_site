@@ -1,42 +1,30 @@
 <!DOCTYPE html>
 <?php
 require_once "function/init.php";
-$player_id = $_GET['player_id']??0;
-if($player_id<=0)
+$pid = $_GET['pid']??0;
+if($pid<=0)
 {
     render404($config);
 }
 $data = [
-    "totalPlayerInfo"=>[$player_id]
-];
-$return = curl_post($config['api_get'],json_encode($data),1);
-if(!isset($return["totalPlayerInfo"]['data']['player_id']) || $return["totalPlayerInfo"]['data']['game'] != $config['game'] )
-{
-    render404($config);
-}
-if($return["totalPlayerInfo"]['data']['pid']>0)
-{
-    renderIntergratedPlayer($return["totalPlayerInfo"]['data']['pid']);
-    die();
-}
-$data = [
-    "totalPlayerInfo"=>[$player_id],
+    "intergratedPlayer"=>[$pid],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    //"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage"],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "keywordMapList"=>["fields"=>"content_id","source_type"=>"player","source_id"=>$player_id,"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>8,"fields"=>"id,title,create_time"]],
-    "currentPage"=>["name"=>"player","id"=>$player_id,"site_id"=>$config['site_id']]
+    "currentPage"=>["name"=>"player","id"=>$pid,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-if(!isset($return["totalPlayerInfo"]['data']['player_id'])  || $return["totalPlayerInfo"]['data']['game'] != $config['game'])
+if(!isset($return["intergratedPlayer"]['data']['pid'])  || $return["intergratedPlayer"]['data']['game'] != $config['game'])
 {
     render404($config);
 }
-$connectedInformationList = $return["keywordMapList"]["data"];
+$data2 = [
+    "keywordMapList"=>["fields"=>"content_id","source_type"=>"player","source_id"=>$return["intergratedPlayer"]['data']['intergrated_id_list'],"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>8,"fields"=>"id,title,create_time"]],
+];
+$return2 = curl_post($config['api_get'],json_encode($data2),1);
+$connectedInformationList = $return2["keywordMapList"]["data"];
 ?>
 <html lang="zh-CN">
 
@@ -45,9 +33,9 @@ $connectedInformationList = $return["keywordMapList"]["data"];
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title><?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料_<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介-<?php echo $config['site_name']?></title>
-  <meta name="description" content="<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>，真名为<?php echo $return['totalPlayerInfo']['data']['player_name'];?>，<?php echo $return['totalPlayerInfo']['data']['country'];?>人，<?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo "在".$return['totalTeamInfo']['data']['team_name']."中长期打".$return['totalPlayerInfo']['data']['position'].".位置，";}?><?php if(count($return['totalPlayerInfo']['data']['playerList'])>0){echo "与".implode(",",array_column($return['totalPlayerInfo']['data']['playerList'],"player_name"))."为队友";}?>。">
-    <meta name=”Keywords” Content=”<?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料,<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介">
+    <title><?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料_<?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?><?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介-<?php echo $config['site_name']?></title>
+  <meta name="description" content="<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php echo $return['intergratedPlayer']['data']['player_name'];?>，真名为<?php echo $return['intergratedPlayer']['data']['player_name'];?>，<?php echo $return['intergratedPlayer']['data']['country'];?>人，<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo "在".$return['totalTeamInfo']['data']['team_name']."中长期打".$return['intergratedPlayer']['data']['position'].".位置，";}?><?php if(count($return['intergratedPlayer']['data']['playerList'])>0){echo "与".implode(",",array_column($return['intergratedPlayer']['data']['playerList'],"player_name"))."为队友";}?>。">
+    <meta name=”Keywords” Content=”<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料,<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?><?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介">
   <?php renderHeaderJsCss($config);?>
 </head>
 
@@ -76,34 +64,34 @@ $connectedInformationList = $return["keywordMapList"]["data"];
 <div class="container margin120 teamMember">
     <ol class="breadcrumb">
         <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-        <li><a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></li>
-        <li><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $return['totalPlayerInfo']['data']['player_id'];?>"><?php echo $config['game_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?></a></li>
+        <li><a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['intergratedPlayer']['data']['teamInfo']['tid'];?>"><?php echo $config['game_name'];?><?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?></a></li>
+        <li><a href="<?php echo $config['site_url']; ?>/player/<?php echo $return['intergratedPlayer']['data']['pid'];?>"><?php echo $config['game_name'];?><?php echo $return['intergratedPlayer']['data']['player_name'];?></a></li>
     </ol>
   <div class="row teamLogo">
 
     <div class="col-lg-5 col-sm-4 col-md-5 col-xs-12 left">
-      <img src="<?php echo $return['totalPlayerInfo']['data']['logo'];?>" />
+      <img src="<?php echo $return['intergratedPlayer']['data']['logo'];?>" />
     </div>
     <div class="col-lg-7 col-sm-8 col-md-7 col-xs-12 right">
-      <h1 class="top"><?php echo $return['totalPlayerInfo']['data']['player_name'];?></h1>
+      <h1 class="top"><?php echo $return['intergratedPlayer']['data']['player_name'];?></h1>
 
       <div>
         <ul>
           <li>
-            名字：<span><?php echo $return['totalPlayerInfo']['data']['player_name'];?></span>
+            名字：<span><?php echo $return['intergratedPlayer']['data']['player_name'];?></span>
           </li>
           <li>
-            国籍：<span><?php echo $return['totalPlayerInfo']['data']['country'];?></span>
+            国籍：<span><?php echo $return['intergratedPlayer']['data']['country'];?></span>
           </li>
           <li>
-              战队：<a href = '<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_id'];?>'><span><?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?></a></span>
+              战队：<a href = '<?php echo $config['site_url']; ?>/team/<?php echo $return['intergratedPlayer']['data']['teamInfo']['tid'];?>'><span><?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?></a></span>
           </li>
           <li>
-            游戏id：<span><?php echo $return['totalPlayerInfo']['data']['player_name'];?></span>
+            游戏id：<span><?php echo $return['intergratedPlayer']['data']['player_name'];?></span>
           </li>
         </ul>
         <p>
-            <span><?php echo $return['totalPlayerInfo']['data']['description'];?></span></p>
+            <span><?php echo $return['intergratedPlayer']['data']['description'];?></span></p>
       </div>
 
     </div>
@@ -162,7 +150,7 @@ $connectedInformationList = $return["keywordMapList"]["data"];
         </h3>
       </div>
       <ul class="iconList">
-          <div><?php echo htmlspecialchars_decode($return['totalPlayerInfo']['data']['teamInfo']['description']);?></div>
+          <div><?php echo htmlspecialchars_decode($return['intergratedPlayer']['data']['teamInfo']['description']);?></div>
       </ul>
     </div>
 
@@ -183,9 +171,9 @@ $connectedInformationList = $return["keywordMapList"]["data"];
       </div>
       <div>
         <ul class="zhanduiList_box">
-          <?php foreach ($return['totalPlayerInfo']['data']['playerList'] as $key => $playerInfo) {?>
+          <?php foreach ($return['intergratedPlayer']['data']['playerList'] as $key => $playerInfo) {?>
             <li class="col-lg-3 col-sm-4 col-md-3 col-xs-6  list-item">
-            <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id']?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+            <a href="<?php echo $config['site_url']; ?>/player/<?php echo $playerInfo['pid']?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
               <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
               <p><?php echo $playerInfo['player_name'];?></p>
             </a>

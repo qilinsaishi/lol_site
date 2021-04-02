@@ -175,6 +175,12 @@ function renderIntergratedTeam($tid)
     exit;
     return true;
 }
+function renderIntergratedPlayer($pid)
+{
+    header('location:'.$config['site_url'] . '/player/' . $pid);
+    exit;
+    return true;
+}
 
     function  replace_html_tag( $string ,  $tagname  = "<img><br>"){
         $string = html_entity_decode($string);
