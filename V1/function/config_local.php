@@ -17,7 +17,7 @@ $additional_config = [
     'api_sitemap' => $base_config['api_url']."/sitemap",
     'navList' => ['index'=>['url'=>"","name"=>"首页"],
         'game'=>['url'=>"gameint/","name"=>$base_config['game_name']],
-        'team'=>['url'=>"teamlist/","name"=>$base_config['game_name']."战队"],
+        'team'=>['url'=>"teams/","name"=>$base_config['game_name']."战队"],
         'player'=>['url'=>"playerlist/","name"=>$base_config['game_name']."队员"],
         'hero'=>['url'=>"herolist/","name"=>"英雄介绍"],
         'info'=>['url'=>"newslist/","name"=>"游戏资讯"],

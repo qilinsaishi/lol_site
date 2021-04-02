@@ -3,13 +3,14 @@
 require_once "function/init.php";
 $info['page']['page_size'] = 54;
 $page = $_GET['page']??1;
+echo $page;
 if($page==''){
 	$page=1;
 }
 $data = [
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "matchList"=>["page"=>1,"page_size"=>4,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "totalTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"game"=>$config['game'],"source"=>"scoregg","fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "intergratedTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>'tid,team_name,logo',"game"=>$config['game'],"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "playerList"=>["dataType"=>"totalPlayerList","game"=>$config['game'],"page"=>1,"page_size"=>18,"source"=>"scoregg","fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -20,8 +21,8 @@ $data = [
     "currentPage"=>["name"=>"teamList","page"=>$page,"page_size"=>$info['page']['page_size'],"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
-$info['page']['total_count'] = $return['totalTeamList']['count'];
-$info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page']['page_size']);
+$info['page']['total_count'] = $return['intergratedTeamList']['count'];
+$info['page']['total_page'] = ceil($return['intergratedTeamList']['count']/$info['page']['page_size']);
 ?>
 <html lang="zh-CN">
 
@@ -73,10 +74,10 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
           <div class="iconList">
             <ul>
                 <?php
-                foreach($return['totalTeamList']['data'] as $teamInfo)
+                foreach($return['intergratedTeamList']['data'] as $teamInfo)
                 {   ?>
                     <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
-                        <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                        <a href="<?php echo $config['site_url']; ?>/team/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <div>
                                 <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
                                 <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
@@ -90,7 +91,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                 <?php }?>
                 <div class="page">
                     <ul class="pagination">
-                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/teamlist"); ?>
+                        <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/teams"); ?>
                     </ul>
                 </div>
               <div style="clear: both;"></div>

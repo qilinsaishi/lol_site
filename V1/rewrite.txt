@@ -1,5 +1,6 @@
 rewrite  ^/teamlist/(.*)$  /teamList.php?page=$1?  last;
 rewrite  ^/teamdetail/(.*)$  /teamDetail.php?team_id=$1?  last;
+rewrite  ^/teams/(.*)$  /intergratedTeamList.php?page=$1?  last;
 rewrite  ^/team/(.*)$  /intergratedTeamDetail.php?tid=$1?  last;
 rewrite  ^/playerdetail/(.*)$  /playerDetail.php?player_id=$1?  last;
 rewrite  ^/playerlist/(.*)$  /playerList.php?page=$1?  last;

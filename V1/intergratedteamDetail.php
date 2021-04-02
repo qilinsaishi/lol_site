@@ -8,7 +8,7 @@ if($tid<=0)
 }
 $data = [
     "intergratedTeam"=>[$tid],
-    "intergratedTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"fields"=>'tid,team_name,logo',"except_team"=>$tid,"rand"=>1,/*"cacheWith"=>"currentPage",*/"cache_time"=>0/*86400*7*/],
+    "intergratedTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"fields"=>'tid,team_name,logo',"except_team"=>$tid,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
@@ -30,7 +30,7 @@ else
     $return3 = curl_post($config['api_get'],json_encode($data3),1);
 
 }
-if(count($return3["keywordMapList"]["data"])==0)
+if(count($return3["keywordMapList"]["data"]??[])==0)
 {
     $data2 = [
         "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,"type"=>"1,2,3,5"],
@@ -80,7 +80,7 @@ else
       <ol class="breadcrumb">
           <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
           <li><a href="<?php echo $config['site_url']; ?>/teamlist/"><?php echo $config['game_name'];?>战队</a></li>
-          <li><a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['intergratedTeam']['data']['team_id'];?>"><?php echo $return['intergratedTeam']['data']['team_name'];?></a></li>
+          <li><a href="<?php echo $config['site_url']; ?>/team/<?php echo $return['intergratedTeam']['data']['tid'];?>"><?php echo $return['intergratedTeam']['data']['team_name'];?></a></li>
       </ol>
       <div class="row teamLogo">
 
@@ -138,7 +138,7 @@ else
               {
                   ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
-              <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
+              <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
                   <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
                       <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" />
                   <?php }else{?>
