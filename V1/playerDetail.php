@@ -32,6 +32,7 @@ $data = [
     "currentPage"=>["name"=>"player","id"=>$player_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
+
 if(!isset($return["totalPlayerInfo"]['data']['player_id'])  || $return["totalPlayerInfo"]['data']['game'] != $config['game'])
 {
     render404($config);
@@ -46,8 +47,8 @@ $connectedInformationList = $return["keywordMapList"]["data"];
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title><?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料_<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介-<?php echo $config['site_name']?></title>
-  <meta name="description" content="<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>，真名为<?php echo $return['totalPlayerInfo']['data']['player_name'];?>，<?php echo $return['totalPlayerInfo']['data']['country'];?>人，<?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo "在".$return['totalTeamInfo']['data']['team_name']."中长期打".$return['totalPlayerInfo']['data']['position'].".位置，";}?><?php if(count($return['totalPlayerInfo']['data']['playerList'])>0){echo "与".implode(",",array_column($return['totalPlayerInfo']['data']['playerList'],"player_name"))."为队友";}?>。">
-    <meta name=”Keywords” Content=”<?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料,<?php echo $return['totalTeamInfo']['data']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介">
+  <meta name="description" content="<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>，真名为<?php echo $return['totalPlayerInfo']['data']['player_name'];?>，<?php echo $return['totalPlayerInfo']['data']['country'];?>人，<?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo "在".$return['totalTeamInfo']['data']['team_name']."中长期打".$return['totalPlayerInfo']['data']['position'].".位置，";}?><?php if(count($return['totalPlayerInfo']['data']['playerList'])>0){echo "与".implode(",",array_column($return['totalPlayerInfo']['data']['playerList'],"player_name"))."为队友";}?>。">
+    <meta name=”Keywords” Content=”<?php echo $return['totalPlayerInfo']['data']['player_name'];?>个人资料,<?php echo $return['totalPlayerInfo']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['totalPlayerInfo']['data']['position'],["","?"])){echo $return['totalPlayerInfo']['data']['position'];}?><?php echo $return['totalPlayerInfo']['data']['player_name'];?>信息简介">
   <?php renderHeaderJsCss($config);?>
 </head>
 
