@@ -6,6 +6,7 @@ if($player_id<=0)
 {
     render404($config);
 }
+/*
 $data = [
     "totalPlayerInfo"=>[$player_id]
 ];
@@ -19,6 +20,7 @@ if($return["totalPlayerInfo"]['data']['pid']>0)
     renderIntergratedPlayer($config,$return["totalPlayerInfo"]['data']['pid']);
     die();
 }
+*/
 $data = [
     "totalPlayerInfo"=>[$player_id],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
