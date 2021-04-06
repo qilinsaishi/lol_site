@@ -82,8 +82,19 @@ foreach($keywordsList as $word => $wordInfo)
         $i++;
     }
 }
-$return['information']['data']['content'] = replace_html_tag($return['information']['data']['content'],'<img><br><p>');
-
+$author_found = 0;
+foreach($config['author'] as $author)
+{
+    if( substr($return['information']['data']['author'],0,strlen($author)) == $author)
+    {
+        $author_found = 1;
+        break;
+    }
+}
+if( $author_found == 0 )
+{
+    $return['information']['data']['content'] = replace_html_tag($return['information']['data']['content'],'<img><br><p>');
+}
 $imgpreg = '/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i';
 preg_match_all($imgpreg,$return['information']['data']['content'],$imgList);
 $i = 0;$replace_arr = [];

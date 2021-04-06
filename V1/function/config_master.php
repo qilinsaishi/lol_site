@@ -8,7 +8,8 @@ $base_config = [
     'game'=>"lol",
     'site_id'=>1,
     'source'=>"cpseo",
-    'baidu_token'=>'WGi6okVpl9ij8Gc3'
+    'baidu_token'=>'WGi6okVpl9ij8Gc3',
+    'author'=>["凤凰电竞"],
 ];
 
 $additional_config = [
