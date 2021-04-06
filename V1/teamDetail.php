@@ -16,7 +16,7 @@ if(!isset($return["totalTeamInfo"]['data']['team_id']) || $return["totalTeamInfo
 }
 if($return["totalTeamInfo"]['data']['tid']>0)
 {
-    renderIntergratedTeam($return["totalTeamInfo"]['data']['tid']);
+    renderIntergratedTeam($config,$return["totalTeamInfo"]['data']['tid']);
     die();
 }
 $data = [

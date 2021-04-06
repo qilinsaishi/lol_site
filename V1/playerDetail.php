@@ -16,7 +16,7 @@ if(!isset($return["totalPlayerInfo"]['data']['player_id']) || $return["totalPlay
 }
 if($return["totalPlayerInfo"]['data']['pid']>0)
 {
-    renderIntergratedPlayer($return["totalPlayerInfo"]['data']['pid']);
+    renderIntergratedPlayer($config,$return["totalPlayerInfo"]['data']['pid']);
     die();
 }
 $data = [
