@@ -64,7 +64,7 @@ $connectedInformationList = $return2["keywordMapList"]["data"];
 <div class="container margin120 teamMember">
     <ol class="breadcrumb">
         <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-        <li><a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $return['intergratedPlayer']['data']['teamInfo']['tid'];?>"><?php echo $config['game_name'];?><?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?></a></li>
+        <li><a href="<?php echo $config['site_url']; ?>/team/<?php echo $return['intergratedPlayer']['data']['teamInfo']['tid'];?>"><?php echo $config['game_name'];?><?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?></a></li>
         <li><a href="<?php echo $config['site_url']; ?>/player/<?php echo $return['intergratedPlayer']['data']['pid'];?>"><?php echo $config['game_name'];?><?php echo $return['intergratedPlayer']['data']['player_name'];?></a></li>
     </ol>
   <div class="row teamLogo">

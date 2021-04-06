@@ -217,7 +217,7 @@ else
             foreach($return['intergratedTeamList']['data'] as $teamInfo)
             {   ?>
                 <li class="list-item">
-                    <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                    <a href="<?php echo $config['site_url']; ?>/team/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                         <img src="<?php echo $teamInfo['logo'];?>" alt="img" />
                     </a>
                 </li>
