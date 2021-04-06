@@ -134,7 +134,7 @@ else
           <ul class="zhanduiList_box">
               <?php
               foreach($return['intergratedTeam']['data']['playerList'] as $playerInfo)
-              {
+              { if(strlen($playerInfo['logo']) >=10){
                   ?>
             <li class="col-lg-3 col-sm-6 col-md-4 col-xs-6  list-item">
               <a href="<?php echo $config['site_url']; ?>/player/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name']?>" target="_blank">
@@ -146,7 +146,7 @@ else
                 <p><?php echo $playerInfo['player_name']?></p>
               </a>
             </li>
-              <?php }?>
+              <?php }}?>
             <div style="clear: both;"></div>
           </ul>
 
