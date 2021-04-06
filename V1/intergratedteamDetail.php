@@ -11,7 +11,6 @@ $data = [
     "intergratedTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"fields"=>'tid,team_name,logo',"except_team"=>$tid,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"intergratedTeam","id"=>$tid,"site_id"=>$config['site_id']]

@@ -10,7 +10,7 @@ $data = [
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"rand"=>1,"cacheWith"=>"currentPage","fields"=>'team_id,team_name,logo'],
-    "totalPlayerList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>$config['source'],"rand"=>1,"cacheWith"=>"currentPage","fields"=>'player_id,player_name,logo'],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "playerList"=>["dataType"=>"totalPlayerList","page"=>1,"page_size"=>6,"source"=>$config['source']],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "currentPage"=>["name"=>"info","id"=>$id,"site_id"=>$config['site_id']]

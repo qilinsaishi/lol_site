@@ -4,12 +4,10 @@ require_once "function/init.php";
 $data = [
         "matchList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "totalTeamList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-        //"totalTournamentList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history'],
         "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
         "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-        "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-        //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
+        "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>9,"type"=>"1,2,3,5"],
         "straList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
         "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
@@ -176,11 +174,12 @@ $return = curl_post($config['api_get'],json_encode($data),1);
         <div class="title">热门选手</div>
         <ul>
             <?php
+            $i = 1;
             foreach($return['totalPlayerList']['data'] as $playerInfo)
             {
-                ?>
-                <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
-            <?php }?>
+                if($i<=8){?>
+                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                    <?php $i++;}}?>
         </ul>
       </div>
       <div class="col-lg-4 col-sm-6 col-md-4 col-xs-12">

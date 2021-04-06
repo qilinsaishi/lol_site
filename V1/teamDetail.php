@@ -24,10 +24,8 @@ if($return["totalTeamInfo"]['data']['tid']>0)
 $data = [
     "totalTeamInfo"=>[$team_id],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    //"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo,team_history',"rand"=>1,"cacheWith"=>"currentPage"],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    //"totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>$config['source'],"fields"=>'player_id,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
+    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$team_id,"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>5,"fields"=>"id,title,create_time"]],
@@ -121,7 +119,7 @@ else
           </h3>
         </div>
         <div class="cont">
-            <p><?php if($return['totalTeamInfo']['data']['team_history']!=""){echo htmlspecialchars_decode($return['totalTeamInfo']['data']['team_history']);}else{echo "暂无";}?> </p>
+            <p><?php if($return['intergratedTeam']['data']['team_history']!=""){echo strip_tags(unicodeDecode($return['intergratedTeam']['data']['team_history']));}else{echo "暂无";}?></p>
         </div>
       </div>
 
