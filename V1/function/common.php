@@ -169,13 +169,13 @@
         exit;
         return true;
     }
-function renderIntergratedTeam($tid)
+function renderIntergratedTeam($config,$tid)
 {
     header('location:'.$config['site_url'] . '/team/' . $tid);
     exit;
     return true;
 }
-function renderIntergratedPlayer($pid)
+function renderIntergratedPlayer($config,$pid)
 {
     header('location:'.$config['site_url'] . '/player/' . $pid);
     exit;
