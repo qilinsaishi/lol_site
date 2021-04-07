@@ -3,7 +3,7 @@
 require_once "function/init.php";
 $data = [
     "matchList"=>["page"=>1,"page_size"=>9],
-    "totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>12,"game"=>$config['game'],"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
@@ -100,10 +100,10 @@ $return = curl_post($config['api_get'],json_encode($data),1);
           <div>
             <ul class="zhanduiList_box">
                 <?php
-                foreach($return['totalTeamList']['data'] as $teamInfo)
+                foreach($return['hotTeamList']['data'] as $teamInfo)
                 {   ?>
                 <li class="col-lg-3 col-sm-3 col-md-3 col-xs-6  list-item">
-                <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                <a href="<?php echo $config['site_url']; ?>/team/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                   <img src="<?php echo $teamInfo['logo'];?>" alt="img" />
                   <p><?php echo $teamInfo['team_name'];?></p>
                 </a>

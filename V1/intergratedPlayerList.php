@@ -12,7 +12,7 @@ $data = [
     "matchList"=>["page"=>1,"page_size"=>4,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "intergratedPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "intergratedPlayerList"=>["game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>'pid,player_name,logo',"cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","game"=>$config['game'],"page"=>1,"page_size"=>8,"fields"=>'pid,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
     "currentPage"=>["name"=>"intergratedPlayerList","page"=>$page,"page_size"=>$info['page']['page_size'],"site_id"=>$config['site_id']]
@@ -60,7 +60,7 @@ $info['page']['total_page'] = intval($return['intergratedPlayerList']['count']/$
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-                        <li><a href="<?php echo $config['site_url']; ?>/playerlist/"><?php echo $config['game_name'];?>选手</a></li>
+                        <li><a href="<?php echo $config['site_url']; ?>/players/"><?php echo $config['game_name'];?>选手</a></li>
                     </ol>
                     <div class="icon_title">
                         <h3>
@@ -98,7 +98,7 @@ $info['page']['total_page'] = intval($return['intergratedPlayerList']['count']/$
                         <h3>
                             热门战队
                         </h3>
-                        <a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
+                        <a href="<?php echo $config['site_url']; ?>/teams/">更多</a>
                     </div>
                     <div>
                         <div class="iconList">

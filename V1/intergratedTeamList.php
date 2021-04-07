@@ -9,7 +9,7 @@ if($page==''){
 $data = [
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "matchList"=>["page"=>1,"page_size"=>4,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "intergratedTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>'tid,team_name,logo',"game"=>$config['game'],"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "intergratedTeamList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>'tid,team_name,logo',"game"=>$config['game'],"cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "intergratedPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"fields"=>'pid,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -60,7 +60,7 @@ $info['page']['total_page'] = ceil($return['intergratedTeamList']['count']/$info
       <div class="col-md-12">
               <ol class="breadcrumb">
                   <li><a href="<?php echo $config['sige_url'];?>">首页</a></li>
-                  <li><a href="<?php echo $config['site_url']; ?>/teamlist/"><?php echo $config['game_name'];?>战队</a></li>
+                  <li><a href="<?php echo $config['site_url']; ?>/teams/"><?php echo $config['game_name'];?>战队</a></li>
               </ol>
         <div class="icon_title">
           <h3>

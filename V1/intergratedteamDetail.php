@@ -77,7 +77,7 @@ else
   <div class="container margin120">
       <ol class="breadcrumb">
           <li><a href="<?php echo $config['site_url'];?>">首页</a></li>
-          <li><a href="<?php echo $config['site_url']; ?>/teamlist/"><?php echo $config['game_name'];?>战队</a></li>
+          <li><a href="<?php echo $config['site_url']; ?>/teams/"><?php echo $config['game_name'];?>战队</a></li>
           <li><a href="<?php echo $config['site_url']; ?>/team/<?php echo $return['intergratedTeam']['data']['tid'];?>"><?php echo $return['intergratedTeam']['data']['team_name'];?></a></li>
       </ol>
       <div class="row teamLogo">

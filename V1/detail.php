@@ -11,7 +11,7 @@ $data = [
     "information"=>[$id],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>12,"game"=>$config['game'],"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","game"=>$config['game'],"page"=>1,"page_size"=>9,"fields"=>'pid,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "playerList"=>["dataType"=>"hotPlayerList","page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'player_id,player_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
@@ -217,15 +217,15 @@ foreach($replace_list as $key => $txt)
                     <div class="saishi">
                         <div class="titleBox">
                             <h3>热门战队</h3>
-                            <a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
+                            <a href="<?php echo $config['site_url']; ?>/teams/">更多</a>
                         </div>
                         <div class="col-xs-24">
                             <ul class="zhanduiList_box text-center">
                                 <?php
-                                foreach($return['totalTeamList']['data'] as $teamInfo)
+                                foreach($return['hotTeamList']['data'] as $teamInfo)
                                 {   ?>
                                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                                        <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                                        <a href="<?php echo $config['site_url']; ?>/team/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                                             <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['title'];?>" />
                                         </a>
                                     </li>
@@ -237,7 +237,7 @@ foreach($replace_list as $key => $txt)
                     <div class="saishi">
                         <div class="titleBox">
                             <h3>明星队员</h3>
-                            <a href="<?php echo $config['site_url']; ?>/playerlist/">更多</a>
+                            <a href="<?php echo $config['site_url']; ?>/players/">更多</a>
                         </div>
                         <div class="col-xs-24">
                             <ul class="zhanduiList_box  text-center">

@@ -3,7 +3,7 @@
 require_once "function/init.php";
 $data = [
         "matchList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-        "totalTeamList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+        "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>12,"game"=>$config['game'],"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
         "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
@@ -109,14 +109,14 @@ $return = curl_post($config['api_get'],json_encode($data),1);
       <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 hotTame">
         <div>
             <div class="more_title">
-                <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="<?php echo $config['site_url']; ?>/teamlist/">更多</a>
+                <h2 class="bigTitle"><?php echo $config['game_name'];?>热门战队</h2><a href="<?php echo $config['site_url']; ?>/teams/">更多</a>
             </div>
             <ul class="zhanduiList_box text-center">
                 <?php
-              foreach($return['totalTeamList']['data'] as $teamInfo)
+              foreach($return['hotTeamList']['data'] as $teamInfo)
               {   ?>
             <li  class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
+                <a href="<?php echo $config['site_url']; ?>/team/<?php echo $teamInfo['tid'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                 <div class="pic">
                   <img src="<?php echo $teamInfo['logo'];?>" />
                 </div>
