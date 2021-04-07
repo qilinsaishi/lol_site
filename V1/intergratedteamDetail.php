@@ -14,8 +14,13 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"intergratedTeam","id"=>$tid,"site_id"=>$config['site_id']]
-];
+];//
 $return = curl_post($config['api_get'],json_encode($data),1);
+$team_history=json_decode($return["intergratedTeam"]['data']['team_history'],true);
+
+$return["intergratedTeam"]['data']['team_history'] = $team_history;
+
+
 if(!isset($return["intergratedTeam"]['data']['tid']) || $return["intergratedTeam"]['data']['game'] != $config['game'] )
 {
     render404($config);
@@ -110,7 +115,7 @@ else
           </h3>
         </div>
         <div class="cont">
-            <p><?php if($return['intergratedTeam']['data']['team_history']!=""){echo strip_tags(unicodeDecode($return['intergratedTeam']['data']['team_history']));}else{echo "暂无";}?> </p>
+            <p><?php if($return['intergratedTeam']['data']['team_history']!=""){echo $return['intergratedTeam']['data']['team_history'];}else{echo "暂无";}?> </p>
         </div>
       </div>
 
