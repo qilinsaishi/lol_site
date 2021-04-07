@@ -25,7 +25,19 @@ $data2 = [
     "keywordMapList"=>["fields"=>"content_id","source_type"=>"player","source_id"=>$return["intergratedPlayer"]['data']['intergrated_id_list'],"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>8,"fields"=>"id,title,create_time"]],
 ];
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
-$connectedInformationList = $return2["keywordMapList"]["data"];
+
+if(count($return2["keywordMapList"]["data"]??[])==0)
+{
+    $data3 = [
+        "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,"type"=>"1,2,3,5"],
+    ];
+    $return3 = curl_post($config['api_get'],json_encode($data3),1);
+    $connectedInformationList = $return3["informationList"]["data"];
+}
+else
+{
+    $connectedInformationList = $return2["keywordMapList"]["data"];
+}
 ?>
 <html lang="zh-CN">
 
@@ -270,9 +282,6 @@ $connectedInformationList = $return2["keywordMapList"]["data"];
       <?php renderCertification();?>
   </div>
 </footer>
-
-
-
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
