@@ -16,7 +16,7 @@ $data = [
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","game"=>$config['game'],"page"=>1,"page_size"=>8,"fields"=>'pid,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","game"=>$config['game'],"page"=>1,"page_size"=>9,"fields"=>'pid,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "currentPage"=>["name"=>"infoList","type"=>$zxtype,"page"=>$page,"page_size"=>$info['page']['page_size']]
 ];
 $return = curl_post($config['api_get'],json_encode($data),1);
