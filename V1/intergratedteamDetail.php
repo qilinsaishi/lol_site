@@ -17,8 +17,11 @@ $data = [
 ];//
 $return = curl_post($config['api_get'],json_encode($data),1);
 $team_history=json_decode($return["intergratedTeam"]['data']['team_history'],true);
-
-$return["intergratedTeam"]['data']['team_history'] = $team_history;
+if(count($team_history)>0){
+    $return["intergratedTeam"]['data']['team_history'] = $team_history;
+}else{
+    $return["intergratedTeam"]['data']['team_history'] = '暂无';
+}
 
 
 if(!isset($return["intergratedTeam"]['data']['tid']) || $return["intergratedTeam"]['data']['game'] != $config['game'] )
