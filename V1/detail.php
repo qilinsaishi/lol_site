@@ -12,8 +12,8 @@ $data = [
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>9,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "playerList"=>["dataType"=>"totalPlayerList","page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'player_id,player_name,logo'],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","game"=>$config['game'],"page"=>1,"page_size"=>9,"fields"=>'pid,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "playerList"=>["dataType"=>"hotPlayerList","page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'player_id,player_name,logo'],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "currentPage"=>["name"=>"info","id"=>$id,"site_id"=>$config['site_id']]
 ];
@@ -242,10 +242,10 @@ foreach($replace_list as $key => $txt)
                         <div class="col-xs-24">
                             <ul class="zhanduiList_box  text-center">
                                 <?php
-                                foreach($return['totalPlayerList']['data'] as $playerInfo)
+                                foreach($return['hotPlayerList']['data'] as $playerInfo)
                                 {   ?>
                                     <li class="list-item col-lg-4 col-sm-2 col-md-4 col-xs-4">
-                                        <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
+                                        <a href="<?php echo $config['site_url']; ?>/player/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name'];?>" target="_blank">
                                             <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" />
                                             <p><?php echo $playerInfo['player_name'];?></p>
                                         </a>
@@ -307,10 +307,10 @@ foreach($replace_list as $key => $txt)
             <ul>
                 <?php
                 $i = 1;
-                foreach($return['totalPlayerList']['data'] as $playerInfo)
+                foreach($return['hotPlayerList']['data'] as $playerInfo)
                 {
                     if($i<=8){?>
-                        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                        <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/player/<?php echo $playerInfo['pid'];?>"><?php echo $playerInfo['player_name'];?></a></li>
                         <?php $i++;}}?>
             </ul>
         </div>

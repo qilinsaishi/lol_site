@@ -13,7 +13,7 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img","default_team_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "intergratedPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>18,"fields"=>'pid,player_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","game"=>$config['game'],"page"=>1,"page_size"=>8,"fields"=>'pid,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5"],
     "currentPage"=>["name"=>"intergratedTeamList","page"=>$page,"page_size"=>$info['page']['page_size'],"site_id"=>$config['site_id']]
 ];
@@ -215,11 +215,11 @@ $info['page']['total_page'] = ceil($return['intergratedTeamList']['count']/$info
         <ul>
             <?php
             $i=1;
-            foreach($return['totalPlayerList']['data'] as $playerInfo)
+            foreach($return['hotPlayerList']['data'] as $playerInfo)
             {
                 if($i<=8){
                 ?>
-                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['player_id'];?>"><?php echo $playerInfo['player_name'];?></a></li>
+                    <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><a href="<?php echo $config['site_url']; ?>/player/<?php echo $playerInfo['pid'];?>"><?php echo $playerInfo['player_name'];?></a></li>
             <?php $i++;}}?>
         </ul>
       </div>
