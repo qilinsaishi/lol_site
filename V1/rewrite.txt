@@ -6,6 +6,7 @@ rewrite  ^/playerdetail/(.*)$  /playerDetail.php?player_id=$1?  last;
 rewrite  ^/playerlist/(.*)$  /playerList.php?page=$1?  last;
 rewrite  ^/player/(.*)$  /intergratedPlayerDetail.php?pid=$1?  last;
 rewrite  ^/players/(.*)$  /intergratedPlayerList.php?page=$1?  last;
+rewrite  ^/newslist/(.*)/force$  /zixun-list.php?page=$1&force=1?  last;
 rewrite  ^/newslist/(.*)$  /zixun-list.php?page=$1?  last;
 rewrite  ^/newsdetail/(.*)$  /detail.php?id=$1?  last;
 rewrite  ^/strategylist/(.*)$  /zixun-list.php?type=strategy&page=$1?  last;
