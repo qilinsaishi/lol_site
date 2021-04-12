@@ -67,8 +67,7 @@ h2{
 }
 
 #svgWrap_1,
-#svgWrap_2,
-div{
+#svgWrap_2{
     animation: hueRotate 6s ease-in-out 3s infinite;
 }
 
