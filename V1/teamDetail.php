@@ -28,7 +28,7 @@ $data = [
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_player_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$team_id,"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>5,"fields"=>"id,title,create_time"]],
+    "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$team_id,"page_size"=>100,"content_type"=>"information","list"=>["page_size"=>5,"fields"=>"id,title,create_time,site_time"]],
     "currentPage"=>["name"=>"team","id"=>$team_id,"site_id"=>$config['site_id']]
 
 ];
@@ -56,7 +56,7 @@ else
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title><?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部_<?php echo $return['totalTeamInfo']['data']['team_name'];?>战队_<?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍-<?php echo $config['site_name'];?></title>
-    <meta name="description" content="<?php echo strip_tags($return['totalTeamInfo']['data']['description']);?>">
+    <meta name="description" content="<?php echo strip_tags(json_decode($return['totalTeamInfo']['data']['description'],true));?>">
     <meta name=”Keywords” Content=”<?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部,<?php
     if(substr_count($return['totalTeamInfo']['data']['team_name'],"战队")==0){echo $return['totalTeamInfo']['data']['team_name'].'战队,';}?><?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍″>
   <?php renderHeaderJsCss($config);?>
@@ -98,7 +98,11 @@ else
         <h1 class="top"><?php echo $return['totalTeamInfo']['data']['team_name'];?></h1>
 
         <div>
-            <?php echo htmlspecialchars_decode($return['totalTeamInfo']['data']['description']);?>
+            <?php if($return['totalTeamInfo']['data']['description']!="")
+                // {echo strip_tags(unicodeDecode($return['totalTeamInfo']['data']['team_history']));}
+            {echo json_decode($return['totalTeamInfo']['data']['description'],true);}
+            else
+            {echo "暂无";}?>
         </div>
 
       </div>
@@ -119,7 +123,11 @@ else
           </h3>
         </div>
         <div class="cont">
-            <p><?php if($return['intergratedTeam']['data']['team_history']!=""){echo strip_tags(unicodeDecode($return['intergratedTeam']['data']['team_history']));}else{echo "暂无";}?></p>
+            <p><?php if($return['totalTeamInfo']['data']['team_history']!="")
+           // {echo strip_tags(unicodeDecode($return['totalTeamInfo']['data']['team_history']));}
+                {echo json_decode($return['totalTeamInfo']['data']['team_history'],true);}
+                else
+                {echo "暂无";}?></p>
         </div>
       </div>
 
@@ -190,7 +198,7 @@ else
                                 <?php if($i<=2){echo '<span class="newIcon">NEW</span>';}else{echo '<span class="videoIcon">图文</span>';}?>
                                 <p><?php echo $value['title'];?></p>
                             </div>
-                            <p class="right"><?php echo ($value["type"]??1==2)?$value['site_time']:$value['create_time'];?></p>
+                            <p class="right"><?php echo $value['create_time'];?></p>
                         </a>
                     </li>
                         <?php $i++;}}else{?>
