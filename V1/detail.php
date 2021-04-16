@@ -88,9 +88,13 @@ foreach($config['author'] as $author)
         break;
     }
 }
+
 if( $author_found == 0 )
 {
-    $return['information']['data']['content'] = replace_html_tag($return['information']['data']['content'],'<img><br><p>');
+    if($return['information']['data']['type']!=7)
+    {
+        $return['information']['data']['content'] = replace_html_tag($return['information']['data']['content'],'<img><br><p>');
+    }
 }
 $imgpreg = '/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i';
 preg_match_all($imgpreg,$return['information']['data']['content'],$imgList);

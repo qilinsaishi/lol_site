@@ -163,7 +163,11 @@ $connectedInformationList = $return["keywordMapList"]["data"];
         </h3>
       </div>
       <ul class="iconList">
-          <div><?php echo htmlspecialchars_decode($return['totalPlayerInfo']['data']['teamInfo']['description']);?></div>
+          <div><?php  if($return['totalPlayerInfo']['data']['teamInfo']['description']!="")
+                // {echo strip_tags(unicodeDecode($return['totalTeamInfo']['data']['team_history']));}
+            {echo json_decode($return['totalPlayerInfo']['data']['teamInfo']['description'],true);}
+            else
+            {echo "暂无";}?></div>
       </ul>
     </div>
 
