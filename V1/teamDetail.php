@@ -49,6 +49,24 @@ else
 {
     $connectedInformationList = $return["keywordMapList"]["data"];
 }
+if($return['totalTeamInfo']['data']['description']!="")
+{
+    if(substr($return['totalTeamInfo']['data']['description'],0,1)=='"' && substr($return['totalTeamInfo']['data']['description'],-1)=='"')
+    {
+        $description =  html_entity_decode(json_decode($return['totalTeamInfo']['data']['description'],true));
+
+    }
+    else
+    {
+        $description =  html_entity_decode($return['totalTeamInfo']['data']['description']);
+
+    }
+}
+else
+{
+    $description = "暂无";
+}
+
 ?>
 <html lang="zh-CN">
 <head>
@@ -56,7 +74,7 @@ else
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title><?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部_<?php echo $return['totalTeamInfo']['data']['team_name'];?>战队_<?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍-<?php echo $config['site_name'];?></title>
-    <meta name="description" content="<?php echo strip_tags(json_decode($return['totalTeamInfo']['data']['description'],true));?>">
+    <meta name="description" content="<?php echo strip_tags($description);?>">
     <meta name=”Keywords” Content=”<?php echo $return['totalTeamInfo']['data']['team_name'];?>电子竞技俱乐部,<?php
     if(substr_count($return['totalTeamInfo']['data']['team_name'],"战队")==0){echo $return['totalTeamInfo']['data']['team_name'].'战队,';}?><?php echo $return['totalTeamInfo']['data']['team_name'];?>电竞俱乐部成员介绍″>
   <?php renderHeaderJsCss($config);?>
@@ -98,11 +116,7 @@ else
         <h1 class="top"><?php echo $return['totalTeamInfo']['data']['team_name'];?></h1>
 
         <div>
-            <?php if($return['totalTeamInfo']['data']['description']!="")
-                // {echo strip_tags(unicodeDecode($return['totalTeamInfo']['data']['team_history']));}
-            {echo json_decode($return['totalTeamInfo']['data']['description'],true);}
-            else
-            {echo "暂无";}?>
+            <?php echo $description;?>
         </div>
 
       </div>
