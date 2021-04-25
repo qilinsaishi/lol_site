@@ -66,6 +66,21 @@ else
 {
     $description = "暂无";
 }
+if($return['totalTeamInfo']['data']['team_history']!="")
+{
+	if(substr($return['totalTeamInfo']['data']['team_history'],0,1)=='"' && substr($return['totalTeamInfo']['data']['team_history'],-1)=='"')
+	{
+		$return['totalTeamInfo']['data']['team_history'] = json_decode($return['totalTeamInfo']['data']['team_history'],true);
+	}
+	$return['totalTeamInfo']['data']['team_history'] =html_entity_decode($return['totalTeamInfo']['data']['team_history']);
+
+}
+else
+{
+	
+	$return['totalTeamInfo']['data']['team_history'] ='暂无';
+}
+
 
 ?>
 <html lang="zh-CN">
@@ -137,11 +152,8 @@ else
           </h3>
         </div>
         <div class="cont">
-            <p><?php if($return['totalTeamInfo']['data']['team_history']!="")
-           // {echo strip_tags(unicodeDecode($return['totalTeamInfo']['data']['team_history']));}
-                {echo json_decode($return['totalTeamInfo']['data']['team_history'],true);}
-                else
-                {echo "暂无";}?></p>
+            <p><?php 
+                echo $return['totalTeamInfo']['data']['team_history'];?></p>
         </div>
       </div>
 

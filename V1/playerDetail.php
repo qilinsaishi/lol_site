@@ -38,6 +38,25 @@ if(!isset($return["totalPlayerInfo"]['data']['player_id'])  || $return["totalPla
     render404($config);
 }
 $connectedInformationList = $return["keywordMapList"]["data"];
+
+
+
+if($return['totalPlayerInfo']['data']['teamInfo']['description']!="")
+{
+	if(substr($return['totalPlayerInfo']['data']['teamInfo']['description'],0,1)=='"' && substr($return['totalPlayerInfo']['data']['teamInfo']['description'],-1)=='"')
+	{
+		$return['totalPlayerInfo']['data']['teamInfo']['description'] = json_decode($return['totalPlayerInfo']['data']['description']['description'],true);
+	}
+	$return['totalPlayerInfo']['data']['teamInfo']['description'] =html_entity_decode($return['totalPlayerInfo']['data']['teamInfo']['description']);
+
+}
+else
+{
+	
+	$return['totalPlayerInfo']['data']['teamInfo']['description'] ='暂无';
+}
+
+
 ?>
 <html lang="zh-CN">
 
@@ -163,11 +182,7 @@ $connectedInformationList = $return["keywordMapList"]["data"];
         </h3>
       </div>
       <ul class="iconList">
-          <div><?php  if($return['totalPlayerInfo']['data']['teamInfo']['description']!="")
-                // {echo strip_tags(unicodeDecode($return['totalTeamInfo']['data']['team_history']));}
-            {echo json_decode($return['totalPlayerInfo']['data']['teamInfo']['description'],true);}
-            else
-            {echo "暂无";}?></div>
+          <div><?php echo $return['totalPlayerInfo']['data']['teamInfo']['description'];?></div>
       </ul>
     </div>
 
