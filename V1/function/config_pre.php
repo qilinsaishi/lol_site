@@ -2,6 +2,7 @@
 
 $base_config = [
     'site_name'=>"麒麟电竞",
+    'api_url'=>'http://preapi.querylist.cn',//api站点URL
     'site_url'=>'http://pre.lol_info.com',//本站URl
     'game_name'=>"英雄联盟",
     'game'=>"lol",
