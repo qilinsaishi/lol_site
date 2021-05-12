@@ -10,7 +10,7 @@ if($page==''){
 }
 $zxtype=($info['type']!="info")?"/strategylist":"/newslist";
 $data = [
-    "matchList"=>["page"=>1,"page_size"=>9],
+    "matchList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"scoregg"],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>"scoregg","fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
 	//"totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage"],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],

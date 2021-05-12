@@ -2,7 +2,7 @@
 <?php
 require_once "function/init.php";
 $data = [
-    "matchList"=>["page"=>1,"page_size"=>9],
+    "matchList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"scoregg"],
     "totalTeamList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
