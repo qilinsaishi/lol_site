@@ -33,6 +33,7 @@ $t = [];
 foreach($urlList as $url)
 {
     $t[] = $url;
+    echo "toPush:".$i.",".$url."\n";
     $i++;
     if($i>$page_size)
     {

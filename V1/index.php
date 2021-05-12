@@ -8,11 +8,10 @@ $data = [
         "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
         "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
         "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"source"=>"scoregg","page_size"=>8,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-        "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>9,"type"=>"1,2,3,5"],
+        "infoList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>9,"type"=>"1,2,3,5","fields"=>"*"],
         "straList"=>["dataType"=>"informationList","game"=>$config['game'],"page"=>1,"page_size"=>8,"type"=>"4"],
         "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
     ];
-
 $return = curl_post($config['api_get'],json_encode($data),1);
 
 ?>
