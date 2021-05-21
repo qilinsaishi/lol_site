@@ -271,7 +271,7 @@ foreach($replace_list as $key => $txt)
                 <ul class="saishiList_box">
                     <?php foreach($return2['ConnectInformationList']['data'] as $info){?>
                         <li class="list-item">
-                            <a href="<?php echo $config['site_url']."/newsdetail/".$info['content']['id']?>" title="<?php echo $info['content']['title'];?>" target="_blank"><?php echo $info['content']['title'];?></a>
+                            <a href="<?php echo $config['site_url']."/newsdetail/".$info['id']?>" title="<?php echo $info['title'];?>" target="_blank"><?php echo $info['title'];?></a>
                         </li>
                     <?php }?>
                 </ul>
