@@ -11,7 +11,7 @@ if($page==''){
 $zxtype=($info['type']!="info")?"/strategylist":"/newslist";
 $data = [
     "scwsKeyword"=>[$ids],
-    "informationList"=>["dataType"=>"scwsInformaitonList","ids"=>$ids,"game"=>$config['game'],"page"=>$page,"page_size"=>$info['page']['page_size'],/*"type"=>$info['type']=="info"?"1,2,3,5":"4",*/"fields"=>"*"],
+    "informationList"=>["dataType"=>"scwsInformaitonList","ids"=>$ids,"site"=>$config['site_id'],"page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>"id,game,title,type,site_time,create_time,content,logo"],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
@@ -78,14 +78,14 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
 
               <?php foreach($return['informationList']['data'] as $key => $value) {?>
                   <li>
-                      <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['content']['id'];?>">
+                      <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>">
                           <div class="left">
-                              <img src="<?php echo $value['content']['logo'];?>" alt="<?php echo $value['content']['title'];?>">
+                              <img src="<?php echo $value['logo'];?>" alt="<?php echo $value['title'];?>">
                           </div>
                           <div class="right">
-                              <h2><?php echo $value['content']['title'];?></h2>
-                              <p><?php echo strip_tags(html_entity_decode($value['content']['content'])); ?></p>
-                              <div class="more"><span class="more_btn">More</span> <span><?php echo substr((($value['content']["type"]==2)?$value['content']['site_time']:$value['content']['create_time']),0,10);?></span> </div>
+                              <h2><?php echo $value['title'];?></h2>
+                              <p><?php echo strip_tags(html_entity_decode($value['content'])); ?></p>
+                              <div class="more"><span class="more_btn">More</span> <span><?php echo substr((($value["type"]==2)?$value['site_time']:$value['create_time']),0,10);?></span> </div>
                           </div>
                       </a>
                   </li>
