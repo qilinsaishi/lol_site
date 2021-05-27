@@ -17,11 +17,18 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
     "currentPage"=>["name"=>"info","id"=>$id,"site_id"=>$config['site_id']]
 ];
+
 $return = curl_post($config['api_get'],json_encode($data),1);
+
+if(isset($return["information"]['data']['redirect']) && $return["information"]['data']['redirect']>0)
+{
+	renderDetail301($config,$return["information"]['data']['redirect']);
+}
 if(!isset($return["information"]['data']['id'])  || $return["information"]['data']['game'] != $config['game'])
 {
     render404($config);
 }
+
 $urlList = ["hero"=>$config['site_url']."/herodetail/",
             "team"=>$config['site_url']."/teamdetail/",
             "player"=>$config['site_url']."/playerdetail/",
