@@ -150,7 +150,8 @@
     }
     function renderCertification()
     {
-        echo '<div align="center">Copyright©2021.Company 麒麟电竞 All rights reserved   <a style="color:white;padding:1em;" href="https://beian.miit.gov.cn/#/Integrated/index">琼ICP备19001306号-2</a></div>';
+        echo '<div align="center">Copyright©2021.Company 麒麟电竞 All rights reserved   <a style="color:white;padding:1em;" href="https://beian.miit.gov.cn/#/Integrated/index">琼ICP备19001306号-2</a>
+<div><p style="color: #7D8FA4;font-size:small">本站资源均来源于网络，版权属于原作者！仅供学习参考，严禁用于任何商业目的。</p ><p style="color: #7D8FA4;font-size:small">如果无意中侵犯了您的权益，敬请联系 qilinsaishi@163.com， 我们会尽快核实并删除</p ></div></div>';
 
     }
     function str_replace_limit($search, $replace, $subject, $limit=-1){
