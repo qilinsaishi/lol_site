@@ -176,6 +176,12 @@ function renderIntergratedTeam($config,$tid)
     exit;
     return true;
 }
+function renderDetail301($config,$redirect)
+{
+    header('location:'.$config['site_url'] . '/newsdetail/' . $redirect);
+    exit;
+    return true;
+}
 function renderIntergratedPlayer($config,$pid)
 {
     header('location:'.$config['site_url'] . '/player/' . $pid);
