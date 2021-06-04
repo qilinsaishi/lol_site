@@ -61,9 +61,6 @@ if(is_array($return["information"]['data']['keywords_list']))
         }
     }
 }
-
-//$ids = array_column($keywordsList,"id");
-
 array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
 $ids = array_column($return["information"]['data']['scws_list'],"keyword_id");
 $ids = count($ids)>0?implode(",",$ids):"0";
@@ -77,15 +74,7 @@ if(count($anotherList)>0)
     $data2["anotherKeyword"] = ["dataType"=>"anotherKeyword","ids"=>$anotherList,"fields"=>"id,word,url","pageSize"=>count($anotherList)];
 }
 $return2 = curl_post($config['api_get'],json_encode($data2),1);
-$i = 1;$count = 1;
-foreach($keywordsList as $word => $wordInfo)
-{
-    if($i<=3 && strlen($word)>=3)
-    {
-        $return['information']['data']['content'] = str_replace_limit($word,'<a href="'.$wordInfo['url'].'" target="_blank">'.$word.'</a>',$return['information']['data']['content'],1);
-        $i++;
-    }
-}
+
 $author_found = 0;
 foreach($config['author'] as $author)
 {
@@ -126,6 +115,15 @@ krsort($replace_list);
 foreach($replace_list as $key => $txt)
 {
     $return['information']['data']['content'] = str_replace($txt,"",$return['information']['data']['content']);
+}
+$i = 1;$count = 1;
+foreach($keywordsList as $word => $wordInfo)
+{
+    if($i<=3 && strlen($word)>=3)
+    {
+        $return['information']['data']['content'] = str_replace_limit($word,'<a href="'.$wordInfo['url'].'" target="_blank">'.$word.'</a>',$return['information']['data']['content'],1);
+        $i++;
+    }
 }
 ?>
 
