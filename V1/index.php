@@ -5,7 +5,7 @@ $data = [
         "matchList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "totalTeamList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-        "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+        "defaultConfig"=>["keys"=>["contact","sitemap","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
         "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
         "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"source"=>"scoregg","page_size"=>8,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "infoList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>9,"type"=>"1,2,3,5,6,7","fields"=>"id,game,title,logo,type,site_time,create_time"],
@@ -95,8 +95,8 @@ $return = curl_post($config['api_get'],json_encode($data),1);
               <li>
               <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                 <div>
-                  <img src="<?php echo $value['logo'];?>" />
-                  <p><?php echo $value['title'];?></p>
+                    <img data-original="<?php echo $value['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'];?>" alt="<?php echo $value['title'];?>" class="imgauto">
+                    <p><?php echo $value['title'];?></p>
                 </div>
                 <span><?php echo substr((($value["type"]??1==2)?$value['site_time']:$value['create_time']),0,10);?></span>
               </a>
@@ -139,7 +139,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
                   <li class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                       <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>" title="<?php echo $value['title'];?>" target="_blank">
                           <div>
-                              <img src="<?php echo $value['logo'];?>" />
+                              <img data-original="<?php echo $value['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'];?>" alt="<?php echo $value['title'];?>" class="imgauto">
                               <p><?php echo $value['title'];?></p>
                           </div>
                           <span><?php echo substr($value['create_time'],0,10);?></span>

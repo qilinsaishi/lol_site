@@ -14,7 +14,7 @@ $data = [
     "informationList"=>["dataType"=>"scwsInformaitonList","ids"=>$ids,"site"=>$config['site_id'],"page"=>$page,"page_size"=>$info['page']['page_size'],"fields"=>"id,game,title,type,site_time,create_time,content,logo"],
     "totalTeamList"=>["page"=>1,"page_size"=>6,"game"=>$config['game'],"source"=>$config['source'],"fields"=>'team_id,team_name,logo',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"]],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_information_img"],"fields"=>["name","key","value"]],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"source"=>"scoregg","page_size"=>8,"fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "currentPage"=>["name"=>"infoList","type"=>$zxtype,"page"=>$page,"page_size"=>$info['page']['page_size']]
@@ -80,7 +80,7 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
                   <li>
                       <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>">
                           <div class="left">
-                              <img src="<?php echo $value['logo'];?>" alt="<?php echo $value['title'];?>">
+                              <img data-original="<?php echo $value['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'];?>" alt="<?php echo $value['title'];?>" class="imgauto">
                           </div>
                           <div class="right">
                               <h2><?php echo $value['title'];?></h2>
