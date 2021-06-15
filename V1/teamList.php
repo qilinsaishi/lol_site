@@ -77,7 +77,7 @@ $info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page
                         <a href="<?php echo $config['site_url']; ?>/teamdetail/<?php echo $teamInfo['team_id'];?>" title="<?php echo $teamInfo['team_name'];?>" target="_blank">
                             <div>
                                 <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
-                                <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
+                                <img lazyload="true" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" data-original="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
                                 <?php }else{?>
                                 <img src="<?php echo $teamInfo['logo'];?>" title="<?php echo $teamInfo['team_name'];?>" />
                                 <?php }?>
