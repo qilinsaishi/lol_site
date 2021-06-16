@@ -3,6 +3,7 @@
 require_once "function/init.php";
 $data = [
         "matchList"=>["page"=>1,"page_size"=>9,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+		"slideImage"=>["dataType"=>"imageList","site_id"=>$config['site_id'],"flag"=>"index_pic","page_size"=>20],
         "totalTeamList"=>["page"=>1,"page_size"=>12,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"fields"=>'team_id,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "tournamentList"=>["page"=>1,"page_size"=>8,"game"=>$config['game'],"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
         "defaultConfig"=>["keys"=>["contact","sitemap","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
@@ -12,6 +13,7 @@ $data = [
         "straList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"type"=>"4","fields"=>"id,game,title,logo,type,site_time,create_time"],
         "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
     ];
+	
 $return = curl_post($config['api_get'],json_encode($data),1);
 
 ?>
@@ -48,7 +50,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
     </div><!-- /.container -->
   </nav><!-- /.navbar -->
   <div class="indexBanner">
-    <img src="images/banner.png" />
+    <a target="_blank" href="<?php echo $return["slideImage"]['data'][0]['url'] ?? ''; ?>"><img src="<?php echo $return["slideImage"]['data'][0]['logo'] ?? ''; ?>"  /></a>
   </div>
   <div class="container">
     
