@@ -74,7 +74,7 @@ $return = curl_post($config['api_get'],json_encode($data),1);
               <li class="col-lg-2 col-sm-2 col-md-2 col-xs-4">
                 <a href="<?php echo $config['site_url']; ?>/herodetail/<?php echo $heroInfo['hero_id'];?>">
                     <?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
-                        <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" src="<?php echo $heroInfo['logo'];?>" title="<?php echo $heroInfo['hero_name'];?>" />
+                        <img lazyload="true" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" data-original="<?php echo $heroInfo['logo'];?>" title="<?php echo $heroInfo['hero_name'];?>" />
                     <?php }else{?>
                         <img src="<?php echo $heroInfo['logo'];?>" title="<?php echo $heroInfo['hero_name'];?>" />
                     <?php }?>
