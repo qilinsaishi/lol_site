@@ -19,6 +19,7 @@ $data = [
     "informationList"=>["site"=>$config['site_id'],"page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>$info['type']=="info"?"1,2,3,5,6,7":"4","fields"=>"id,game,title,type,site_time,create_time,content,logo","reset"=>intval($reset)],
     "currentPage"=>["name"=>"infoList","type"=>$zxtype,"page"=>$page,"page_size"=>$info['page']['page_size'],"site_id"=>$config['site_id']]
 ];
+
 $return = curl_post($config['api_get'],json_encode($data),1);
 if(count($return["informationList"]['data'])==0)
 {
@@ -95,7 +96,7 @@ if($reset>0)
                           <div class="right">
                               <h2><?php echo $value['title'];?></h2>
                               <p><?php
-                                  echo $value['content'];
+                                  echo html_entity_decode($value['content']);
                                   ?></p>
                               <div class="more"><span class="more_btn">More</span> <span><?php echo substr($value['create_time'],0,10);?></span> </div>
                           </div>
