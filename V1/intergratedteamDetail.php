@@ -110,7 +110,7 @@ else
           </h3>
         </div>
         <div class="cont">
-            <p><?php if($return['intergratedTeam']['data']['team_history']!=""){echo strip_tags(unicodeDecode($return['intergratedTeam']['data']['team_history']));}else{echo "暂无";}?> </p>
+            <p><?php if(!is_array($return['intergratedTeam']['data']['team_history']) && $return['intergratedTeam']['data']['team_history']!=""){echo strip_tags(unicodeDecode($return['intergratedTeam']['data']['team_history']));}else{echo "暂无";}?> </p>
         </div>
       </div>
 
