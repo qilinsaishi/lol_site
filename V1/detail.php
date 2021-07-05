@@ -78,11 +78,12 @@ $return2 = curl_post($config['api_get'],json_encode($data2),1);
 $author_found = 0;
 foreach($config['author'] as $author)
 {
-    if( substr($return['information']['data']['author'],0,strlen($author)) == $author)
+	if(strpos($return['information']['data']['author'],$author) !== false)
     {
         $author_found = 1;
         break;
     }
+   
 }
 
 if( $author_found == 0 )
