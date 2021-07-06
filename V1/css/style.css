@@ -532,7 +532,8 @@
 }
 
 .show_txt img {
-	
+	max-width: 100%;
+	height: auto;
 	margin: 15px auto;
 }
 
@@ -540,6 +541,24 @@
 	color: #6e8093;
 	font-size: 15px;
 	line-height: 30px;
+}
+.show_cont_others{
+	padding: 10px;
+}
+.show_cont_ta{
+	height: 40px;
+	border-bottom: 1px solid #6e8093;
+}
+.show_cont_others span{
+	color: #6e8093;
+	font-size: 15px;
+	line-height: 30px;
+}
+.show_cont_others .author{
+	float: left;
+}
+.show_cont_others .time{
+	float: right;
 }
 
 .show_txt {
