@@ -176,7 +176,12 @@ foreach($keywordsList as $word => $wordInfo)
                 <h1 class="show_cont_title">
                     <span style="font-size: 22px;line-height: 30px"><?php echo $return['information']['data']['title'];?></span>
                 </h1>
-
+				<div class="show_cont_others">
+					<div class="show_cont_ta">
+					  <span class="author">作者：<?php echo $return['information']['data']['author'];?></span>
+					  <span class="time">发布时间：<?php echo date("Y-m-d H:i",strtotime($return['information']['data']['create_time']));?></span>
+					</div>
+				</div>
 
                 <div class="show_txt">
                     <?php echo html_entity_decode($return['information']['data']['content']);?>
