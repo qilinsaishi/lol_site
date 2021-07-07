@@ -29,7 +29,7 @@ $info['page']['total_page'] = intval($return['totalPlayerList']['count']/$info['
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
     <title><?php echo $config['game_name'];?>职业选手名单大全-<?php echo $config['site_name'];?></title>
     <meta name="description" content="">
-    <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>职业选手名单,<?php echo $config['game_name'];?>职业选手大全″>
+    <meta name="Keywords" Content="<?php echo $config['game_name'];?>职业选手名单,<?php echo $config['game_name'];?>职业选手大全">
     <?php renderHeaderJsCss($config);?>
 </head>
 

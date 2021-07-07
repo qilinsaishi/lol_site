@@ -46,7 +46,7 @@ if($reset>0)
     <?php }else{?>
     <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game_name'];?>游戏攻略，众多大神玩家为您介绍最新版本下<?php echo $config['game_name'];?>新玩法。">
     <?php }?>
-    <meta name=”Keywords” Content=”<?php echo $config['game_name'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>,<?php echo $config['game_name'];?>电竞<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>″>
+    <meta name="Keywords" Content="<?php echo $config['game_name'];?>最新<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>,<?php echo $config['game_name'];?>电竞<?php if($info['type']=="info"){echo "资讯";}else{echo "攻略";}?>">
   <?php renderHeaderJsCss($config);?>
 </head>
 
