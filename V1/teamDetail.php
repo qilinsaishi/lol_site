@@ -40,7 +40,7 @@ if(!isset($return["totalTeamInfo"]['data']['team_id']) || $return["totalTeamInfo
 if(count($return["keywordMapList"]["data"])==0)
 {
     $data2 = [
-        "informationList"=>["site"=>$config['site_id'],"page"=>1,"page_size"=>5,"type"=>"1,2,3,5,6,7"],
+        "informationList"=>["site"=>$config['site_id'],"page"=>1,"page_size"=>5,"type"=>"1,3,5,6,7"],
     ];
     $return2 = curl_post($config['api_get'],json_encode($data2),1);
     $connectedInformationList = $return2["informationList"]["data"];

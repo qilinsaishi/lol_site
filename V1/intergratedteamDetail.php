@@ -31,7 +31,7 @@ else
 if(count($return3["keywordMapList"]["data"]??[])==0)
 {
     $data2 = [
-        "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,"type"=>"1,2,3,5,6,7"],
+        "informationList"=>["game"=>$config['game'],"page"=>1,"page_size"=>5,"type"=>"1,3,5,6,7"],
     ];
     $return2 = curl_post($config['api_get'],json_encode($data2),1);
     $connectedInformationList = $return2["informationList"]["data"];

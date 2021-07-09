@@ -8,7 +8,7 @@ $data = [
     "defaultConfig"=>["keys"=>["contact","sitemap"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "totalPlayerList"=>["game"=>$config['game'],"page"=>1,"page_size"=>8,"source"=>"scoregg","fields"=>'player_id,position,player_name,logo,team_id',"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "informationList"=>["site"=>$config["site_id"],"page"=>1,"page_size"=>7,"type"=>"1,2,3,5,6,7","fields"=>"id,game,title,type,site_time,create_time"],
+    "informationList"=>["site"=>$config["site_id"],"page"=>1,"page_size"=>7,"type"=>"1,3,5,6,7","fields"=>"id,game,title,type,site_time,create_time"],
     "gameConfig"=>$config['game'],
     "currentPage"=>["name"=>"gameInt","site_id"=>$config['site_id']]
 ];
